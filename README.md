@@ -1,55 +1,42 @@
-# IBM Cloud <module_name> - Terraform Module
+# IBM Container Registry Terraform Module
 
-Mention the purpose of writing these modules.
+This is a collection of modules that make it easier to provision a container registry namespace and configure the image retention policies on IBM Cloud Platform:
 
-E.g:
-
-This is a collection of modules that make it easier to provision and configure Observability services like logging, monitor and activity tracker on IBM Cloud Platform:
-* [logging-logdna](modules/logging-logdna)
-* [monitoring-sysdig](modules/monitoring-sysdig)
-* [activity-tracker-logdna](modules/activity-tracker-logdna)
+* Root module creates namespce and assign image rentention policy based on user input
 
 ## Compatibility
 
-This module is meant for use with Terraform 0.13 (and higher).
+This module is meant for use with Terraform 0.13.
 
 ## Usage
 
-Full examples are in the [examples](./examples/) folder, demonstarte how to use a module through a template:
+All the examples are captured under [examples](./examples/) folder, sample to create container namespace and configuring the retention policy:
 
-e.g:
-
-```hcl
+```
 provider "ibm" {
 }
 
-data "ibm_resource_group" "logdna" {
-  name = var.resource_group
-}
+module "namespace" {
+  // Uncommnet the following line to point the source to registry level
+  //source = "terraform-ibm-modules/container-registry/ibm"
 
-module "logdna_instance" {
-  source  = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
-
-
-  bind_resource_key   = var.bind_resource_key
-  service_name        = var.service_name
-  resource_group_id   = data.ibm_resource_group.logdna.id
-  plan                = var.plan
-  region              = var.region
-  service_endpoints   = var.service_endpoints
+  source              = "./../.."
+  name                = var.name
+  resource_group_name = var.resource_group_name
   tags                = var.tags
-  resource_key_name   = var.resource_key_name
-  role                = var.role
-  resource_key_tags   = var.resource_key_tags
+  images_per_repo     = var.images_per_repo
+  retain_untagged     = var.retain_untagged
 }
-
 ```
+## NOTE:
+
+If we want to make use of a particular version of module, then set the argument "version" to respective module version.
 
 ## Requirements
 
 ### Terraform plugins
 
-- [Terraform](https://www.terraform.io/downloads.html) 0.13 (or later)
+- [Terraform](https://www.terraform.io/downloads.html) 0.13
 - [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
 
 ## Install
@@ -65,38 +52,36 @@ Be sure you have the compiled plugins on $HOME/.terraform.d/plugins/
 
 - [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
 
-### Pre-commit hooks
+### Pre-commit Hooks
 
-Run the following command to execute the pre-commit hooks defined in .pre-commit-config.yaml file
-```
-pre-commit run -a
-```
-You can install pre-coomit tool using
+Run the following command to execute the pre-commit hooks defined in `.pre-commit-config.yaml` file
 
-```
-pip install pre-commit
-```
-or
-```
-pip3 install pre-commit
-```
-## How to input variable values through a file
+  `pre-commit run -a`
+
+We can install pre-coomit tool using
+
+  `pip install pre-commit`
+
+## How to input varaible values through a file
 
 To review the plan for the configuration defined (no resources actually provisioned)
-```
-terraform plan -var-file=./input.tfvars
-```
+
+`terraform plan -var-file=./input.tfvars`
+
 To execute and start building the configuration defined in the plan (provisions resources)
-```
-terraform apply -var-file=./input.tfvars
-```
+
+`terraform apply -var-file=./input.tfvars`
 
 To destroy the VPC and all related resources
-```
-terraform destroy -var-file=./input.tfvars
-```
+
+`terraform destroy -var-file=./input.tfvars`
+
+All optional parameters by default will be set to null in respective example's varaible.tf file. If user wants to configure any optional paramter he has overwrite the default value.
+
+## How to configure image retention policy
+
+By default parameter `images_per_repo` is set to null, to enable the retention policy overwrite the `null` with required number of images to retain. This paramter determines how many images will be retained for each repository when the retention policy is executed. The value -1 denotes 'Unlimited' (all images are retained).If we configure `images_per_repo` to say 10 then 10 images will be retained per each repo.
 
 ## Note
 
-All optional parameters, by default, will be set to `null` in respective example's variable.tf file. You can also override these optional parameters.
-
+All optional fields should be given value `null` in respective resource varaible.tf file. User can configure the same by overwriting with appropriate values.
