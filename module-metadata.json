@@ -4,7 +4,7 @@
     "images_per_repo": {
       "name": "images_per_repo",
       "type": "number",
-      "description": "Determines how many images will be retained for each repository when the retention policy is executed. The value -1 denotes 'Unlimited' (all images are retained)",
+      "description": "(Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default)",
       "default": 0,
       "required": true,
       "source": [
@@ -13,7 +13,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 18
+        "line": 21
       }
     },
     "name": {
@@ -33,47 +33,45 @@
       "max_length": 30,
       "matches": "^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$"
     },
-    "resource_group": {
-      "name": "resource_group",
+    "resource_group_id": {
+      "name": "resource_group_id",
       "type": "string",
-      "description": "Name of the resource group",
-      "default": "Default",
+      "description": "The resource group ID where the IBM container namespace will be created.",
+      "required": true,
       "source": [
-        "data.ibm_resource_group.resource_group.name"
+        "ibm_cr_namespace.cr_namespace.resource_group_id"
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 6
+        "line": 10
       },
       "cloud_data_type": "resource_group",
-      "computed": true,
-      "cloud_data_range": [
-        "resolved_to:name"
-      ]
+      "immutable": true,
+      "computed": true
     },
     "retain_untagged": {
       "name": "retain_untagged",
       "type": "bool",
-      "description": "Determines if untagged images are retained when executing the retention policy. This is false by default meaning untagged images will be deleted when the policy is executed.",
+      "description": "(Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs.",
       "default": false,
       "source": [
         "ibm_cr_retention_policy.cr_retention_policy.retain_untagged"
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 31
+        "line": 33
       }
     },
     "tags": {
       "name": "tags",
       "type": "list(string)",
-      "description": "Tags that should be applied to the service",
+      "description": "Optional list of tags to be added to the IBM container namespace.",
       "source": [
         "ibm_cr_namespace.cr_namespace.tags"
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 12
+        "line": 15
       },
       "cloud_data_type": "tags",
       "elem": {
@@ -87,20 +85,22 @@
       "description": "CRN representing the namespace",
       "value": "ibm_cr_namespace.cr_namespace.crn",
       "pos": {
-        "filename": "output.tf",
-        "line": 1
+        "filename": "outputs.tf",
+        "line": 5
       },
       "type": "TypeString",
       "cloud_data_type": "crn"
     }
   },
   "required_core": [
-    "\u003e= 1.3.0",
-    "\u003e=0.13"
+    "\u003e= 1.3.0"
   ],
   "required_providers": {
     "ibm": {
-      "source": "IBM-Cloud/ibm"
+      "source": "IBM-Cloud/ibm",
+      "version_constraints": [
+        "\u003e= 1.49.0, \u003c 2.0.0"
+      ]
     }
   },
   "managed_resources": {
@@ -110,6 +110,7 @@
       "name": "cr_namespace",
       "attributes": {
         "name": "name",
+        "resource_group_id": "resource_group_id",
         "tags": "tags"
       },
       "provider": {
@@ -117,7 +118,7 @@
       },
       "pos": {
         "filename": "main.tf",
-        "line": 5
+        "line": 1
       }
     },
     "ibm_cr_retention_policy.cr_retention_policy": {
@@ -134,26 +135,10 @@
       },
       "pos": {
         "filename": "main.tf",
-        "line": 11
+        "line": 7
       }
     }
   },
-  "data_resources": {
-    "data.ibm_resource_group.resource_group": {
-      "mode": "data",
-      "type": "ibm_resource_group",
-      "name": "resource_group",
-      "attributes": {
-        "name": "resource_group"
-      },
-      "provider": {
-        "name": "ibm"
-      },
-      "pos": {
-        "filename": "main.tf",
-        "line": 1
-      }
-    }
-  },
+  "data_resources": {},
   "module_calls": {}
 }

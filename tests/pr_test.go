@@ -25,7 +25,7 @@ func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptio
 func TestRunNamespaceExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template", namespaceDir)
+	options := setupOptions(t, "icr", namespaceDir)
 
 	output, err := options.RunTestConsistency()
 	assert.Nil(t, err, "This should not have errored")
@@ -35,7 +35,7 @@ func TestRunNamespaceExample(t *testing.T) {
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
-	options := setupOptions(t, "mod-template-upg", namespaceDir)
+	options := setupOptions(t, "icr-upg", namespaceDir)
 
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {

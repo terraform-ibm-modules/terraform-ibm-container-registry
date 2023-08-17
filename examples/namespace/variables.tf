@@ -30,11 +30,11 @@ variable "tags" {
 variable "images_per_repo" {
   type        = number
   default     = 2
-  description = "Determines how many images will be retained for each repository when the retention policy is executed. The value -1 denotes 'Unlimited' (all images are retained)"
+  description = "Determines how many images will be retained for each repository when the retention policy is executed."
 }
 
 variable "retain_untagged" {
   type        = bool
-  description = "Determines if untagged images are retained when executing the retention policy. This is false by default meaning untagged images will be deleted when the policy is executed."
+  description = "Determines if untagged images are retained when executing the retention policy."
   default     = false
 }

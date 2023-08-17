@@ -1,20 +1,19 @@
 <!-- Update the title -->
-# Terraform Modules Template Project
+# Terraform Modules IBM Container Registry Project
 
 <!--
 Update status and "latest release" badges:
   1. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md
-  2. Update the "latest release" badge to point to the correct module's repo. Replace "module-template" in two places.
 -->
 [![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
-[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-module-template?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-module-template/releases/latest)
+[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-container-registry?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/releases/latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <!-- Add a description of module(s) in this repo -->
 
-
+You can use this module to provision and configure an [IBM Container Registry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) namespace and optionally, a container registry retention policy.
 <!--
 If this repo contains any reference architectures, uncomment the heading below and links to them.
 (Usually in the `/reference-architectures` directory.)
@@ -29,7 +28,7 @@ https://terraform-ibm-modules.github.io/documentation/#/implementation-guideline
 ## Overview
 * [terraform-ibm-container-registry](#terraform-ibm-container-registry)
 * [Examples](./examples)
-    * [Container registry namespace Example](./examples/namespace)
+    * [IBM Container Registry namespace Example](./examples/namespace)
 * [Contributing](#contributing)
 
 ## terraform-ibm-container-registry
@@ -45,7 +44,13 @@ unless real values don't help users know what to change.
 -->
 
 ```hcl
-
+module "namespace" {
+  source            = "terraform-ibm-modules/icr/ibm"
+  version           = "latest" # Replace "latest" with a release
+  name              = "my-namespace"
+  resource_group_id = module.resource_group.resource_group_id
+  images_per_repo   = 2
+}
 ```
 
 ### Required IAM access policies

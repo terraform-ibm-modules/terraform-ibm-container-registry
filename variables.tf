@@ -2,7 +2,7 @@ variable "name" {
   description = "Name of the container registry namespace"
   type        = string
   validation {
-    condition = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.name))
+    condition     = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.name))
     error_message = "container registry namespace name should match regex /^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$/"
   }
 }
@@ -19,12 +19,12 @@ variable "tags" {
 }
 
 variable "images_per_repo" {
-  type = number
+  type        = number
   default     = 0
   description = "(Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default)"
   validation {
     condition = (
-      var.images_per_repo > -1
+      var.images_per_repo >= -1
     )
     error_message = "Number of images to retain must be greater than -1."
   }
