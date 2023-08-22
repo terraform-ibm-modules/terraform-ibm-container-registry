@@ -1,6 +1,16 @@
 {
   "path": ".",
   "variables": {
+    "ibmcloud_api_key": {
+      "name": "ibmcloud_api_key",
+      "type": "string",
+      "description": "The IBM Cloud API Key, only required for registry plan upgrade",
+      "sensitive": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 1
+      }
+    },
     "images_per_repo": {
       "name": "images_per_repo",
       "type": "number",
@@ -13,7 +23,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 21
+        "line": 8
       }
     },
     "name": {
@@ -26,12 +36,35 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 1
+        "line": 20
       },
       "immutable": true,
       "min_length": 4,
       "max_length": 30,
       "matches": "^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$"
+    },
+    "registry_plan_upgrade": {
+      "name": "registry_plan_upgrade",
+      "type": "bool",
+      "description": "(Optional, Bool) Determines whether the accounts IBM Container Registry plan is upgrade to standard.",
+      "default": false,
+      "source": [
+        "null_resource.icr_plan_upgrade.count"
+      ],
+      "pos": {
+        "filename": "variables.tf",
+        "line": 29
+      }
+    },
+    "registry_region": {
+      "name": "registry_region",
+      "type": "string",
+      "description": "Registry region",
+      "required": true,
+      "pos": {
+        "filename": "variables.tf",
+        "line": 35
+      }
     },
     "resource_group_id": {
       "name": "resource_group_id",
@@ -43,7 +76,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 10
+        "line": 44
       },
       "cloud_data_type": "resource_group",
       "immutable": true,
@@ -59,7 +92,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 33
+        "line": 49
       }
     },
     "tags": {
@@ -71,7 +104,7 @@
       ],
       "pos": {
         "filename": "variables.tf",
-        "line": 15
+        "line": 55
       },
       "cloud_data_type": "tags",
       "elem": {
@@ -100,6 +133,12 @@
       "source": "IBM-Cloud/ibm",
       "version_constraints": [
         "\u003e= 1.49.0, \u003c 2.0.0"
+      ]
+    },
+    "null": {
+      "source": "hashicorp/null",
+      "version_constraints": [
+        "\u003e= 3.2.1"
       ]
     }
   },
@@ -136,6 +175,21 @@
       "pos": {
         "filename": "main.tf",
         "line": 7
+      }
+    },
+    "null_resource.icr_plan_upgrade": {
+      "mode": "managed",
+      "type": "null_resource",
+      "name": "icr_plan_upgrade",
+      "attributes": {
+        "count": "registry_plan_upgrade"
+      },
+      "provider": {
+        "name": "null"
+      },
+      "pos": {
+        "filename": "main.tf",
+        "line": 21
       }
     }
   },

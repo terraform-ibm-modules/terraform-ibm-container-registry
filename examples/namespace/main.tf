@@ -2,6 +2,12 @@
 # Resource group
 ########################################################################################################################
 
+locals {
+  # Test infrastructure may use us-east, regsitry does not support us-east
+  # for this example if us-east is used, place the registry in us-south (us.icr.io)
+  registry_region = var.region == "us-east" ? "us-south" : var.region
+}
+
 module "resource_group" {
   source  = "terraform-ibm-modules/resource-group/ibm"
   version = "1.0.6"
@@ -14,7 +20,9 @@ module "namespace" {
   source            = "../.."
   name              = var.name
   resource_group_id = module.resource_group.resource_group_id
-  tags              = var.tags
-  images_per_repo   = var.images_per_repo
-  retain_untagged   = var.retain_untagged
+  #  ibmcloud_api_key  = var.ibmcloud_api_key
+  tags            = var.tags
+  images_per_repo = var.images_per_repo
+  retain_untagged = var.retain_untagged
+  registry_region = local.registry_region
 }

@@ -4,6 +4,12 @@ variable "ibmcloud_api_key" {
   sensitive   = true
 }
 
+variable "region" {
+  description = "The registry region for the namespace"
+  type        = string
+  default     = "us-south"
+}
+
 variable "prefix" {
   type        = string
   description = "Prefix to append to all resources created by this example"
