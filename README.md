@@ -1,102 +1,128 @@
-# IBM Cloud <module_name> - Terraform Module
+<!-- Update the title -->
+# Terraform Modules IBM Container Registry Project
 
-Mention the purpose of writing these modules.
+<!--
+Update status and "latest release" badges:
+  1. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md
+-->
+[![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
+[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-container-registry?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/releases/latest)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-E.g:
+<!-- Add a description of module(s) in this repo -->
 
-This is a collection of modules that make it easier to provision and configure Observability services like logging, monitor and activity tracker on IBM Cloud Platform:
-* [logging-logdna](modules/logging-logdna)
-* [monitoring-sysdig](modules/monitoring-sysdig)
-* [activity-tracker-logdna](modules/activity-tracker-logdna)
+You can use this module to provision and configure an [IBM Container Registry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) namespace and optionally, a container registry retention policy.
+<!--
+If this repo contains any reference architectures, uncomment the heading below and links to them.
+(Usually in the `/reference-architectures` directory.)
+See "Reference architecture" in Authoring Guidelines in the public documentation at
+https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=reference-architecture
+-->
+<!-- ## Reference architectures -->
 
-## Compatibility
 
-This module is meant for use with Terraform 0.13 (and higher).
+<!-- Below content is automatically populated via pre-commit hook -->
+<!-- BEGIN OVERVIEW HOOK -->
+## Overview
+* [terraform-ibm-container-registry](#terraform-ibm-container-registry)
+* [Examples](./examples)
+    * [IBM Container Registry namespace Example](./examples/namespace)
+* [Contributing](#contributing)
 
-## Usage
+## terraform-ibm-container-registry
+<!-- END OVERVIEW HOOK -->
 
-Full examples are in the [examples](./examples/) folder, demonstarte how to use a module through a template:
+### Usage
 
-e.g:
+<!--
+Add an example of the use of the module in the following code block.
+
+Use real values instead of "var.<var_name>" or other placeholder values
+unless real values don't help users know what to change.
+-->
 
 ```hcl
-provider "ibm" {
+module "namespace" {
+  source            = "terraform-ibm-modules/icr/ibm"
+  version           = "latest" # Replace "latest" with a release
+  name              = "my-namespace"
+  resource_group_id = module.resource_group.resource_group_id
+  images_per_repo   = 2
 }
-
-data "ibm_resource_group" "logdna" {
-  name = var.resource_group
-}
-
-module "logdna_instance" {
-  source  = "terraform-ibm-modules/observability/ibm//modules/logging-logdna"
-
-
-  bind_resource_key   = var.bind_resource_key
-  service_name        = var.service_name
-  resource_group_id   = data.ibm_resource_group.logdna.id
-  plan                = var.plan
-  region              = var.region
-  service_endpoints   = var.service_endpoints
-  tags                = var.tags
-  resource_key_name   = var.resource_key_name
-  role                = var.role
-  resource_key_tags   = var.resource_key_tags
-}
-
 ```
 
-## Requirements
+### Required IAM access policies
 
-### Terraform plugins
+<!-- PERMISSIONS REQUIRED TO RUN MODULE
+If this module requires permissions, uncomment the following block and update
+the sample permissions, following the format.
+Replace the sample Account and IBM Cloud service names and roles with the
+information in the console at
+Manage > Access (IAM) > Access groups > Access policies.
+-->
 
-- [Terraform](https://www.terraform.io/downloads.html) 0.13 (or later)
-- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
+<!--
+You need the following permissions to run this module.
 
-## Install
+- Account Management
+    - **Sample Account Service** service
+        - `Editor` platform access
+        - `Manager` service access
+    - IAM Services
+        - **Sample Cloud Service** service
+            - `Administrator` platform access
+-->
 
-### Terraform
+<!-- NO PERMISSIONS FOR MODULE
+If no permissions are required for the module, uncomment the following
+statement instead the previous block.
+-->
 
-Be sure you have the correct Terraform version (0.13), you can choose the binary here:
-- https://releases.hashicorp.com/terraform/
+<!-- No permissions are needed to run this module.-->
 
-### Terraform plugins
 
-Be sure you have the compiled plugins on $HOME/.terraform.d/plugins/
+<!-- Below content is automatically populated via pre-commit hook -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+### Requirements
 
-- [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.49.0, < 2.0.0 |
 
-### Pre-commit hooks
+### Modules
 
-Run the following command to execute the pre-commit hooks defined in .pre-commit-config.yaml file
-```
-pre-commit run -a
-```
-You can install pre-coomit tool using
+No modules.
 
-```
-pip install pre-commit
-```
-or
-```
-pip3 install pre-commit
-```
-## How to input variable values through a file
+### Resources
 
-To review the plan for the configuration defined (no resources actually provisioned)
-```
-terraform plan -var-file=./input.tfvars
-```
-To execute and start building the configuration defined in the plan (provisions resources)
-```
-terraform apply -var-file=./input.tfvars
-```
+| Name | Type |
+|------|------|
+| [ibm_cr_namespace.cr_namespace](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_namespace) | resource |
+| [ibm_cr_retention_policy.cr_retention_policy](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_retention_policy) | resource |
 
-To destroy the VPC and all related resources
-```
-terraform destroy -var-file=./input.tfvars
-```
+### Inputs
 
-## Note
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_images_per_repo"></a> [images\_per\_repo](#input\_images\_per\_repo) | (Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default) | `number` | `0` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the container registry namespace | `string` | n/a | yes |
+| <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the IBM container namespace will be created. | `string` | n/a | yes |
+| <a name="input_retain_untagged"></a> [retain\_untagged](#input\_retain\_untagged) | (Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs. | `bool` | `false` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Optional list of tags to be added to the IBM container namespace. | `list(string)` | `null` | no |
 
-All optional parameters, by default, will be set to `null` in respective example's variable.tf file. You can also override these optional parameters.
+### Outputs
 
+| Name | Description |
+|------|-------------|
+| <a name="output_namespace_crn"></a> [namespace\_crn](#output\_namespace\_crn) | CRN representing the namespace |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+<!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
+## Contributing
+
+You can report issues and request features for this module in GitHub issues in the module repo. See [Report an issue or request a feature](https://github.com/terraform-ibm-modules/.github/blob/main/.github/SUPPORT.md).
+
+To set up your local development environment, see [Local development setup](https://terraform-ibm-modules.github.io/documentation/#/local-dev-setup) in the project documentation.
