@@ -10,9 +10,10 @@ variable "prefix" {
   default     = "icr"
 }
 
-variable "name" {
-  description = "Name of the container registry namespace"
+variable "region" {
   type        = string
+  description = "Prefix to append to all resources created by this example"
+  default     = "us-south"
 }
 
 variable "resource_group" {
@@ -21,9 +22,9 @@ variable "resource_group" {
   default     = null
 }
 
-variable "tags" {
+variable "resource_tags" {
   type        = list(string)
-  description = "Tags that should be applied to the service"
+  description = "Tags that should be applied to the namespace"
   default     = null
 }
 

@@ -12,9 +12,9 @@ module "resource_group" {
 
 module "namespace" {
   source            = "../.."
-  name              = var.name
+  name              = "${var.prefix}-namespace"
   resource_group_id = module.resource_group.resource_group_id
-  tags              = var.tags
+  tags              = var.resource_tags
   images_per_repo   = var.images_per_repo
   retain_untagged   = var.retain_untagged
 }
