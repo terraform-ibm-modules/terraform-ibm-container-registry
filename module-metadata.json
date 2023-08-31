@@ -66,6 +66,7 @@
       "name": "tags",
       "type": "list(string)",
       "description": "Optional list of tags to be added to the IBM container namespace.",
+      "default": [],
       "source": [
         "ibm_cr_namespace.cr_namespace.tags"
       ],
