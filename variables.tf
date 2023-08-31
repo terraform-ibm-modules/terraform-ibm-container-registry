@@ -15,7 +15,7 @@ variable "resource_group_id" {
 variable "tags" {
   type        = list(string)
   description = "Optional list of tags to be added to the IBM container namespace."
-  default     = null
+  default     = []
 }
 
 variable "images_per_repo" {
