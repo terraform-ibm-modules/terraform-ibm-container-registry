@@ -7,7 +7,7 @@ variable "ibmcloud_api_key" {
 variable "prefix" {
   type        = string
   description = "Prefix to append to all resources created by this example"
-  default     = "icr"
+  default     = "test-icr"
 }
 
 variable "region" {
@@ -25,7 +25,7 @@ variable "resource_group" {
 variable "resource_tags" {
   type        = list(string)
   description = "Tags that should be applied to the namespace"
-  default     = null
+  default     = ["test-icr-tag", "test-icr"]
 }
 
 variable "images_per_repo" {

@@ -5,11 +5,11 @@
 Update status and "latest release" badges:
   1. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md
 -->
-[![Incubating (Not yet consumable)](https://img.shields.io/badge/status-Incubating%20(Not%20yet%20consumable)-red)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
-[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-container-registry?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/releases/latest)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+[![Stable (With quality checks)](https://img.shields.io/badge/Status-Stable%20(With%20quality%20checks)-green)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-container-registry?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/releases/latest)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 <!-- Add a description of module(s) in this repo -->
 
@@ -111,7 +111,7 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | Name of the container registry namespace | `string` | n/a | yes |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the IBM container namespace will be created. | `string` | n/a | yes |
 | <a name="input_retain_untagged"></a> [retain\_untagged](#input\_retain\_untagged) | (Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs. | `bool` | `false` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Optional list of tags to be added to the IBM container namespace. | `list(string)` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Optional list of tags to be added to the IBM container namespace. | `list(string)` | `[]` | no |
 
 ### Outputs
 
