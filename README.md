@@ -27,6 +27,8 @@ https://terraform-ibm-modules.github.io/documentation/#/implementation-guideline
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-container-registry](#terraform-ibm-container-registry)
+* [Submodules](./modules)
+    * [plan](./modules/plan)
 * [Examples](./examples)
     * [IBM Container Registry namespace Example](./examples/namespace)
 * [Contributing](#contributing)
