@@ -1,4 +1,3 @@
-<!-- BEGIN MODULE HOOK -->
 # IBM Container Registry plan
 
 You can use this submodule to upgrade the IBM [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) plan.
@@ -49,15 +48,11 @@ module "upgrade-plan" {
 
 You need the following permissions to run this module.
 
-
-TODO: validate
 - Account Management
-    - **Resource Group** service
-        - `Viewer` platform access
-- IAM Services
-    - **IBM Cloud Object Storage** service
-        - `Editor` platform access
+    - IBM Cloud Container Registry service
         - `Manager` service access
+
+[Access roles for using Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-iam&interface=ui#access_roles_using)
 
 
 ## Examples
