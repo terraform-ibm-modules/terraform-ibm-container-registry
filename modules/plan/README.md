@@ -38,7 +38,7 @@ provider "restapi" {
 
 # Upgrade plan:
 module "upgrade-plan" {
-  source  = "terraform-ibm-modules/icr/ibm//modules/plan"
+  source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
   version = "latest" # Replace "latest" with a release version to lock into a specific release
   container_registry_endpoint = "us.icr.io"
 }

@@ -47,7 +47,7 @@ unless real values don't help users know what to change.
 
 ```hcl
 module "namespace" {
-  source            = "terraform-ibm-modules/icr/ibm"
+  source            = "terraform-ibm-modules/container-registry/ibm"
   version           = "latest" # Replace "latest" with a release
   name              = "my-namespace"
   resource_group_id = module.resource_group.resource_group_id
