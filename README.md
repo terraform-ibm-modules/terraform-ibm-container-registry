@@ -27,8 +27,10 @@ https://terraform-ibm-modules.github.io/documentation/#/implementation-guideline
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
 * [terraform-ibm-container-registry](#terraform-ibm-container-registry)
+* [Submodules](./modules)
+    * [plan](./modules/plan)
 * [Examples](./examples)
-    * [IBM Container Registry namespace Example](./examples/namespace)
+    * [IBM Container Registry namespace example](./examples/namespace)
 * [Contributing](#contributing)
 
 ## terraform-ibm-container-registry
@@ -45,7 +47,7 @@ unless real values don't help users know what to change.
 
 ```hcl
 module "namespace" {
-  source            = "terraform-ibm-modules/icr/ibm"
+  source            = "terraform-ibm-modules/container-registry/ibm"
   version           = "latest" # Replace "latest" with a release
   name              = "my-namespace"
   resource_group_id = module.resource_group.resource_group_id
@@ -63,25 +65,11 @@ information in the console at
 Manage > Access (IAM) > Access groups > Access policies.
 -->
 
-<!--
-You need the following permissions to run this module.
-
 - Account Management
-    - **Sample Account Service** service
-        - `Editor` platform access
-        - `Manager` service access
-    - IAM Services
-        - **Sample Cloud Service** service
-            - `Administrator` platform access
--->
+    - IBM Cloud Container Registry service
+        - `Writer`, `Manager` service access
 
-<!-- NO PERMISSIONS FOR MODULE
-If no permissions are required for the module, uncomment the following
-statement instead the previous block.
--->
-
-<!-- No permissions are needed to run this module.-->
-
+[Access roles for using Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-iam&interface=ui#access_roles_using)
 
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
