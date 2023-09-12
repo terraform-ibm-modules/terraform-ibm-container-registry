@@ -18,3 +18,8 @@ module "namespace" {
   images_per_repo   = var.images_per_repo
   retain_untagged   = var.retain_untagged
 }
+
+module "upgrade_plan" {
+  source                      = "../..//modules/plan"
+  container_registry_endpoint = "us.icr.io"
+}
