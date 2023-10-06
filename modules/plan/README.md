@@ -4,7 +4,7 @@ You can use this submodule to upgrade the IBM [Container Registry](https://cloud
 
 The submodule can used without the root module upgrade the plan without creating any additional namespaces or retention polcies.
 
-## Usage
+### Usage
 ```
 API_DATA_IS_SENSITIVE=true
 ```
@@ -39,12 +39,12 @@ provider "restapi" {
 # Upgrade plan:
 module "upgrade-plan" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
-  version = "latest" # Replace "latest" with a release version to lock into a specific release
+  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
   container_registry_endpoint = "us.icr.io"
 }
 ```
 
-## Required IAM access policies
+### Required IAM access policies
 
 You need the following permissions to run this module.
 
@@ -53,11 +53,6 @@ You need the following permissions to run this module.
         - `Manager` service access
 
 [Access roles for using Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-iam&interface=ui#access_roles_using)
-
-
-## Examples
-
-- [IBM Container Registry namespace example](../../examples/namespace)
 
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
