@@ -1,26 +1,12 @@
-<!-- Update the title -->
-# Terraform Modules IBM Container Registry Project
+# IBM Container Registry module
 
-<!--
-Update status and "latest release" badges:
-  1. For the status options, see https://github.ibm.com/GoldenEye/documentation/blob/master/status.md
--->
 [![Graduated (Supported)](https://img.shields.io/badge/Status-Graduated%20(Supported)-brightgreen)](https://terraform-ibm-modules.github.io/documentation/#/badge-status)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![latest release](https://img.shields.io/github/v/release/terraform-ibm-modules/terraform-ibm-container-registry?logo=GitHub&sort=semver)](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/releases/latest)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
-<!-- Add a description of module(s) in this repo -->
-
 You can use this module to provision and configure an [IBM Container Registry](https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage) namespace and optionally, a container registry retention policy.
-<!--
-If this repo contains any reference architectures, uncomment the heading below and links to them.
-(Usually in the `/reference-architectures` directory.)
-See "Reference architecture" in Authoring Guidelines in the public documentation at
-https://terraform-ibm-modules.github.io/documentation/#/implementation-guidelines?id=reference-architecture
--->
-<!-- ## Reference architectures -->
 
 
 <!-- Below content is automatically populated via pre-commit hook -->
@@ -32,38 +18,23 @@ https://terraform-ibm-modules.github.io/documentation/#/implementation-guideline
 * [Examples](./examples)
     * [IBM Container Registry namespace example](./examples/namespace)
 * [Contributing](#contributing)
-
-## terraform-ibm-container-registry
 <!-- END OVERVIEW HOOK -->
 
+## terraform-ibm-container-registry
+
 ### Usage
-
-<!--
-Add an example of the use of the module in the following code block.
-
-Use real values instead of "var.<var_name>" or other placeholder values
-unless real values don't help users know what to change.
--->
 
 ```hcl
 module "namespace" {
   source            = "terraform-ibm-modules/container-registry/ibm"
-  version           = "latest" # Replace "latest" with a release
+  version           = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
   name              = "my-namespace"
-  resource_group_id = module.resource_group.resource_group_id
+  resource_group_id = "xxXXxxXXxXxXXXXxxXxxxXXXXxXXXXX"
   images_per_repo   = 2
 }
 ```
 
 ### Required IAM access policies
-
-<!-- PERMISSIONS REQUIRED TO RUN MODULE
-If this module requires permissions, uncomment the following block and update
-the sample permissions, following the format.
-Replace the sample Account and IBM Cloud service names and roles with the
-information in the console at
-Manage > Access (IAM) > Access groups > Access policies.
--->
 
 - Account Management
     - IBM Cloud Container Registry service
