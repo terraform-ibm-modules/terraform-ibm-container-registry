@@ -9,4 +9,6 @@ resource "ibm_cr_retention_policy" "cr_retention_policy" {
   namespace       = ibm_cr_namespace.cr_namespace.name
   images_per_repo = var.images_per_repo
   retain_untagged = var.retain_untagged != null ? var.retain_untagged : false
+  # Issue 128: to ensure policy fully destroyed before namespace
+  depends_on = [ibm_cr_namespace.cr_namespace]
 }
