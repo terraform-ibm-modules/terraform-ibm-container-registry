@@ -15,6 +15,7 @@ You can use this module to provision and configure an [IBM Container Registry](h
 * [terraform-ibm-container-registry](#terraform-ibm-container-registry)
 * [Submodules](./modules)
     * [plan](./modules/plan)
+    * [quotas](./modules/quotas)
 * [Examples](./examples)
     * [IBM Container Registry namespace example](./examples/namespace)
 * [Contributing](#contributing)
