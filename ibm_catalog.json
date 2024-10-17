@@ -20,25 +20,26 @@
         "solution",
         "registry"
       ],
-      "short_description": "Creates and configures an instance of IBM Cloud Databases for Redis.",
-      "long_description": "This architecture supports creating and configuring an instance of Databases for Redis with KMS encryption.",
-      "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-icd-redis/blob/main/README.md",
-      "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-icd-redis/main/images/redis_icon.svg",
+      "short_description": "Creates IBM Container Registry namespace and configures pull traffic and storage quotas.",
+      "long_description": "This architecture facilitates the creation of IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas, both in megabytes. It ensures efficient management of container image access by regulating the volume of data that can be pulled from the registry and by setting specific storage capacity limits for container images within each namespace.",
+      "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
+      "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
       "provider_name": "IBM",
       "features": [
         {
-          "title": "Creates an instance of Databases for Redis",
-          "description": "Creates and configures an IBM Cloud Databases for Redis instance."
+          "title": "Creates IBM Container Registry Namespace",
+          "description": "Enables the creation of IBM Container Registry namespaces, allowing users to define isolated environments for managing container images."
         },
         {
-          "title": "Supports KMS encryption",
-          "description": "Provides KMS encryption for the data that you store in the database."
+          "title": "Configures Pull Traffic Limits",
+          "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry."
         },
         {
-          "title": "Supports autoscaling",
-          "description": "Provides the autoscaling to allow the database to increase resources in response to usage."
+          "title": "Sets Storage Quotas",
+          "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry."
         }
       ],
+
       "flavors": [
         {
           "label": "Standard",
@@ -62,16 +63,10 @@
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Editor"
+                "crn:v1:bluemix:public:iam::::role:Writer",
+                "crn:v1:bluemix:public:iam::::role:Manager"
               ],
-              "service_name": "databases-for-redis"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-                "crn:v1:bluemix:public:iam::::role:Editor"
-              ],
-              "service_name": "kms"
+              "service_name": "container-registry"
             }
           ],
           "architecture": {
@@ -86,7 +81,7 @@
               {
                 "diagram": {
                   "caption": "Databases for Redis instance on IBM Cloud",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-icd-redis/main/reference-architecture/deployable-architecture-redis.svg",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-icd-redis/main/reference-architecture/deployable-architecture-icr.svg",
                   "type": "image/svg+xml"
                 },
                 "description": "This architecture supports creating and configuring an instance of Databases for Redis instance with KMS encryption."
