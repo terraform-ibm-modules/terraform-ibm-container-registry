@@ -72,7 +72,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [restapi_object.container_registry_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
+| [restapi_object.container_registry_storage_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
+| [restapi_object.container_registry_traffic_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
 
 ### Inputs
 
@@ -81,6 +82,8 @@ No modules.
 | <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io, to change to standard plan | `string` | `"us.icr.io"` | no |
 | <a name="input_storage_megabytes"></a> [storage\_megabytes](#input\_storage\_megabytes) | Storage quota in megabytes. The value -1 denotes `Unlimited` | `number` | `500` | no |
 | <a name="input_traffic_megabytes"></a> [traffic\_megabytes](#input\_traffic\_megabytes) | Traffic quota in megabytes. The value -1 denotes `Unlimited`. | `number` | `5120` | no |
+| <a name="input_update_storage_quota"></a> [update\_storage\_quota](#input\_update\_storage\_quota) | Set to true to update storage quota of the registry. | `bool` | `true` | no |
+| <a name="input_update_traffic_quota"></a> [update\_traffic\_quota](#input\_update\_traffic\_quota) | Set to true to update traffic pull quota of the registry. | `bool` | `true` | no |
 
 ### Outputs
 

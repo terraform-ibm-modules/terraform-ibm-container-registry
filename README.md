@@ -17,7 +17,7 @@ You can use this module to provision and configure an [IBM Container Registry](h
     * [plan](./modules/plan)
     * [quotas](./modules/quotas)
 * [Examples](./examples)
-    * [IBM Container Registry namespace example](./examples/namespace)
+    * [IBM Container Registry namespace example](./examples/complete)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 

@@ -2,37 +2,34 @@
 # Resource group
 ########################################################################################################################
 
-locals {
-  registry_with_standard_plan = [ for registry in var.registry_configuration: registry.icr_endpoint if registry.plan == "Standard"]
-}
-
 module "resource_group" {
   source                       = "terraform-ibm-modules/resource-group/ibm"
   version                      = "1.1.6"
-  resource_group_name          = var.use_existing_resource_group == false ?  var.resource_group_name : null
+  resource_group_name          = var.use_existing_resource_group == false ? var.resource_group_name : null
   existing_resource_group_name = var.use_existing_resource_group == true ? var.resource_group_name : null
 }
 
 module "namespace" {
-  count = length(var.namespaces)
+  count             = var.name == null ? 0 : 1
   source            = "../.."
-  name              = var.namespaces[count.index]["name"]
+  name              = var.name
   resource_group_id = module.resource_group.resource_group_id
-  tags              = var.namespaces[count.index]["tags"]
-  images_per_repo   = var.namespaces[count.index]["name"]["images_per_repo"]
-  retain_untagged   = var.namespaces[count.index]["name"]["retain_untagged"]
+  tags              = var.tags
+  images_per_repo   = var.images_per_repo
+  retain_untagged   = var.retain_untagged
 }
 
 module "upgrade_plan" {
-  count = length(local.registry_with_standard_plan)
+  count                       = var.upgrade_to_standard_plan ? 1 : 0
   source                      = "../..//modules/plan"
-  container_registry_endpoint = local.registry_with_standard_plan[count.index]
+  container_registry_endpoint = var.container_registry_endpoint
 }
 
-module "set_quota"{
-  count = length(var.registry_configuration)
-  source = "../../modules/quotas"
-  container_registry_endpoint = var.registry_configuration[count.index]["icr_endpoint"]
-  storage_megabytes =  var.registry_configuration[count.index]["storage_megabytes"]
-  traffic_megabytes =  var.registry_configuration[count.index]["traffic_megabytes"]
+module "set_quota" {
+  source                      = "../../modules/quotas"
+  container_registry_endpoint = var.container_registry_endpoint
+  update_storage_quota        = var.update_storage_quota
+  update_traffic_quota        = var.update_traffic_quota
+  storage_megabytes           = var.storage_megabytes
+  traffic_megabytes           = var.traffic_megabytes
 }

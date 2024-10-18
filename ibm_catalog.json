@@ -21,7 +21,7 @@
         "registry"
       ],
       "short_description": "Creates IBM Container Registry namespace and configures pull traffic and storage quotas.",
-      "long_description": "This architecture facilitates the creation of IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas, both in megabytes. It ensures efficient management of container image access by regulating the volume of data that can be pulled from the registry and by setting specific storage capacity limits for container images within each namespace.",
+      "long_description": "This architecture creates IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas, both in megabytes. It ensures efficient management of container image access by regulating the volume of data that can be pulled from the registry and by setting specific storage capacity limits for container images within each namespace.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
       "provider_name": "IBM",
@@ -70,21 +70,21 @@
             }
           ],
           "architecture": {
-            "descriptions": "This architecture creates an instance of IBM CLoud Databases for Redis instance with KMS encryption. Supports autoscaling.",
+            "descriptions": "This architecture creates IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas.",
             "features": [
               {
-                "title": " Creates an instance of Databases for Redis",
-                "description": "This architecture creates an instance of IBM Cloud Databases for Redis with KMS encryption. It accepts or creates a resource group, and provides autoscaling rules."
+                "title": " Creates an IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas.",
+                "description": "This architecture creates IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas, both in megabytes. It ensures efficient management of container image access by regulating the volume of data that can be pulled from the registry and by setting specific storage capacity limits for container images within each namespace."
               }
             ],
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "Databases for Redis instance on IBM Cloud",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-icd-redis/main/reference-architecture/deployable-architecture-icr.svg",
+                  "caption": "Creates IBM Container Registry namespaces.",
+                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/reference-architecture/deployable-architecture-icr.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture supports creating and configuring an instance of Databases for Redis instance with KMS encryption."
+                "description": "This architecture creates IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas, both in megabytes. It ensures efficient management of container image access by regulating the volume of data that can be pulled from the registry and by setting specific storage capacity limits."
               }
             ]
           },
@@ -99,143 +99,81 @@
                 "key": "resource_group_name"
               },
               {
-                "key": "prefix"
-              },
-              {
-                "key": "name"
-              },
-              {
                 "key": "region",
-                "required": true,
                 "default_value": "us-south",
                 "options": [
                   {
-                    "displayname": "Chennai (che01)",
-                    "value": "che01"
-                  },
-                  {
-                    "displayname": "Dallas (us-south)",
-                    "value": "us-south"
-                  },
-                  {
-                    "displayname": "Frankfurt (eu-de)",
-                    "value": "eu-de"
-                  },
-                  {
-                    "displayname": "London (eu-gb)",
-                    "value": "eu-gb"
-                  },
-                  {
-                    "displayname": "Madrid (eu-es)",
-                    "value": "eu-es"
-                  },
-                  {
-                    "displayname": "Osaka (jp-osa)",
-                    "value": "jp-osa"
-                  },
-                  {
-                    "displayname": "Paris (par01)",
-                    "value": "par01"
-                  },
-                  {
-                    "displayname": "Sao Paulo (br-sao)",
-                    "value": "br-sao"
+                    "displayname": "Tokyo (jp-tok)",
+                    "value": "jp-tok"
                   },
                   {
                     "displayname": "Sydney (au-syd)",
                     "value": "au-syd"
                   },
                   {
+                    "displayname": "Sao Paulo (br-sao)",
+                    "value": "br-sao"
+                  },
+                  {
                     "displayname": "Toronto (ca-tor)",
                     "value": "ca-tor"
                   },
                   {
-                    "displayname": "Tokyo (jp-tok)",
-                    "value": "jp-tok"
+                    "displayname": "Frankfurt (eu-de)",
+                    "value": "eu-de"
                   },
                   {
-                    "displayname": "Washington (us-east)",
-                    "value": "us-east"
+                    "displayname": "Madrid (eu-es)",
+                    "value": "eu-es"
+                  },
+                  {
+                    "displayname": "London (eu-gb)",
+                    "value": "eu-gb"
+                  },
+                  {
+                    "displayname": "Global (global)",
+                    "value": "global"
+                  },
+                  {
+                    "displayname": "Osaka (jp-osa)",
+                    "value": "jp-osa"
+                  },
+                  {
+                    "displayname": "Dallas (us-south)",
+                    "value": "us-south"
                   }
                 ]
               },
               {
-                "key": "redis_version",
-                "required": true,
-                "options": [
-                  {
-                    "displayname": "6.2",
-                    "value": "6.2"
-                  },
-                  {
-                    "displayname": "7.2",
-                    "value": "7.2"
-                  }
-                ]
-              },
-              {
-                "key": "members"
-              },
-              {
-                "key": "member_memory_mb"
-              },
-              {
-                "key": "member_cpu_count"
-              },
-              {
-                "key": "member_disk_mb"
-              },
-              {
-                "key": "member_host_flavor"
-              },
-              {
-                "key": "configuration"
-              },
-              {
-                "key": "service_credential_names"
-              },
-              {
-                "key": "admin_pass"
-              },
-              {
-                "key": "users"
+                "key": "name"
               },
               {
                 "key": "tags"
               },
               {
-                "key": "ibmcloud_kms_api_key"
+                "key": "images_per_repo"
               },
               {
-                "key": "existing_kms_instance_crn"
+                "key": "retain_untagged"
               },
               {
-                "key": "existing_kms_key_crn"
+                "key": "container_registry_endpoint",
+                "default_value": "us.icr.io"
               },
               {
-                "key": "kms_endpoint_type",
-                "options": [
-                  {
-                    "displayname": "public",
-                    "value": "public"
-                  },
-                  {
-                    "displayname": "private",
-                    "value": "private"
-                  }
-                ]
+                "key": "upgrade_to_standard_plan"
               },
               {
-                "key": "skip_iam_authorization_policy"
+                "key": "update_traffic_quota"
               },
               {
-                "key": "key_ring_name"
+                "key": "update_storage_quota"
               },
               {
-                "key": "key_name"
+                "key": "storage_megabytes"
               },
               {
-                "key": "auto_scaling"
+                "key": "traffic_megabytes"
               }
             ]
         }
