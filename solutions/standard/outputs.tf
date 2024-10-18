@@ -4,5 +4,5 @@
 
 output "namespace_crn" {
   description = "CRN representing the namespace"
-  value       = module.namespace[0].namespace_crn
+  value       = var.name != null ? module.namespace[0].namespace_crn : null
 }
