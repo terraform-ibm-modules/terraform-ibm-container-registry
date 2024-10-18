@@ -1,8 +1,8 @@
-# IBM Container Registry plan
+# IBM Container Registry Quota
 
 You can use this submodule to upgrade the IBM [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) plan.
 
-The submodule can used without the root module upgrade the plan without creating any additional namespaces or retention polcies.
+The submodule can be used without the root module to set the pull traffic and storage quotas.
 
 ### Usage
 ```
@@ -11,36 +11,21 @@ API_DATA_IS_SENSITIVE=true
 For more information, see the [provider documentation](https://github.com/Mastercard/terraform-provider-restapi#usage) for generic REST APIs.
 
 ```hcl
-provider "ibm" {
-  ibmcloud_api_key = "XXXXXXXXXX" # pragma: allowlist secret
-  region           = "us-south"
-}
-
-# Data source to retrieve token details
-data "ibm_iam_auth_token" "token_data" {
-}
-
-# Data source to account settings
-data "ibm_iam_account_settings" "iam_account_settings" {
-}
-
-provider "restapi" {
-  uri                   = "https:"
-  write_returns_object  = false
-  create_returns_object = false
-  debug                 = false # set to true to show detailed logs, but use carefully as it might print sensitive values.
-  headers = {
-    Account       = data.ibm_iam_account_settings.iam_account_settings.account_id
-    Authorization = data.ibm_iam_auth_token.token_data.iam_access_token
-    Content-Type  = "application/json"
-  }
-}
 
 # Upgrade plan:
 module "upgrade-plan" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
   version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
   container_registry_endpoint = "us.icr.io"
+}
+module "set_quota" {
+  source  = "terraform-ibm-modules/container-registry/ibm//modules/quotas"
+  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  container_registry_endpoint = "us.icr.io"
+  update_storage_quota        = true
+  storage_megabytes           = 5 * 1024 # 5GiB
+  update_traffic_quota        = true
+  traffic_megabytes           = 500 # 500 MB
 }
 ```
 
@@ -51,6 +36,7 @@ You need the following permissions to run this module.
 - Account Management
     - IBM Cloud Container Registry service
         - `Manager` service access
+        - `Writer` service access
 
 [Access roles for using Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-iam&interface=ui#access_roles_using)
 

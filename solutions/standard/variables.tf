@@ -6,7 +6,6 @@ variable "ibmcloud_api_key" {
 }
 
 # Namespace
-
 variable "use_existing_resource_group" {
   type        = bool
   description = "Indicates whether to use an existing resource group. If set to 'false', a new resource group will be created."
@@ -49,8 +48,7 @@ variable "retain_untagged" {
   default     = false
 }
 
-# Setting
-
+# Settings
 variable "container_registry_endpoint" {
   description = "The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io"
   type        = string

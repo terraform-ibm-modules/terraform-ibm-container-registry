@@ -1,10 +1,8 @@
 ##############################################################################
-# terraform-ibm-container-registry
-#
 # Upgrade container registry quota
 ##############################################################################
 
-# Upgrade container registry quota
+# Upgrade container registry storage quota
 resource "restapi_object" "container_registry_storage_quota" {
   count = var.update_storage_quota ? 1 : 0
   path  = "//${var.container_registry_endpoint}/api/v1/quotas"
@@ -22,10 +20,10 @@ resource "restapi_object" "container_registry_storage_quota" {
   read_path     = "//${var.container_registry_endpoint}/api/v1/quotas"
   update_method = "PATCH"
   update_path   = "//${var.container_registry_endpoint}/api/v1/quotas"
-  object_id     = "quotas"
+  object_id     = "storage"
 }
 
-
+# Upgrade container registry pull traffic quota
 resource "restapi_object" "container_registry_traffic_quota" {
   count = var.update_traffic_quota ? 1 : 0
   path  = "//${var.container_registry_endpoint}/api/v1/quotas"
@@ -43,5 +41,5 @@ resource "restapi_object" "container_registry_traffic_quota" {
   read_path     = "//${var.container_registry_endpoint}/api/v1/quotas"
   update_method = "PATCH"
   update_path   = "//${var.container_registry_endpoint}/api/v1/quotas"
-  object_id     = "quotas"
+  object_id     = "traffic"
 }
