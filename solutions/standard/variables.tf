@@ -56,7 +56,7 @@ variable "container_registry_endpoint" {
 }
 
 variable "upgrade_to_standard_plan" {
-  description = "Set true to upgrade to`standard` plan for container registry, this is not reversible"
+  description = "Set to true to upgrade container registry to the 'Standard' plan. This action cannot be undone once applied."
   type        = bool
   default     = false
 }
