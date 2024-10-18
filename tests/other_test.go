@@ -9,15 +9,16 @@ import (
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
 )
 
-const namespaceDir = "examples/namespace"
+const completeDir = "examples/complete"
 
-func TestRunNamespaceExample(t *testing.T) {
+func TestRunCompleteExample(t *testing.T) {
 	t.Parallel()
 
 	options := testhelper.TestOptionsDefaultWithVars(&testhelper.TestOptions{
-		Testing:      t,
-		TerraformDir: namespaceDir,
-		Prefix:       "icr",
+		Testing:       t,
+		TerraformDir:  completeDir,
+		Prefix:        "icr",
+		ResourceGroup: resourceGroup,
 	})
 
 	output, err := options.RunTestConsistency()
