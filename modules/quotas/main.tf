@@ -14,7 +14,7 @@ resource "restapi_object" "container_registry_storage_quota" {
   destroy_method = "PATCH"
   destroy_path   = "//${var.container_registry_endpoint}/api/v1/quotas"
   destroy_data = jsonencode({
-    "storage_megabytes" : 500 # set to default 0.5 GB
+    "storage_megabytes" : 500 # set to default 500 MB
   })
   read_method   = "GET"
   read_path     = "//${var.container_registry_endpoint}/api/v1/quotas"

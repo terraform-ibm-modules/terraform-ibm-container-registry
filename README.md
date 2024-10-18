@@ -33,6 +33,21 @@ module "namespace" {
   resource_group_id = "xxXXxxXXxXxXXXXxxXxxxXXXXxXXXXX"
   images_per_repo   = 2
 }
+
+module "upgrade-plan" {
+  source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
+  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  container_registry_endpoint = "us.icr.io"
+}
+module "set_quota" {
+  source  = "terraform-ibm-modules/container-registry/ibm//modules/quotas"
+  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  container_registry_endpoint = "us.icr.io"
+  update_storage_quota        = true
+  storage_megabytes           = 5 * 1024 # 5GiB
+  update_traffic_quota        = true
+  traffic_megabytes           = 500 # 500 MB
+}
 ```
 
 ### Required IAM access policies

@@ -21,7 +21,7 @@ module "namespace" {
 
 module "upgrade_plan" {
   count                       = var.upgrade_to_standard_plan ? 1 : 0
-  source                      = "../..//modules/plan"
+  source                      = "../../modules/plan"
   container_registry_endpoint = var.container_registry_endpoint
 }
 

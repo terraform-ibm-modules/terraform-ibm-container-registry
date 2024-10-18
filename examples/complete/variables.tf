@@ -12,7 +12,7 @@ variable "prefix" {
 
 variable "region" {
   type        = string
-  description = "Prefix to append to all resources created by this example"
+  description = "The IBM Cloud region where the container registry namespace and retentation policy will be created."
   default     = "us-south"
 }
 
