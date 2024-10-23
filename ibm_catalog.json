@@ -8,12 +8,12 @@
         "ibm_created",
         "target_terraform",
         "terraform",
-        "container",
+        "containers",
         "registry",
         "solution"
       ],
       "keywords": [
-        "container",
+        "containers",
         "IaC",
         "infrastructure as code",
         "terraform",
@@ -157,8 +157,7 @@
                 "key": "retain_untagged"
               },
               {
-                "key": "container_registry_endpoint",
-                "default_value": "us.icr.io"
+                "key": "container_registry_endpoint"
               },
               {
                 "key": "upgrade_to_standard_plan"
