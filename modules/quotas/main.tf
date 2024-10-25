@@ -4,7 +4,7 @@
 
 # Upgrade container registry storage quota
 resource "restapi_object" "container_registry_storage_quota" {
-  count = var.update_storage_quota ? 1 : 0
+  count = var.storage_megabytes != null ? 1 : 0
   path  = "//${var.container_registry_endpoint}/api/v1/quotas"
   data = jsonencode({
     "storage_megabytes" : var.storage_megabytes
@@ -25,7 +25,7 @@ resource "restapi_object" "container_registry_storage_quota" {
 
 # Upgrade container registry pull traffic quota
 resource "restapi_object" "container_registry_traffic_quota" {
-  count = var.update_traffic_quota ? 1 : 0
+  count = var.traffic_megabytes != null ? 1 : 0
   path  = "//${var.container_registry_endpoint}/api/v1/quotas"
   data = jsonencode({
     "traffic_megabytes" : var.traffic_megabytes

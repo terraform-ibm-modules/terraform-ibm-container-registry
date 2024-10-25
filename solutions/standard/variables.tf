@@ -5,6 +5,13 @@ variable "ibmcloud_api_key" {
   sensitive   = true
 }
 
+variable "prefix" {
+  type        = string
+  description = "The prefix to add to all resources that this solution creates."
+  default     = null
+}
+
+
 # Namespace
 variable "use_existing_resource_group" {
   type        = bool
@@ -24,7 +31,7 @@ variable "region" {
   default     = "us-south"
 }
 
-variable "name" {
+variable "namespace_name" {
   type        = string
   description = "The name of the container registry namespace to be created. If not provided, no namespace will be created."
   default     = null
@@ -61,26 +68,14 @@ variable "upgrade_to_standard_plan" {
   default     = false
 }
 
-variable "update_traffic_quota" {
-  type        = bool
-  description = "Set to 'true' to modify the traffic pull quota for the container registry."
-  default     = false
-}
-
-variable "update_storage_quota" {
-  type        = bool
-  description = "Set to 'true' to modify the storage quota for the container registry."
-  default     = false
-}
-
 variable "storage_megabytes" {
   type        = number
   description = "The storage quota in megabytes for the container registry. Use -1 for unlimited storage."
-  default     = 500
+  default     = null
 }
 
 variable "traffic_megabytes" {
   type        = number
   description = "The traffic pull quota in megabytes for the container registry. Use -1 for unlimited traffic."
-  default     = 5120
+  default     = null
 }

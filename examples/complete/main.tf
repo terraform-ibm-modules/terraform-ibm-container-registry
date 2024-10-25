@@ -27,8 +27,6 @@ module "upgrade_plan" {
 module "set_quota" {
   source                      = "../../modules/quotas"
   container_registry_endpoint = "br.icr.io"
-  update_storage_quota        = true
   storage_megabytes           = 5 * 1024 - 1
-  update_traffic_quota        = true
   traffic_megabytes           = 499
 }

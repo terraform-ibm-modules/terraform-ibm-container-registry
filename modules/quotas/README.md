@@ -44,7 +44,7 @@ You need the following permissions to run this module.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.49.0, < 2.0.0 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.18.2 |
+| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.20.0, <2.0.0 |
 
 ### Modules
 
@@ -62,10 +62,8 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io, to change quotas | `string` | `"us.icr.io"` | no |
-| <a name="input_storage_megabytes"></a> [storage\_megabytes](#input\_storage\_megabytes) | Storage quota in megabytes. The value -1 denotes `Unlimited` | `number` | `500` | no |
-| <a name="input_traffic_megabytes"></a> [traffic\_megabytes](#input\_traffic\_megabytes) | Traffic quota in megabytes. The value -1 denotes `Unlimited`. | `number` | `5120` | no |
-| <a name="input_update_storage_quota"></a> [update\_storage\_quota](#input\_update\_storage\_quota) | Set to true to update storage quota of the registry. | `bool` | `true` | no |
-| <a name="input_update_traffic_quota"></a> [update\_traffic\_quota](#input\_update\_traffic\_quota) | Set to true to update traffic pull quota of the registry. | `bool` | `true` | no |
+| <a name="input_storage_megabytes"></a> [storage\_megabytes](#input\_storage\_megabytes) | Storage quota in megabytes. The value -1 denotes `Unlimited` | `number` | `null` | no |
+| <a name="input_traffic_megabytes"></a> [traffic\_megabytes](#input\_traffic\_megabytes) | Traffic quota in megabytes. The value -1 denotes `Unlimited`. | `number` | `null` | no |
 
 ### Outputs
 

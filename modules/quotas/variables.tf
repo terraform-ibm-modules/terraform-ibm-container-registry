@@ -12,26 +12,14 @@ variable "container_registry_endpoint" {
   }
 }
 
-variable "update_storage_quota" {
-  description = "Set to true to update storage quota of the registry."
-  type        = bool
-  default     = true
-}
-
 variable "storage_megabytes" {
   description = "Storage quota in megabytes. The value -1 denotes `Unlimited`"
   type        = number
-  default     = 500
-}
-
-variable "update_traffic_quota" {
-  description = "Set to true to update traffic pull quota of the registry."
-  type        = bool
-  default     = true
+  default     = null
 }
 
 variable "traffic_megabytes" {
   description = "Traffic quota in megabytes. The value -1 denotes `Unlimited`."
   type        = number
-  default     = 5120
+  default     = null
 }
