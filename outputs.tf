@@ -4,7 +4,7 @@
 
 output "namespace_crn" {
   description = "CRN representing the namespace"
-  value       = ibm_cr_namespace.cr_namespace.crn
+  value       = var.create_namespace ? ibm_cr_namespace.cr_namespace[0].crn : local.existing_cr_namespace[0].crn
 }
 
 

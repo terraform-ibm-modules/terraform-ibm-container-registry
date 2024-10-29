@@ -1,10 +1,16 @@
 variable "name" {
-  description = "Name of the container registry namespace"
+  description = "Name of the container registry namespace, if var.create_namespace is set to true, a new namespace will be created in a region set by provider"
   type        = string
   validation {
     condition     = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.name))
     error_message = "container registry namespace name should match regex /^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$/"
   }
+}
+
+variable "create_namespace" {
+  type        = bool
+  description = "Set this true to create a new namespace in region set by provider."
+  default     = true
 }
 
 variable "resource_group_id" {

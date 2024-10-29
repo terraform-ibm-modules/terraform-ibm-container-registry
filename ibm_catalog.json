@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "deploy-arch-ibm-container-registry",
-      "label": "IBM Container Registry",
+      "label": "Cloud automation for IBM Container Registry",
       "product_kind": "solution",
       "tags": [
         "ibm_created",

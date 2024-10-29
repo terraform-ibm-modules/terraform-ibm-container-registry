@@ -11,11 +11,12 @@ module "resource_group" {
 
 module "namespace" {
   providers = {
-    "ibm" = ibm.namespace
+    ibm = ibm.namespace
   }
   count             = var.namespace_name == null ? 0 : 1
   source            = "../.."
   name              = var.prefix != null ? "${var.prefix}-${var.namespace_name}" : var.namespace_name
+  create_namespace  = var.create_namespace
   resource_group_id = module.resource_group.resource_group_id
   tags              = var.tags
   images_per_repo   = var.images_per_repo

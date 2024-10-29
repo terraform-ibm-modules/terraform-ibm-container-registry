@@ -37,6 +37,12 @@ variable "namespace_name" {
   default     = null
 }
 
+variable "create_namespace" {
+  type        = bool
+  description = "Set this true to create a new namespace in region passed in `namespace_region` field."
+  default     = true
+}
+
 variable "tags" {
   type        = list(string)
   description = "Optional list of tags to be added to the IBM container namespace."
