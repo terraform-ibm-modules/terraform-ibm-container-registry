@@ -25,7 +25,7 @@ variable "resource_group_name" {
   default     = "icr-namespace"
 }
 
-variable "region" {
+variable "namespace_region" {
   type        = string
   description = "The IBM Cloud region where the container registry namespace and retentation policy will be created."
   default     = "us-south"

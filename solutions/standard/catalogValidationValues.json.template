@@ -1,4 +1,4 @@
 {
   "ibmcloud_api_key": $VALIDATION_APIKEY,
-  "region": "us-south"
+  "namespace_region": "us-south"
 }
