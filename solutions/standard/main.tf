@@ -2,6 +2,14 @@
 # Resource group
 ########################################################################################################################
 
+# Data source to retrieve token details
+data "ibm_iam_auth_token" "token_data" {
+}
+
+# Data source to account settings
+data "ibm_iam_account_settings" "iam_account_settings" {
+}
+
 module "resource_group" {
   source                       = "terraform-ibm-modules/resource-group/ibm"
   version                      = "1.1.6"

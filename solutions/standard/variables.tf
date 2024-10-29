@@ -37,7 +37,6 @@ variable "namespace_name" {
   default     = null
 }
 
-
 variable "tags" {
   type        = list(string)
   description = "Optional list of tags to be added to the IBM container namespace."

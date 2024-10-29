@@ -7,14 +7,6 @@ provider "ibm" {
   region           = var.region
 }
 
-# Data source to retrieve token details
-data "ibm_iam_auth_token" "token_data" {
-}
-
-# Data source to account settings
-data "ibm_iam_account_settings" "iam_account_settings" {
-}
-
 provider "restapi" {
   uri                   = "https:"
   write_returns_object  = false
