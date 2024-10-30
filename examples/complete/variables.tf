@@ -10,10 +10,22 @@ variable "prefix" {
   default     = "test-icr"
 }
 
-variable "region" {
+variable "namespace_region" {
   type        = string
-  description = "The IBM Cloud region where the container registry namespace and retentation policy will be created."
+  description = "The IBM Cloud region where the container registry namespace and retention policy will be created or where the existing namespace is located."
   default     = "us-south"
+}
+
+variable "namespace_name" {
+  type        = string
+  description = "The name of the container registry namespace to create or the name of an existing namespace."
+  default     = null
+}
+
+variable "use_existing_namespace" {
+  type        = bool
+  description = "Specify true to use an existing container registry namespace in the region defined by `namespace_region`; set false to create a new namespace."
+  default     = false
 }
 
 variable "resource_group" {

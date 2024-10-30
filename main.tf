@@ -1,17 +1,17 @@
 data "ibm_cr_namespaces" "existing_cr_namespaces" {
-  count = var.create_namespace ? 0 : 1
+  count = var.use_existing_namespace ? 1 : 0
 }
 
 locals {
-  existing_cr_namespace = var.create_namespace ? [] : [
-    for namespace in data.ibm_cr_namespaces.existing_cr_namespaces[0] : namespace if namespace.name == var.name
-  ]
+  existing_cr_namespace = var.use_existing_namespace ? [
+    for namespace in data.ibm_cr_namespaces.existing_cr_namespaces[0].namespaces : namespace
+  ] : []
   # tflint-ignore: terraform_unused_declarations
-  validate_existing_namespace = (!var.create_namespace && length(local.existing_cr_namespace) == 0) ? tobool("existing namespace ${var.name} not found in a region") : false
+  validate_existing_namespace = (var.use_existing_namespace && length(local.existing_cr_namespace) == 0) ? tobool("existing namespace ${var.name} not found in a region") : false
 }
 
 resource "ibm_cr_namespace" "cr_namespace" {
-  count             = var.create_namespace ? 1 : 0
+  count             = var.use_existing_namespace ? 0 : 1
   name              = var.name
   resource_group_id = var.resource_group_id
   tags              = var.tags

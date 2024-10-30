@@ -7,10 +7,10 @@ variable "name" {
   }
 }
 
-variable "create_namespace" {
+variable "use_existing_namespace" {
   type        = bool
-  description = "Set this true to create a new namespace in region set by provider."
-  default     = true
+  description = "Specify true to use an existing container registry namespace in the region defined by `namespace_region`; set false to create a new namespace."
+  default     = false
 }
 
 variable "resource_group_id" {

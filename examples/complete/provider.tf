@@ -4,7 +4,13 @@
 
 provider "ibm" {
   ibmcloud_api_key = var.ibmcloud_api_key
-  region           = var.region
+  region           = "us-south"
+}
+
+provider "ibm" {
+  alias            = "namespace"
+  ibmcloud_api_key = var.ibmcloud_api_key
+  region           = var.namespace_region
 }
 
 # Data source to retrieve token details

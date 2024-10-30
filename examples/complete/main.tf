@@ -11,17 +11,22 @@ module "resource_group" {
 }
 
 module "namespace" {
-  source            = "../.."
-  name              = "${var.prefix}-namespace"
-  resource_group_id = module.resource_group.resource_group_id
-  tags              = var.resource_tags
-  images_per_repo   = var.images_per_repo
-  retain_untagged   = var.retain_untagged
+  providers = {
+    ibm = ibm.namespace
+  }
+  source                 = "../.."
+  name                   = var.namespace_name
+  use_existing_namespace = var.use_existing_namespace
+  resource_group_id      = module.resource_group.resource_group_id
+  tags                   = var.resource_tags
+  images_per_repo        = var.images_per_repo
+  retain_untagged        = var.retain_untagged
 }
+
 
 module "upgrade_plan" {
   source                      = "../..//modules/plan"
-  container_registry_endpoint = "us.icr.io"
+  container_registry_endpoint = "br.icr.io"
 }
 
 module "set_quota" {

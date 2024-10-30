@@ -1,6 +1,6 @@
 # IBM Container Registry Quota
 
-You can use this submodule to set the pull traffic and storage [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) quotas.
+You can use this submodule to set the [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) pull traffic and storage quotas.
 
 The submodule can be used without the root module to set the pull traffic and storage quotas.
 
@@ -18,9 +18,7 @@ module "set_quota" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/quotas"
   version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
   container_registry_endpoint = "us.icr.io"
-  update_storage_quota        = true
   storage_megabytes           = 5 * 1024 # 5GiB
-  update_traffic_quota        = true
   traffic_megabytes           = 500 # 500 MB
 }
 ```
@@ -61,7 +59,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io, to change quotas | `string` | `"us.icr.io"` | no |
+| <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the IBM Container Registry, eg. https://us.icr.io or https://de.icr.io, to change quotas | `string` | `"us.icr.io"` | no |
 | <a name="input_storage_megabytes"></a> [storage\_megabytes](#input\_storage\_megabytes) | Storage quota in megabytes. The value -1 denotes `Unlimited` | `number` | `null` | no |
 | <a name="input_traffic_megabytes"></a> [traffic\_megabytes](#input\_traffic\_megabytes) | Traffic quota in megabytes. The value -1 denotes `Unlimited`. | `number` | `null` | no |
 

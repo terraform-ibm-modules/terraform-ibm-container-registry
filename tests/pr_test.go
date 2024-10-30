@@ -12,22 +12,22 @@ import (
 const solutionStandardDir = "solutions/standard"
 const resourceGroup = "geretain-test-icr"
 const region = "br-sao"
+const cr_endpoint = "br.icr.io"
 
 func setupOptions(t *testing.T, prefix string, dir string) *testhelper.TestOptions {
 	return testhelper.TestOptionsDefault(&testhelper.TestOptions{
-		Testing:      t,
-		TerraformDir: solutionStandardDir,
-		Prefix:       prefix,
-		// ResourceGroup: resourceGroup,
-		Region: region,
+		Testing:       t,
+		TerraformDir:  solutionStandardDir,
+		Prefix:        prefix,
+		ResourceGroup: resourceGroup,
+		// Region: region,
 		TerraformVars: map[string]interface{}{
 			"use_existing_resource_group": true,
 			"resource_group_name":         resourceGroup,
-			"name":                        fmt.Sprintf("%s-namespace", prefix),
-			"container_registry_endpoint": "br.icr.io",
+			"namespace_region":            region,
+			"namespace_name":              fmt.Sprintf("%s-namespace", prefix),
+			"container_registry_endpoint": cr_endpoint,
 			"upgrade_to_standard_plan":    true,
-			"update_traffic_quota":        true,
-			"update_storage_quota":        true,
 			"storage_megabytes":           499,
 			"traffic_megabytes":           5*1024 - 1,
 		},

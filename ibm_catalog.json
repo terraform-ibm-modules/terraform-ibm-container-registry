@@ -99,7 +99,7 @@
                 "key": "resource_group_name"
               },
               {
-                "key": "region",
+                "key": "namespace_region",
                 "default_value": "us-south",
                 "options": [
                   {
@@ -145,7 +145,7 @@
                 ]
               },
               {
-                "key": "name"
+                "key": "namespace_name"
               },
               {
                 "key": "tags"
@@ -161,12 +161,6 @@
               },
               {
                 "key": "upgrade_to_standard_plan"
-              },
-              {
-                "key": "update_traffic_quota"
-              },
-              {
-                "key": "update_storage_quota"
               },
               {
                 "key": "storage_megabytes"

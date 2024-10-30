@@ -11,7 +11,6 @@ variable "prefix" {
   default     = null
 }
 
-
 # Namespace
 variable "use_existing_resource_group" {
   type        = bool
@@ -27,20 +26,20 @@ variable "resource_group_name" {
 
 variable "namespace_region" {
   type        = string
-  description = "The IBM Cloud region where the container registry namespace and retentation policy will be created."
+  description = "The IBM Cloud region where the container registry namespace and retention policy will be created or where the existing namespace is located."
   default     = "us-south"
 }
 
 variable "namespace_name" {
   type        = string
-  description = "The name of the container registry namespace to be created. If not provided, no namespace will be created."
+  description = "The name of the container registry namespace to create or the name of an existing namespace."
   default     = null
 }
 
-variable "create_namespace" {
+variable "use_existing_namespace" {
   type        = bool
-  description = "Set this true to create a new namespace in region passed in `namespace_region` field."
-  default     = true
+  description = "Specify true to use an existing container registry namespace in the region defined by `namespace_region`; set false to create a new namespace."
+  default     = false
 }
 
 variable "tags" {
@@ -62,7 +61,7 @@ variable "retain_untagged" {
 
 # Settings
 variable "container_registry_endpoint" {
-  description = "The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io"
+  description = "The endpoint of the ICR region (e.g., https://us.icr.io or https://de.icr.io) used to set plan and traffic quotas."
   type        = string
   default     = "us.icr.io"
 }
