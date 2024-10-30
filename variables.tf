@@ -1,5 +1,5 @@
 variable "name" {
-  description = "Name of the container registry namespace, if var.create_namespace is set to true, a new namespace will be created in a region set by provider"
+  description = "Name of the container registry namespace, if var.use_existing_namespace is set to false, a new namespace will be created in a region set by provider"
   type        = string
   validation {
     condition     = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.name))
@@ -9,7 +9,7 @@ variable "name" {
 
 variable "use_existing_namespace" {
   type        = bool
-  description = "Specify true to use an existing container registry namespace in the region defined by `namespace_region`; set false to create a new namespace."
+  description = "Specify true to use an existing container registry namespace in the region set by provider, set false to create a new namespace."
   default     = false
 }
 

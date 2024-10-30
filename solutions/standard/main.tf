@@ -15,7 +15,7 @@ module "namespace" {
   }
   count                  = var.namespace_name == null ? 0 : 1
   source                 = "../.."
-  name                   = var.prefix != null ? "${var.prefix}-${var.namespace_name}" : var.namespace_name
+  name                   = var.use_existing_namespace || var.prefix == null ? var.namespace_name : "${var.prefix}-${var.namespace_name}"
   use_existing_namespace = var.use_existing_namespace
   resource_group_id      = module.resource_group.resource_group_id
   tags                   = var.tags

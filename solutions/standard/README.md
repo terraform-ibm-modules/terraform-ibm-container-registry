@@ -1,6 +1,6 @@
 # IBM Cloud Container Registry
 
-This architecture creates IBM Container Registry namespaces and provides the ability to configure pull traffic limits and storage quotas, both in megabytes. It ensures efficient management of container image access by regulating the volume of data that can be pulled from the registry and by setting specific storage capacity limits for container images within each registry:
+This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.
 
 - A resource group, if existing is not passed in.
 - A Container Registry namespace.

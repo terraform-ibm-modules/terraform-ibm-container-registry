@@ -26,7 +26,7 @@ module "namespace" {
 
 module "upgrade_plan" {
   source                      = "../..//modules/plan"
-  container_registry_endpoint = "br.icr.io"
+  container_registry_endpoint = "us.icr.io"
 }
 
 module "set_quota" {

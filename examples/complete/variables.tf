@@ -24,7 +24,7 @@ variable "namespace_name" {
 
 variable "use_existing_namespace" {
   type        = bool
-  description = "Specify true to use an existing container registry namespace in the region defined by `namespace_region`; set false to create a new namespace."
+  description = "Specify true to use an existing container registry namespace in the region defined by `var.namespace_region`, set false to create a new namespace."
   default     = false
 }
 
