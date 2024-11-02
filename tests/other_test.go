@@ -22,10 +22,10 @@ func TestRunCompleteExample(t *testing.T) {
 		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
 		TerraformVars: map[string]interface{}{
-			"resource_group":         resourceGroup,
-			"namespace_region":       "us-south",
-			"retain_untagged": true,
-			"namespace_name":         fmt.Sprintf("%s-ns", prefix),
+			"resource_group":   resourceGroup,
+			"namespace_region": "us-south",
+			"retain_untagged":  true,
+			"namespace_name":   fmt.Sprintf("%s-ns", prefix),
 		},
 	})
 
@@ -46,7 +46,7 @@ func TestRunExistingNamespaceExample(t *testing.T) {
 			"resource_group":         resourceGroup,
 			"use_existing_namespace": true,
 			"namespace_region":       "br-sao",
-			"retain_untagged": true,
+			"retain_untagged":        true,
 			"namespace_name":         existingICRNamespaceName,
 		},
 	})
