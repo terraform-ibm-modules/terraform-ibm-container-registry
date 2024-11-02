@@ -11,6 +11,17 @@ variable "prefix" {
   default     = null
 }
 
+variable "provider_visibility" {
+  description = "The visibility to IBM Cloud endpoint. Allowable values are public, private, public-and-private."
+  type        = string
+  default     = "private"
+
+  validation {
+    condition     = contains(["public", "private", "public-and-private"], var.provider_visibility)
+    error_message = "Invalid visibility option. Allowed values are 'public', 'private', or 'public-and-private'."
+  }
+}
+
 # Namespace
 variable "use_existing_resource_group" {
   type        = bool

@@ -2,6 +2,7 @@
 package test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,21 +10,22 @@ import (
 )
 
 const completeDir = "examples/complete"
-const existingICRNamespaceName = "geretain-br-icr"
+const existingICRNamespaceName = "geretain-sao-ns-do-not-delete"
 
 func TestRunCompleteExample(t *testing.T) {
 	t.Parallel()
+	const prefix = "complete-icr"
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  completeDir,
-		Prefix:        "icr",
+		Prefix:        prefix,
 		ResourceGroup: resourceGroup,
 		TerraformVars: map[string]interface{}{
-			"resource_group_name":         resourceGroup,
-			"use_existing_resource_group": true,
-			"namespace_region":            "br-sao",
-			"namespace_name":              "icr-prefix",
+			"resource_group":         resourceGroup,
+			"namespace_region":       "us-south",
+			"retain_untagged": true,
+			"namespace_name":         fmt.Sprintf("%s-ns", prefix),
 		},
 	})
 
@@ -38,13 +40,14 @@ func TestRunExistingNamespaceExample(t *testing.T) {
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  completeDir,
-		Prefix:        "icr-existing",
+		Prefix:        "existing-icr-ns",
 		ResourceGroup: resourceGroup,
 		TerraformVars: map[string]interface{}{
-			"use_existing_resource_group": true,
-			"resource_group_name":         resourceGroup,
-			"namespace_region":            "br-sao",
-			"namespace_name":              existingICRNamespaceName,
+			"resource_group":         resourceGroup,
+			"use_existing_namespace": true,
+			"namespace_region":       "br-sao",
+			"retain_untagged": true,
+			"namespace_name":         existingICRNamespaceName,
 		},
 	})
 

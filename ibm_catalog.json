@@ -97,6 +97,12 @@
                 "key": "ibmcloud_api_key"
               },
               {
+                "key": "prefix"
+              },
+              {
+                "key": "provider_visibility"
+              },
+              {
                 "key": "use_existing_resource_group"
               },
               {
@@ -150,6 +156,9 @@
               },
               {
                 "key": "namespace_name"
+              },
+              {
+                "key": "use_existing_namespace"
               },
               {
                 "key": "tags"
