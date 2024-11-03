@@ -111,7 +111,7 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 	assert.Nil(t, err, "This should not have errored")
 }
 
-func TestRunpgradeExample(t *testing.T) {
+func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 	const prefix = "icr-da-upgrade"
 
@@ -132,7 +132,7 @@ func TestRunpgradeExample(t *testing.T) {
 			"provider_visibility":         "public",
 		},
 	})
-	output, err := options.RunTestConsistency()
+	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {
 		assert.Nil(t, err, "This should not have errored")
 		assert.NotNil(t, output, "Expected some output")
