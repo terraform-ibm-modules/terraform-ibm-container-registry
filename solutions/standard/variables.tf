@@ -12,7 +12,7 @@ variable "prefix" {
 }
 
 variable "provider_visibility" {
-  description = "The visibility to IBM Cloud endpoint. Allowable values are public, private, public-and-private."
+  description = "Set the visibility value for the IBM terraform provider. Supported values are `public`, `private`, `public-and-private`. [Learn more](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/guides/custom-service-endpoints)"
   type        = string
   default     = "private"
 
@@ -22,7 +22,6 @@ variable "provider_visibility" {
   }
 }
 
-# Namespace
 variable "use_existing_resource_group" {
   type        = bool
   description = "Indicates whether to use an existing resource group. If set to 'false', a new resource group will be created."
@@ -31,10 +30,11 @@ variable "use_existing_resource_group" {
 
 variable "resource_group_name" {
   type        = string
-  description = "The name of the resource group where resources will be provisioned. This can either be an existing resource group or a new one."
+  description = "The name of a new or an existing resource group to provision the container registry namespace in. If a value is passed for the prefix input variable, the prefix value is added to the name in the format of <prefix>-<name>. To use an existing group, set use_existing_resource_group to true."
   default     = "icr-namespace"
 }
 
+# Namespace
 variable "namespace_region" {
   type        = string
   description = "The IBM Cloud region where the container registry namespace and retention policy will be created or where the existing namespace is located."
@@ -43,7 +43,7 @@ variable "namespace_region" {
 
 variable "namespace_name" {
   type        = string
-  description = "The name of the container registry namespace to create or the name of an existing namespace."
+  description = "The name of the container registry namespace to create or the name of an existing namespace. To configure an existing namespace, set `use_existing_namespace` to true"
   default     = null
 }
 
@@ -72,7 +72,7 @@ variable "retain_untagged" {
 
 # Settings
 variable "container_registry_endpoint" {
-  description = "The endpoint of the ICR region (e.g., https://us.icr.io or https://de.icr.io) used to set plan and traffic quotas."
+  description = "The endpoint of the ICR region (e.g., `us.icr.io` or `de.icr.io`) used to set plan and traffic quotas."
   type        = string
   default     = "us.icr.io"
 }

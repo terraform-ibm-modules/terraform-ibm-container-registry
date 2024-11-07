@@ -7,6 +7,11 @@ output "namespace_crn" {
   value       = var.use_existing_namespace ? local.existing_cr_namespace[0].crn : ibm_cr_namespace.cr_namespace[0].crn
 }
 
+output "namespace_name" {
+  description = "Name of ICR namespace"
+  value       = var.name
+}
+
 
 output "retention_policy_id" {
   description = "ID of retentation policy"

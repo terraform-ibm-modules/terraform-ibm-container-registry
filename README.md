@@ -95,6 +95,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_namespace_crn"></a> [namespace\_crn](#output\_namespace\_crn) | CRN representing the namespace |
+| <a name="output_namespace_name"></a> [namespace\_name](#output\_namespace\_name) | Name of ICR namespace |
 | <a name="output_retention_policy_id"></a> [retention\_policy\_id](#output\_retention\_policy\_id) | ID of retentation policy |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

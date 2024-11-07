@@ -78,7 +78,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io, to change to standard plan | `string` | `"us.icr.io"` | no |
+| <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. `us.icr.io` or `de.icr.io`, to change to standard plan | `string` | `"us.icr.io"` | no |
 
 ### Outputs
 

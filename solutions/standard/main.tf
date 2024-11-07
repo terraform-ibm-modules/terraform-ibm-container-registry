@@ -3,6 +3,7 @@
 ########################################################################################################################
 
 module "resource_group" {
+  count                        = var.use_existing_namespace == null ? 0 : 1
   source                       = "terraform-ibm-modules/resource-group/ibm"
   version                      = "1.1.6"
   resource_group_name          = var.use_existing_resource_group == false ? (var.prefix != null ? "${var.prefix}-${var.resource_group_name}" : var.resource_group_name) : null
@@ -17,7 +18,7 @@ module "namespace" {
   source                 = "../.."
   name                   = var.use_existing_namespace || var.prefix == null ? var.namespace_name : "${var.prefix}-${var.namespace_name}"
   use_existing_namespace = var.use_existing_namespace
-  resource_group_id      = module.resource_group.resource_group_id
+  resource_group_id      = var.use_existing_namespace ? null : module.resource_group[0].resource_group_id
   tags                   = var.tags
   images_per_repo        = var.images_per_repo
   retain_untagged        = var.retain_untagged

@@ -55,7 +55,7 @@
             "profiles": [
               {
                 "profile_name": "IBM Cloud Framework for Financial Services",
-                "profile_version": "1.6.0"
+                "profile_version": "1.7.0"
               }
             ]},
           "iam_permissions": [
@@ -97,10 +97,24 @@
                 "key": "ibmcloud_api_key"
               },
               {
-                "key": "prefix"
+                "key": "provider_visibility",
+                "options": [
+                  {
+                    "displayname": "private",
+                    "value": "private"
+                  },
+                  {
+                    "displayname": "public",
+                    "value": "public"
+                  },
+                  {
+                    "displayname": "public-and-private",
+                    "value": "public-and-private"
+                  }
+                ]
               },
               {
-                "key": "provider_visibility"
+                "key": "prefix"
               },
               {
                 "key": "use_existing_resource_group"
@@ -112,6 +126,10 @@
                 "key": "namespace_region",
                 "default_value": "us-south",
                 "options": [
+                  {
+                    "displayname": "Global (global)",
+                    "value": "global"
+                  },
                   {
                     "displayname": "Tokyo (jp-tok)",
                     "value": "jp-tok"
@@ -139,10 +157,6 @@
                   {
                     "displayname": "London (eu-gb)",
                     "value": "eu-gb"
-                  },
-                  {
-                    "displayname": "Global (global)",
-                    "value": "global"
                   },
                   {
                     "displayname": "Osaka (jp-osa)",
