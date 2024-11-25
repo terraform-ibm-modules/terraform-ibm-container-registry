@@ -87,12 +87,12 @@ variable "upgrade_to_standard_plan" {
 
 variable "storage_megabytes" {
   type        = number
-  description = "The storage quota in megabytes for the container registry. Use -1 for unlimited storage."
+  description = "The storage quota in megabytes for the container registry. Use -1 for unlimited storage. If not specified, then the container registry storage quota is not set."
   default     = null
 }
 
 variable "traffic_megabytes" {
   type        = number
-  description = "The traffic pull quota in megabytes for the container registry. Use -1 for unlimited traffic."
+  description = "The traffic pull quota in megabytes for the container registry. Use -1 for unlimited traffic. If not specified, then the container registry traffic quota is not set."
   default     = null
 }

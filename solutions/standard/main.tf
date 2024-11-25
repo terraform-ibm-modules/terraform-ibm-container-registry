@@ -11,6 +11,7 @@ locals {
     "eu-es"      = "es.icr.io"
     "jp-osa"     = "jp2.icr.io"
     "uk-south"   = "uk.icr.io"
+    "global"     = "icr.io"
   }
 }
 
@@ -42,12 +43,12 @@ module "namespace" {
 module "upgrade_plan" {
   count                       = var.upgrade_to_standard_plan ? 1 : 0
   source                      = "../../modules/plan"
-  container_registry_endpoint = var.provider_visibility == "public" ? local.endpoints[var.namespace_region] : "private.${local.endpoints[var.namespace_region]}"
+  container_registry_endpoint = var.provider_visibility == "private" ? "private.${local.endpoints[var.namespace_region]}" : local.endpoints[var.namespace_region]
 }
 
 module "set_quota" {
   source                      = "../../modules/quotas"
-  container_registry_endpoint = var.provider_visibility == "public" ? local.endpoints[var.namespace_region] : "private.${local.endpoints[var.namespace_region]}"
+  container_registry_endpoint = var.provider_visibility == "private" ? "private.${local.endpoints[var.namespace_region]}" : local.endpoints[var.namespace_region]
   storage_megabytes           = var.storage_megabytes
   traffic_megabytes           = var.traffic_megabytes
 }

@@ -172,7 +172,7 @@
                 "key": "namespace_name"
               },
               {
-                "key": "use_existing_namespace"
+                "key": "existing_namespace_name"
               },
               {
                 "key": "tags"
@@ -182,9 +182,6 @@
               },
               {
                 "key": "retain_untagged"
-              },
-              {
-                "key": "container_registry_endpoint"
               },
               {
                 "key": "upgrade_to_standard_plan"
