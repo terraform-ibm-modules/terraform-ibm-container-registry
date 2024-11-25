@@ -23,8 +23,6 @@ import (
 const solutionStandardDir = "solutions/standard"
 const resourceGroup = "geretain-test-icr"
 
-// const existingICRNamespaceName = "geretain-sao-ns-do-not-delete"
-
 // ICR Plan is non revertible once upgraded to standard
 var validRegions = []string{
 	"br-sao",
@@ -153,28 +151,6 @@ func TestRunUpgradeExample(t *testing.T) {
 		assert.NotNil(t, output, "Expected some output")
 	}
 }
-
-// func TestRunExistingNamespaceExample(t *testing.T) {
-// 	t.Parallel()
-
-// 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-// 		Testing:       t,
-// 		TerraformDir:  completeDir,
-// 		Prefix:        "existing-icr-ns",
-// 		ResourceGroup: resourceGroup,
-// 		TerraformVars: map[string]interface{}{
-// 			"resource_group":         resourceGroup,
-// 			"use_existing_namespace": true,
-// 			"namespace_region":       "br-sao",
-// 			"retain_untagged":        true,
-// 			"namespace_name":         existingICRNamespaceName,
-// 		},
-// 	})
-
-// 	output, err := options.RunTestConsistency()
-// 	assert.Nil(t, err, "This should not have errored")
-// 	assert.NotNil(t, output, "Expected some output")
-// }
 
 func TestRunExistingResourcesExample(t *testing.T) {
 	t.Parallel()
