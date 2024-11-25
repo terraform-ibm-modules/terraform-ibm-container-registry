@@ -49,7 +49,7 @@ variable "namespace_region" {
 variable "namespace_name" {
   type        = string
   description = "The name of the container registry namespace to create."
-  default     = "ns"
+  default     = "namespace"
 }
 
 variable "existing_namespace_name" {
