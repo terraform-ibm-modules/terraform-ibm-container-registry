@@ -4,12 +4,12 @@
 
 output "namespace_crn" {
   description = "CRN representing the namespace"
-  value       = var.use_existing_namespace ? local.existing_cr_namespace[0].crn : ibm_cr_namespace.cr_namespace[0].crn
+  value       = var.existing_namespace_name != null ? local.existing_cr_namespace[0].crn : ibm_cr_namespace.cr_namespace[0].crn
 }
 
 output "namespace_name" {
   description = "Name of ICR namespace"
-  value       = var.name
+  value       = var.existing_namespace_name != null ? var.existing_namespace_name : var.namespace_name
 }
 
 

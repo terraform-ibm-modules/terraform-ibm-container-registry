@@ -28,21 +28,20 @@ You can use this module to provision and configure an [IBM Container Registry](h
 ```hcl
 module "namespace" {
   source            = "terraform-ibm-modules/container-registry/ibm"
-  version           = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  name              = "my-namespace"
+  version           = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
+  namespace_name    = "my-namespace"
+  namespace_region  = "us-south"
   resource_group_id = "xxXXxxXXxXxXXXXxxXxxxXXXXxXXXXX"
   images_per_repo   = 2
 }
 
 module "upgrade-plan" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
-  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  container_registry_endpoint = "us.icr.io"
+  version = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
 }
 module "set_quota" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/quotas"
-  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  container_registry_endpoint = "us.icr.io"
+  version = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
   update_storage_quota        = true
   storage_megabytes           = 5 * 1024 # 5GiB
   update_traffic_quota        = true
@@ -83,12 +82,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_existing_namespace_name"></a> [existing\_namespace\_name](#input\_existing\_namespace\_name) | The name of an existing namespace. Required if 'namespace\_name' is not provided. | `string` | `null` | no |
 | <a name="input_images_per_repo"></a> [images\_per\_repo](#input\_images\_per\_repo) | (Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default) | `number` | `0` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name of the container registry namespace, if var.use\_existing\_namespace is set to false, a new namespace will be created in a region set by provider | `string` | n/a | yes |
+| <a name="input_namespace_name"></a> [namespace\_name](#input\_namespace\_name) | Name of the container registry namespace, if var.existing\_namespace\_name is not inputted, a new namespace will be created in a region set by provider. | `string` | n/a | yes |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the IBM container namespace will be created. | `string` | n/a | yes |
 | <a name="input_retain_untagged"></a> [retain\_untagged](#input\_retain\_untagged) | (Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Optional list of tags to be added to the IBM container namespace. | `list(string)` | `[]` | no |
-| <a name="input_use_existing_namespace"></a> [use\_existing\_namespace](#input\_use\_existing\_namespace) | Specify true to use an existing container registry namespace in the region set by provider, set false to create a new namespace. | `bool` | `false` | no |
 
 ### Outputs
 

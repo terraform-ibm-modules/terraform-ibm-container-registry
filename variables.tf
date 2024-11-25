@@ -1,16 +1,21 @@
-variable "name" {
-  description = "Name of the container registry namespace, if var.use_existing_namespace is set to false, a new namespace will be created in a region set by provider"
+variable "namespace_name" {
+  description = "Name of the container registry namespace, if var.existing_namespace_name is not inputted, a new namespace will be created in a region set by provider."
   type        = string
   validation {
-    condition     = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.name))
+    condition     = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.namespace_name))
     error_message = "container registry namespace name should match regex /^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$/"
+  }
+
+  validation {
+    condition     = (length(var.namespace_name) >= 4 && length(var.namespace_name) <= 30)
+    error_message = "namespace name must contain from 4 to 30 characters "
   }
 }
 
-variable "use_existing_namespace" {
-  type        = bool
-  description = "Specify true to use an existing container registry namespace in the region set by provider, set false to create a new namespace."
-  default     = false
+variable "existing_namespace_name" {
+  type        = string
+  description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
+  default     = null
 }
 
 variable "resource_group_id" {

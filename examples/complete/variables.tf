@@ -16,16 +16,10 @@ variable "namespace_region" {
   default     = "us-south"
 }
 
-variable "namespace_name" {
-  type        = string
-  description = "The name of the container registry namespace to create or the name of an existing namespace."
-  default     = null
-}
-
-variable "use_existing_namespace" {
+variable "existing_namespace_name" {
   type        = bool
-  description = "Specify true to use an existing container registry namespace in the region defined by `var.namespace_region`, set false to create a new namespace."
-  default     = false
+  description = "The name of an existing namespace. Required if `namespace_name` is not provided."
+  default     = null
 }
 
 variable "resource_group" {

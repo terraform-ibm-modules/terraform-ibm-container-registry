@@ -4,6 +4,7 @@ package test
 import (
 	"fmt"
 	"io/fs"
+	"math/rand"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -16,8 +17,15 @@ import (
 
 const solutionStandardDir = "solutions/standard"
 const resourceGroup = "geretain-test-icr"
-const region = "br-sao"
-const cr_endpoint = "br.icr.io"
+
+// const existingICRNamespaceName = "geretain-sao-ns-do-not-delete"
+
+// ICR Plan is non revertible once upgraded to standard
+var validRegions = []string{
+	"br-sao",
+	"us-south",
+	"ap-north",
+}
 
 type tarIncludePatterns struct {
 	excludeDirs []string
@@ -63,6 +71,8 @@ func walk(r *tarIncludePatterns, s string, d fs.DirEntry, err error) error {
 func TestRunStandardSolutionSchematics(t *testing.T) {
 	t.Parallel()
 
+	var region = validRegions[rand.Intn(len(validRegions))]
+
 	excludeDirs := []string{
 		".terraform",
 		".docs",
@@ -90,7 +100,7 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 		Testing:                t,
 		TarIncludePatterns:     tarIncludePatterns,
 		TemplateFolder:         solutionStandardDir,
-		Prefix:                 "standard-icr-da",
+		Prefix:                 "std-icr-da",
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 60,
@@ -101,8 +111,7 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 		{Name: "resource_group_name", Value: options.Prefix, DataType: "string"},
 		{Name: "use_existing_resource_group", Value: false, DataType: "bool"},
 		{Name: "namespace_region", Value: region, DataType: "string"},
-		{Name: "namespace_name", Value: fmt.Sprintf("%s-ns", options.Prefix), DataType: "string"},
-		{Name: "container_registry_endpoint", Value: cr_endpoint, DataType: "string"},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
 		{Name: "upgrade_to_standard_plan", Value: true, DataType: "bool"},
 		{Name: "storage_megabytes", Value: 499, DataType: "number"},
 		{Name: "traffic_megabytes", Value: 5*1024 - 1, DataType: "number"},
@@ -113,28 +122,51 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
-	const prefix = "icr-da-upgrade"
+
+	var region = validRegions[rand.Intn(len(validRegions))]
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
 		TerraformDir:  solutionStandardDir,
-		Prefix:        prefix,
+		Prefix:        "upg-icr-da",
 		ResourceGroup: resourceGroup,
-		TerraformVars: map[string]interface{}{
-			"use_existing_resource_group": true,
-			"resource_group_name":         resourceGroup,
-			"namespace_region":            region,
-			"namespace_name":              fmt.Sprintf("%s-namespace", prefix),
-			"container_registry_endpoint": cr_endpoint,
-			"upgrade_to_standard_plan":    true,
-			"storage_megabytes":           499,
-			"traffic_megabytes":           5*1024 - 1,
-			"provider_visibility":         "public",
-		},
 	})
+	options.TerraformVars = map[string]interface{}{
+		"use_existing_resource_group": true,
+		"resource_group_name":         resourceGroup,
+		"namespace_region":            region,
+		"prefix":                      options.Prefix,
+		"upgrade_to_standard_plan":    true,
+		"storage_megabytes":           499,
+		"traffic_megabytes":           5*1024 - 1,
+		"provider_visibility":         "public",
+	}
+
 	output, err := options.RunTestUpgrade()
 	if !options.UpgradeTestSkipped {
 		assert.Nil(t, err, "This should not have errored")
 		assert.NotNil(t, output, "Expected some output")
 	}
 }
+
+// func TestRunExistingNamespaceExample(t *testing.T) {
+// 	t.Parallel()
+
+// 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
+// 		Testing:       t,
+// 		TerraformDir:  completeDir,
+// 		Prefix:        "existing-icr-ns",
+// 		ResourceGroup: resourceGroup,
+// 		TerraformVars: map[string]interface{}{
+// 			"resource_group":         resourceGroup,
+// 			"use_existing_namespace": true,
+// 			"namespace_region":       "br-sao",
+// 			"retain_untagged":        true,
+// 			"namespace_name":         existingICRNamespaceName,
+// 		},
+// 	})
+
+// 	output, err := options.RunTestConsistency()
+// 	assert.Nil(t, err, "This should not have errored")
+// 	assert.NotNil(t, output, "Expected some output")
+// }
