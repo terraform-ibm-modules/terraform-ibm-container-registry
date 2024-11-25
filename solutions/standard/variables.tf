@@ -37,7 +37,10 @@ variable "resource_group_name" {
   default     = "icr-namespace"
 }
 
+########################################################################################################################
 # Namespace
+########################################################################################################################
+
 variable "namespace_region" {
   type        = string
   description = "The IBM Cloud region where the container registry namespace and retention policy will be created or where the existing namespace is located."
@@ -50,7 +53,7 @@ variable "namespace_name" {
 }
 
 variable "existing_namespace_name" {
-  type        = bool
+  type        = string
   description = "The name of an existing namespace."
   default     = null
 }
@@ -72,7 +75,9 @@ variable "retain_untagged" {
   default     = false
 }
 
+########################################################################################################################
 # Settings
+########################################################################################################################
 
 variable "upgrade_to_standard_plan" {
   description = "Set to true to upgrade container registry to the 'Standard' plan. This action cannot be undone once applied."

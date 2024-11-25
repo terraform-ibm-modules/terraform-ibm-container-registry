@@ -23,15 +23,12 @@ module "namespace" {
   retain_untagged         = var.retain_untagged
 }
 
-
 module "upgrade_plan" {
-  source                      = "../..//modules/plan"
-  container_registry_endpoint = "us.icr.io"
+  source = "../..//modules/plan"
 }
 
 module "set_quota" {
-  source                      = "../../modules/quotas"
-  container_registry_endpoint = "br.icr.io"
-  storage_megabytes           = 5 * 1024 - 1
-  traffic_megabytes           = 499
+  source            = "../../modules/quotas"
+  storage_megabytes = 5 * 1024 - 1
+  traffic_megabytes = 499
 }
