@@ -1,3 +1,6 @@
 {
-  "ibmcloud_api_key": $VALIDATION_APIKEY
+  "ibmcloud_api_key": $VALIDATION_APIKEY,
+  "prefix": $PREFIX,
+  "namespace_region": "us-south",
+  "tags": $TAGS
 }
