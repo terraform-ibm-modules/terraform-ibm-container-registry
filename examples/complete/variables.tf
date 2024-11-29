@@ -10,10 +10,16 @@ variable "prefix" {
   default     = "test-icr"
 }
 
-variable "region" {
+variable "namespace_region" {
   type        = string
-  description = "Prefix to append to all resources created by this example"
+  description = "The IBM Cloud region where the container registry namespace and retention policy will be created or where the existing namespace is located."
   default     = "us-south"
+}
+
+variable "existing_namespace_name" {
+  type        = bool
+  description = "The name of an existing namespace. Required if `namespace_name` is not provided."
+  default     = null
 }
 
 variable "resource_group" {

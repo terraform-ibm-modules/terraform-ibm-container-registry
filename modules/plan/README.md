@@ -62,7 +62,7 @@ You need the following permissions to run this module.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.49.0, < 2.0.0 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.18.2 |
+| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 1.20.0, <2.0.0 |
 
 ### Modules
 
@@ -78,7 +78,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. https://us.icr.io or https://de.icr.io, to change to standard plan | `string` | `"us.icr.io"` | no |
+| <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the ICR region, eg. `us.icr.io` or `de.icr.io`, to change to standard plan | `string` | `"us.icr.io"` | no |
 
 ### Outputs
 

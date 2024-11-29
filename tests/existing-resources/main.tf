@@ -10,16 +10,7 @@ module "resource_group" {
   existing_resource_group_name = var.resource_group
 }
 
-module "namespace" {
-  source            = "../.."
-  name              = "${var.prefix}-namespace"
+resource "ibm_cr_namespace" "cr_namespace" {
+  name              = "${var.prefix}-ns"
   resource_group_id = module.resource_group.resource_group_id
-  tags              = var.resource_tags
-  images_per_repo   = var.images_per_repo
-  retain_untagged   = var.retain_untagged
-}
-
-module "upgrade_plan" {
-  source                      = "../..//modules/plan"
-  container_registry_endpoint = "us.icr.io"
 }

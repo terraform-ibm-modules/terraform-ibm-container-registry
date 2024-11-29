@@ -15,8 +15,9 @@ You can use this module to provision and configure an [IBM Container Registry](h
 * [terraform-ibm-container-registry](#terraform-ibm-container-registry)
 * [Submodules](./modules)
     * [plan](./modules/plan)
+    * [quotas](./modules/quotas)
 * [Examples](./examples)
-    * [IBM Container Registry namespace example](./examples/namespace)
+    * [IBM Container Registry namespace example](./examples/complete)
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
@@ -27,10 +28,24 @@ You can use this module to provision and configure an [IBM Container Registry](h
 ```hcl
 module "namespace" {
   source            = "terraform-ibm-modules/container-registry/ibm"
-  version           = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  name              = "my-namespace"
+  version           = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
+  namespace_name    = "my-namespace"
+  namespace_region  = "us-south"
   resource_group_id = "xxXXxxXXxXxXXXXxxXxxxXXXXxXXXXX"
   images_per_repo   = 2
+}
+
+module "upgrade-plan" {
+  source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
+  version = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
+}
+module "set_quota" {
+  source  = "terraform-ibm-modules/container-registry/ibm//modules/quotas"
+  version = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
+  update_storage_quota        = true
+  storage_megabytes           = 5 * 1024 # 5GiB
+  update_traffic_quota        = true
+  traffic_megabytes           = 500 # 500 MB
 }
 ```
 
@@ -61,13 +76,15 @@ No modules.
 |------|------|
 | [ibm_cr_namespace.cr_namespace](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_namespace) | resource |
 | [ibm_cr_retention_policy.cr_retention_policy](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_retention_policy) | resource |
+| [ibm_cr_namespaces.existing_cr_namespaces](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/cr_namespaces) | data source |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_existing_namespace_name"></a> [existing\_namespace\_name](#input\_existing\_namespace\_name) | The name of an existing namespace. Required if 'namespace\_name' is not provided. | `string` | `null` | no |
 | <a name="input_images_per_repo"></a> [images\_per\_repo](#input\_images\_per\_repo) | (Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default) | `number` | `0` | no |
-| <a name="input_name"></a> [name](#input\_name) | Name of the container registry namespace | `string` | n/a | yes |
+| <a name="input_namespace_name"></a> [namespace\_name](#input\_namespace\_name) | Name of the container registry namespace, if var.existing\_namespace\_name is not inputted, a new namespace will be created in a region set by provider. | `string` | n/a | yes |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the IBM container namespace will be created. | `string` | n/a | yes |
 | <a name="input_retain_untagged"></a> [retain\_untagged](#input\_retain\_untagged) | (Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Optional list of tags to be added to the IBM container namespace. | `list(string)` | `[]` | no |
@@ -77,6 +94,8 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_namespace_crn"></a> [namespace\_crn](#output\_namespace\_crn) | CRN representing the namespace |
+| <a name="output_namespace_name"></a> [namespace\_name](#output\_namespace\_name) | Name of ICR namespace |
+| <a name="output_retention_policy_id"></a> [retention\_policy\_id](#output\_retention\_policy\_id) | ID of retentation policy |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- Leave this section as is so that your module has a link to local development environment set up steps for contributors to follow -->
