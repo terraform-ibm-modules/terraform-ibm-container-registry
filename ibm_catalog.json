@@ -114,7 +114,8 @@
                 ]
               },
               {
-                "key": "prefix"
+                "key": "prefix",
+                "required": true
               },
               {
                 "key": "use_existing_resource_group"
