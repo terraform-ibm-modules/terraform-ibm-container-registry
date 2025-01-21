@@ -10,8 +10,8 @@ variable "ibmcloud_api_key" {
 
 variable "prefix" {
   type        = string
-  description = "The prefix to add to all resources that this solution creates. Prefix value can be an empty string (\"\") or `null` for advanced users."
-  default     = "icr-da"
+  description = "The prefix to add to all resources that this solution creates. To not use any prefix value, you can set this value to `null` or an empty string."
+  default     = "icr"
 }
 
 variable "provider_visibility" {
