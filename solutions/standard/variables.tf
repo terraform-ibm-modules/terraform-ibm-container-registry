@@ -34,7 +34,7 @@ variable "use_existing_resource_group" {
 variable "resource_group_name" {
   type        = string
   description = "The name of a new or an existing resource group to provision the container registry namespace in. If a value is passed for the prefix input variable, the prefix value is added to the name in the format of <prefix>-<name>. To use an existing group, set use_existing_resource_group to true."
-  default     = "namespace-rg"
+  default     = "icr-namespace"
 }
 
 ########################################################################################################################
