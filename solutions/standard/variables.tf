@@ -10,8 +10,8 @@ variable "ibmcloud_api_key" {
 
 variable "prefix" {
   type        = string
-  description = "The prefix to add to all resources that this solution creates."
-  default     = null
+  description = "The prefix to add to all resources that this solution creates. To not use any prefix value, you can set this value to `null` or an empty string."
+  default     = "icr"
 }
 
 variable "provider_visibility" {
@@ -34,7 +34,7 @@ variable "use_existing_resource_group" {
 variable "resource_group_name" {
   type        = string
   description = "The name of a new or an existing resource group to provision the container registry namespace in. If a value is passed for the prefix input variable, the prefix value is added to the name in the format of <prefix>-<name>. To use an existing group, set use_existing_resource_group to true."
-  default     = "icr-namespace"
+  default     = "namespace-rg"
 }
 
 ########################################################################################################################
