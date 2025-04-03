@@ -1,3 +1,13 @@
+variable "existing_namespace_name" {
+  type        = string
+  description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
+  default     = null
+}
+
+# 1. namespace_name must matches a specific pattern i.e. it should start and end with lowercase letter or number
+# and can contain underscores and hyphens.
+# 2. namespace_name must have length between 4 and 30 characters.
+# 3. if namespace_name is null, the existing_namespace_name must not be null, and vice versa
 variable "namespace_name" {
   description = "Name of the container registry namespace, if var.existing_namespace_name is not inputted, a new namespace will be created in a region set by provider."
   type        = string
@@ -10,12 +20,11 @@ variable "namespace_name" {
     condition     = (length(var.namespace_name) >= 4 && length(var.namespace_name) <= 30)
     error_message = "namespace name must contain from 4 to 30 characters "
   }
-}
 
-variable "existing_namespace_name" {
-  type        = string
-  description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
-  default     = null
+  validation {
+    condition     = var.namespace_name != null || var.existing_namespace_name != null
+    error_message = "When 'namespace_name' is null, a value must be passed for 'var.existing_namespace_name'."
+  }
 }
 
 variable "resource_group_id" {
