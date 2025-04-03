@@ -43,7 +43,6 @@
           "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities."
         }
       ],
-
       "flavors": [
         {
           "label": "Standard",
@@ -115,8 +114,7 @@
               },
               {
                 "key": "prefix",
-                "required": true,
-                "description": "The prefix to add to all resources that this solution creates. To not use any prefix value, you can enter the string `__NULL__`."
+                "required": true
               },
               {
                 "key": "use_existing_resource_group"
