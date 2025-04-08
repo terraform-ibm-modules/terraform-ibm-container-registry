@@ -1,7 +1,12 @@
+# exisiting_namespace_name can be NULL. If not NULL then atleast one namespace should match in existing_cr_namespaces list that matches existing_namespace_name
 variable "existing_namespace_name" {
   type        = string
   description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
   default     = null
+  validation {
+    condition     = var.existing_namespace_name == null || length([for namespace in data.ibm_cr_namespaces.existing_cr_namespaces.namespaces : namespace if namespace.name == var.existing_namespace_name]) > 0
+    error_message = "Existing namespace ${coalesce(var.existing_namespace_name, "unknown")} not found in the region"
+  }
 }
 
 # 1. namespace_name must matches a specific pattern i.e. it should start and end with lowercase letter or number

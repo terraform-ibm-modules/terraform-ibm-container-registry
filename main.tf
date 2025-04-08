@@ -1,15 +1,11 @@
 data "ibm_cr_namespaces" "existing_cr_namespaces" {
-  count = var.existing_namespace_name != null ? 1 : 0
 }
 
 locals {
   existing_cr_namespace = var.existing_namespace_name != null ? [
-    for namespace in data.ibm_cr_namespaces.existing_cr_namespaces[0].namespaces :
-    namespace if namespace == var.existing_namespace_name
+    for namespace in data.ibm_cr_namespaces.existing_cr_namespaces.namespaces :
+    namespace if namespace.name == var.existing_namespace_name
   ] : []
-  # this validation cannot be moved to variables.tf due to cyclic dependency of data "ibm_cr_namespaces" on existing_namespace_name
-  # tflint-ignore: terraform_unused_declarations
-  validate_existing_namespace = var.existing_namespace_name != null && length(local.existing_cr_namespace) == 0 ? tobool("existing namespace ${var.existing_namespace_name} not found in a region") : false
 }
 
 resource "ibm_cr_namespace" "cr_namespace" {

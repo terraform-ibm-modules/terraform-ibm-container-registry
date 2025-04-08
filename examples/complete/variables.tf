@@ -17,7 +17,7 @@ variable "namespace_region" {
 }
 
 variable "existing_namespace_name" {
-  type        = bool
+  type        = string
   description = "The name of an existing namespace. Required if `namespace_name` is not provided."
   default     = null
 }
