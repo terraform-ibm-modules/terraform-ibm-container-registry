@@ -1,21 +1,36 @@
+variable "existing_namespace_name" {
+  type        = string
+  description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
+  default     = null
+
+  # exisiting_namespace_name can be NULL. If not NULL then atleast one namespace should match in existing_cr_namespaces list that matches existing_namespace_name
+  validation {
+    condition     = var.existing_namespace_name == null || length([for namespace in data.ibm_cr_namespaces.existing_cr_namespaces.namespaces : namespace if namespace.name == var.existing_namespace_name]) > 0
+    error_message = "Existing namespace not found in the region"
+  }
+}
+
 variable "namespace_name" {
   description = "Name of the container registry namespace, if var.existing_namespace_name is not inputted, a new namespace will be created in a region set by provider."
   type        = string
+
+  # namespace_name must matches a specific pattern i.e. it should start and end with lowercase letter or number and can contain underscores and hyphens.
   validation {
     condition     = can(regex("^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$", var.namespace_name))
     error_message = "container registry namespace name should match regex /^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$/"
   }
 
+  # namespace_name must have length between 4 and 30 characters.
   validation {
     condition     = (length(var.namespace_name) >= 4 && length(var.namespace_name) <= 30)
     error_message = "namespace name must contain from 4 to 30 characters "
   }
-}
 
-variable "existing_namespace_name" {
-  type        = string
-  description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
-  default     = null
+  # if namespace_name is null, the existing_namespace_name must not be null, and vice versa
+  validation {
+    condition     = var.namespace_name != null || var.existing_namespace_name != null
+    error_message = "When 'namespace_name' is null, a value must be passed for 'var.existing_namespace_name'."
+  }
 }
 
 variable "resource_group_id" {
