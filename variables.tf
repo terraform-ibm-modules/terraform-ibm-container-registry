@@ -5,7 +5,7 @@ variable "existing_namespace_name" {
   default     = null
   validation {
     condition     = var.existing_namespace_name == null || length([for namespace in data.ibm_cr_namespaces.existing_cr_namespaces.namespaces : namespace if namespace.name == var.existing_namespace_name]) > 0
-    error_message = "Existing namespace ${coalesce(var.existing_namespace_name, "unknown")} not found in the region"
+    error_message = "Existing namespace not found in the region"
   }
 }
 
