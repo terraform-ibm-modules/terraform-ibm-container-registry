@@ -20,11 +20,9 @@ locals {
 ########################################################################################################################
 
 module "resource_group" {
-  count                        = var.existing_namespace_name != null ? 0 : 1
   source                       = "terraform-ibm-modules/resource-group/ibm"
   version                      = "1.2.0"
-  resource_group_name          = var.use_existing_resource_group == false ? ((var.prefix != null && var.prefix != "") ? "${var.prefix}-${var.resource_group_name}" : var.resource_group_name) : null
-  existing_resource_group_name = var.use_existing_resource_group == true ? var.resource_group_name : null
+  existing_resource_group_name = var.existing_resource_group_name
 }
 
 module "namespace" {

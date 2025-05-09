@@ -8,33 +8,38 @@ variable "ibmcloud_api_key" {
   sensitive   = true
 }
 
-variable "prefix" {
+variable "existing_resource_group_name" {
   type        = string
-  description = "The prefix to add to all resources that this solution creates. To not use any prefix value, you can set this value to `null` or an empty string."
-  default     = "icr"
+  description = "The name of an existing resource group to provision resource in."
+  default     = "Default"
+  nullable    = false
 }
 
-variable "provider_visibility" {
-  description = "Set the visibility value for the IBM terraform provider. Supported values are `public`, `private`, `public-and-private`. [Learn more](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/guides/custom-service-endpoints)"
+variable "prefix" {
   type        = string
-  default     = "private"
-
+  description = "The prefix to add to all resources that this solution creates (e.g `prod`, `test`, `dev`). To not use any prefix value, you can set this value to `null` or an empty string."
+  nullable    = true
   validation {
-    condition     = contains(["public", "private", "public-and-private"], var.provider_visibility)
-    error_message = "Invalid visibility option. Allowed values are 'public', 'private', or 'public-and-private'."
+    condition = (var.prefix == null ? true :
+      alltrue([
+        can(regex("^[a-z]{0,1}[-a-z0-9]{0,14}[a-z0-9]{0,1}$", var.prefix)),
+        length(regexall("^.*--.*", var.prefix)) == 0
+      ])
+    )
+    error_message = "Prefix must begin with a lowercase letter, contain only lowercase letters, numbers, and - characters. Prefixes must end with a lowercase letter or number and be 16 or fewer characters."
   }
 }
 
-variable "use_existing_resource_group" {
-  type        = bool
-  description = "Indicates whether to use an existing resource group. If set to 'false', a new resource group will be created."
-  default     = false
-}
-
-variable "resource_group_name" {
+variable "provider_visibility" {
   type        = string
-  description = "The name of a new or an existing resource group to provision the container registry namespace in. If a value is passed for the prefix input variable, the prefix value is added to the name in the format of <prefix>-<name>. To use an existing group, set use_existing_resource_group to true."
-  default     = "namespace-rg"
+  description = "Set the visibility value for the IBM terraform provider. Supported values are `public`, `private`, `public-and-private`. [Learn more](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/guides/custom-service-endpoints)"
+  default     = "private"
+  nullable    = false
+
+  validation {
+    condition     = contains(["public", "private", "public-and-private"], var.provider_visibility)
+    error_message = "Invalid value for 'provider_visibility'. Allowed values are 'public', 'private', or 'public-and-private'."
+  }
 }
 
 ########################################################################################################################
@@ -66,9 +71,10 @@ variable "tags" {
 
 variable "images_per_repo" {
   type        = number
-  default     = 0
   description = "Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default)"
+  default     = 0
 }
+
 variable "retain_untagged" {
   type        = bool
   description = "Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs."
@@ -80,8 +86,8 @@ variable "retain_untagged" {
 ########################################################################################################################
 
 variable "upgrade_to_standard_plan" {
-  description = "Set to true to upgrade container registry to the 'Standard' plan. This action cannot be undone once applied."
   type        = bool
+  description = "Set to true to upgrade container registry to the 'Standard' plan. This action cannot be undone once applied."
   default     = false
 }
 
