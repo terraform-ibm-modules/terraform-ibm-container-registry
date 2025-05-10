@@ -73,7 +73,7 @@
             }
           ],
           "architecture": {
-            "descriptions": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
+            "description": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
             "features": [
               {
                 "title": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
@@ -96,6 +96,22 @@
                 "key": "ibmcloud_api_key"
               },
               {
+                "key": "prefix",
+                "required": true
+              },
+              {
+                "key": "existing_resource_group_name",
+                "required": true,
+                "custom_config": {
+                    "type": "resource_group",
+                    "grouping": "deployment",
+                    "original_grouping": "deployment",
+                    "config_constraints": {
+                        "identifier": "rg_name"
+                    }
+                }
+              },
+              {
                 "key": "provider_visibility",
                 "options": [
                   {
@@ -111,16 +127,6 @@
                     "value": "public-and-private"
                   }
                 ]
-              },
-              {
-                "key": "prefix",
-                "required": true
-              },
-              {
-                "key": "use_existing_resource_group"
-              },
-              {
-                "key": "resource_group_name"
               },
               {
                 "key": "namespace_region",
@@ -175,7 +181,14 @@
                 "key": "existing_namespace_name"
               },
               {
-                "key": "tags"
+                "key": "tags",
+                "custom_config": {
+                  "grouping": "deployment",
+                  "original_grouping": "deployment",
+                  "config_constraints": {
+                    "type": "string"
+                  }
+                }
               },
               {
                 "key": "images_per_repo"
