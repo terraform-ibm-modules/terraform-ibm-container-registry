@@ -4,7 +4,7 @@
 
 variable "container_registry_endpoint" {
   type        = string
-  description = "The endpoint of the IBM Container Registry, eg. https://us.icr.io or https://de.icr.io, to change quotas"
+  description = "The endpoint of the IBM Container Registry, eg. us.icr.io or de.icr.io, to change quotas"
   default     = "us.icr.io"
 
   validation {
