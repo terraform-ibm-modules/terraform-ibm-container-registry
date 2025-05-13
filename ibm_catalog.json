@@ -1,200 +1,200 @@
 {
-  "products": [
-    {
-      "name": "deploy-arch-ibm-container-registry",
-      "label": "Cloud automation for IBM Container Registry",
-      "product_kind": "solution",
-      "tags": [
-        "ibm_created",
-        "target_terraform",
-        "terraform",
-        "containers",
-        "registry",
-        "solution"
-      ],
-      "keywords": [
-        "containers",
-        "IaC",
-        "infrastructure as code",
-        "terraform",
-        "solution",
-        "registry"
-      ],
-      "short_description": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
-      "long_description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.",
-      "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
-      "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
-      "provider_name": "IBM",
-      "features": [
+    "products": [
         {
-          "title": "Creates or Uses Existing IBM Container Registry Namespace",
-          "description": "Enables the creation of a new IBM Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
-        },
-        {
-          "title": "Configures Pull Traffic Limits",
-          "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry."
-        },
-        {
-          "title": "Sets Storage Quotas",
-          "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry."
-        },
-        {
-          "title": "Upgrades Registry Plan to Standard",
-          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities."
-        }
-      ],
-      "flavors": [
-        {
-          "label": "Standard",
-          "name": "standard",
-          "install_type": "fullstack",
-          "working_directory": "solutions/standard",
-          "compliance": {
-            "authority": "scc-v3",
-            "profiles": [
-              {
-                "profile_name": "IBM Cloud Framework for Financial Services",
-                "profile_version": "1.7.0"
-              }
-            ]},
-          "iam_permissions": [
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Administrator"
-              ],
-              "service_name": "all-account-management-services"
-            },
-            {
-              "role_crns": [
-                "crn:v1:bluemix:public:iam::::role:Writer",
-                "crn:v1:bluemix:public:iam::::role:Manager"
-              ],
-              "service_name": "container-registry"
-            }
-          ],
-          "architecture": {
-            "descriptions": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
-            "features": [
-              {
-                "title": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
-                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
-              }
+            "name": "deploy-arch-ibm-container-registry",
+            "label": "Cloud automation for IBM Container Registry",
+            "product_kind": "solution",
+            "tags": [
+                "ibm_created",
+                "target_terraform",
+                "terraform",
+                "containers",
+                "registry",
+                "solution"
             ],
-            "diagrams": [
-              {
-                "diagram": {
-                  "caption": "Creates IBM Container Registry namespace.",
-                  "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/reference-architecture/deployable-architecture-icr.svg",
-                  "type": "image/svg+xml"
+            "keywords": [
+                "containers",
+                "IaC",
+                "infrastructure as code",
+                "terraform",
+                "solution",
+                "registry"
+            ],
+            "short_description": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
+            "long_description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.",
+            "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
+            "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
+            "provider_name": "IBM",
+            "features": [
+                {
+                    "title": "Creates or Uses Existing IBM Container Registry Namespace",
+                    "description": "Enables the creation of a new IBM Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
                 },
-                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
-              }
-            ]
-          },
-          "configuration": [
-              {
-                "key": "ibmcloud_api_key"
-              },
-              {
-                "key": "provider_visibility",
-                "options": [
-                  {
-                    "displayname": "private",
-                    "value": "private"
-                  },
-                  {
-                    "displayname": "public",
-                    "value": "public"
-                  },
-                  {
-                    "displayname": "public-and-private",
-                    "value": "public-and-private"
-                  }
-                ]
-              },
-              {
-                "key": "prefix",
-                "required": true
-              },
-              {
-                "key": "use_existing_resource_group"
-              },
-              {
-                "key": "resource_group_name"
-              },
-              {
-                "key": "namespace_region",
-                "default_value": "us-south",
-                "options": [
-                  {
-                    "displayname": "Global (global)",
-                    "value": "global"
-                  },
-                  {
-                    "displayname": "Tokyo (jp-tok)",
-                    "value": "jp-tok"
-                  },
-                  {
-                    "displayname": "Sydney (au-syd)",
-                    "value": "au-syd"
-                  },
-                  {
-                    "displayname": "Sao Paulo (br-sao)",
-                    "value": "br-sao"
-                  },
-                  {
-                    "displayname": "Toronto (ca-tor)",
-                    "value": "ca-tor"
-                  },
-                  {
-                    "displayname": "Frankfurt (eu-de)",
-                    "value": "eu-de"
-                  },
-                  {
-                    "displayname": "Madrid (eu-es)",
-                    "value": "eu-es"
-                  },
-                  {
-                    "displayname": "London (eu-gb)",
-                    "value": "eu-gb"
-                  },
-                  {
-                    "displayname": "Osaka (jp-osa)",
-                    "value": "jp-osa"
-                  },
-                  {
-                    "displayname": "Dallas (us-south)",
-                    "value": "us-south"
-                  }
-                ]
-              },
-              {
-                "key": "namespace_name"
-              },
-              {
-                "key": "existing_namespace_name"
-              },
-              {
-                "key": "tags"
-              },
-              {
-                "key": "images_per_repo"
-              },
-              {
-                "key": "retain_untagged"
-              },
-              {
-                "key": "upgrade_to_standard_plan"
-              },
-              {
-                "key": "storage_megabytes"
-              },
-              {
-                "key": "traffic_megabytes"
-              }
+                {
+                    "title": "Configures Pull Traffic Limits",
+                    "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry."
+                },
+                {
+                    "title": "Sets Storage Quotas",
+                    "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry."
+                },
+                {
+                    "title": "Upgrades Registry Plan to Standard",
+                    "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities."
+                }
+            ],
+            "flavors": [
+                {
+                    "label": "Standard",
+                    "name": "standard",
+                    "install_type": "fullstack",
+                    "working_directory": "solutions/standard",
+                    "compliance": {
+                        "authority": "scc-v3",
+                        "profiles": [
+                            {
+                                "profile_name": "IBM Cloud Framework for Financial Services",
+                                "profile_version": "1.7.0"
+                            }
+                        ]
+                    },
+                    "iam_permissions": [
+                        {
+                            "role_crns": [
+                                "crn:v1:bluemix:public:iam::::role:Administrator"
+                            ],
+                            "service_name": "all-account-management-services"
+                        },
+                        {
+                            "role_crns": [
+                                "crn:v1:bluemix:public:iam::::role:Writer",
+                                "crn:v1:bluemix:public:iam::::role:Manager"
+                            ],
+                            "service_name": "container-registry"
+                        }
+                    ],
+                    "architecture": {
+                        "features": [
+                            {
+                                "title": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
+                                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
+                            }
+                        ],
+                        "diagrams": [
+                            {
+                                "diagram": {
+                                    "caption": "Creates IBM Container Registry namespace.",
+                                    "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/reference-architecture/deployable-architecture-icr.svg",
+                                    "type": "image/svg+xml"
+                                },
+                                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
+                            }
+                        ]
+                    },
+                    "configuration": [
+                        {
+                            "key": "ibmcloud_api_key"
+                        },
+                        {
+                            "key": "provider_visibility",
+                            "options": [
+                                {
+                                    "displayname": "private",
+                                    "value": "private"
+                                },
+                                {
+                                    "displayname": "public",
+                                    "value": "public"
+                                },
+                                {
+                                    "displayname": "public-and-private",
+                                    "value": "public-and-private"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "prefix",
+                            "required": true
+                        },
+                        {
+                            "key": "use_existing_resource_group"
+                        },
+                        {
+                            "key": "resource_group_name"
+                        },
+                        {
+                            "key": "namespace_region",
+                            "default_value": "us-south",
+                            "options": [
+                                {
+                                    "displayname": "Global (global)",
+                                    "value": "global"
+                                },
+                                {
+                                    "displayname": "Tokyo (jp-tok)",
+                                    "value": "jp-tok"
+                                },
+                                {
+                                    "displayname": "Sydney (au-syd)",
+                                    "value": "au-syd"
+                                },
+                                {
+                                    "displayname": "Sao Paulo (br-sao)",
+                                    "value": "br-sao"
+                                },
+                                {
+                                    "displayname": "Toronto (ca-tor)",
+                                    "value": "ca-tor"
+                                },
+                                {
+                                    "displayname": "Frankfurt (eu-de)",
+                                    "value": "eu-de"
+                                },
+                                {
+                                    "displayname": "Madrid (eu-es)",
+                                    "value": "eu-es"
+                                },
+                                {
+                                    "displayname": "London (eu-gb)",
+                                    "value": "eu-gb"
+                                },
+                                {
+                                    "displayname": "Osaka (jp-osa)",
+                                    "value": "jp-osa"
+                                },
+                                {
+                                    "displayname": "Dallas (us-south)",
+                                    "value": "us-south"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "namespace_name"
+                        },
+                        {
+                            "key": "existing_namespace_name"
+                        },
+                        {
+                            "key": "tags"
+                        },
+                        {
+                            "key": "images_per_repo"
+                        },
+                        {
+                            "key": "retain_untagged"
+                        },
+                        {
+                            "key": "upgrade_to_standard_plan"
+                        },
+                        {
+                            "key": "storage_megabytes"
+                        },
+                        {
+                            "key": "traffic_megabytes"
+                        }
+                    ]
+                }
             ]
         }
-      ]
-    }
-  ]
+    ]
 }
