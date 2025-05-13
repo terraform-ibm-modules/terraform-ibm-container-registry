@@ -182,6 +182,7 @@
               },
               {
                 "key": "tags",
+                "type": "array",
                 "custom_config": {
                   "grouping": "deployment",
                   "original_grouping": "deployment",
