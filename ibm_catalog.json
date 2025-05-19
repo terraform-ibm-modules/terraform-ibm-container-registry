@@ -73,7 +73,6 @@
             }
           ],
           "architecture": {
-            "description": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
             "features": [
               {
                 "title": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
