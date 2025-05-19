@@ -56,7 +56,8 @@
                 "profile_name": "IBM Cloud Framework for Financial Services",
                 "profile_version": "1.7.0"
               }
-            ]},
+            ]
+          },
           "iam_permissions": [
             {
               "role_crns": [
@@ -91,121 +92,121 @@
             ]
           },
           "configuration": [
-              {
-                "key": "ibmcloud_api_key"
-              },
-              {
-                "key": "prefix",
-                "required": true
-              },
-              {
-                "key": "existing_resource_group_name",
-                "required": true,
-                "custom_config": {
-                    "type": "resource_group",
-                    "grouping": "deployment",
-                    "original_grouping": "deployment",
-                    "config_constraints": {
-                        "identifier": "rg_name"
-                    }
+            {
+              "key": "ibmcloud_api_key"
+            },
+            {
+              "key": "prefix",
+              "required": true
+            },
+            {
+              "key": "existing_resource_group_name",
+              "required": true,
+              "custom_config": {
+                "type": "resource_group",
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "identifier": "rg_name"
                 }
-              },
-              {
-                "key": "provider_visibility",
-                "options": [
-                  {
-                    "displayname": "private",
-                    "value": "private"
-                  },
-                  {
-                    "displayname": "public",
-                    "value": "public"
-                  },
-                  {
-                    "displayname": "public-and-private",
-                    "value": "public-and-private"
-                  }
-                ]
-              },
-              {
-                "key": "namespace_region",
-                "default_value": "us-south",
-                "options": [
-                  {
-                    "displayname": "Global (global)",
-                    "value": "global"
-                  },
-                  {
-                    "displayname": "Tokyo (jp-tok)",
-                    "value": "jp-tok"
-                  },
-                  {
-                    "displayname": "Sydney (au-syd)",
-                    "value": "au-syd"
-                  },
-                  {
-                    "displayname": "Sao Paulo (br-sao)",
-                    "value": "br-sao"
-                  },
-                  {
-                    "displayname": "Toronto (ca-tor)",
-                    "value": "ca-tor"
-                  },
-                  {
-                    "displayname": "Frankfurt (eu-de)",
-                    "value": "eu-de"
-                  },
-                  {
-                    "displayname": "Madrid (eu-es)",
-                    "value": "eu-es"
-                  },
-                  {
-                    "displayname": "London (eu-gb)",
-                    "value": "eu-gb"
-                  },
-                  {
-                    "displayname": "Osaka (jp-osa)",
-                    "value": "jp-osa"
-                  },
-                  {
-                    "displayname": "Dallas (us-south)",
-                    "value": "us-south"
-                  }
-                ]
-              },
-              {
-                "key": "namespace_name"
-              },
-              {
-                "key": "existing_namespace_name"
-              },
-              {
-                "key": "tags",
-                "type": "array",
-                "custom_config": {
-                  "grouping": "deployment",
-                  "original_grouping": "deployment",
-                  "config_constraints": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "key": "images_per_repo"
-              },
-              {
-                "key": "retain_untagged"
-              },
-              {
-                "key": "upgrade_to_standard_plan"
-              },
-              {
-                "key": "storage_megabytes"
-              },
-              {
-                "key": "traffic_megabytes"
               }
-            ]
+            },
+            {
+              "key": "provider_visibility",
+              "options": [
+                {
+                  "displayname": "private",
+                  "value": "private"
+                },
+                {
+                  "displayname": "public",
+                  "value": "public"
+                },
+                {
+                  "displayname": "public-and-private",
+                  "value": "public-and-private"
+                }
+              ]
+            },
+            {
+              "key": "namespace_region",
+              "default_value": "us-south",
+              "options": [
+                {
+                  "displayname": "Global (global)",
+                  "value": "global"
+                },
+                {
+                  "displayname": "Tokyo (jp-tok)",
+                  "value": "jp-tok"
+                },
+                {
+                  "displayname": "Sydney (au-syd)",
+                  "value": "au-syd"
+                },
+                {
+                  "displayname": "Sao Paulo (br-sao)",
+                  "value": "br-sao"
+                },
+                {
+                  "displayname": "Toronto (ca-tor)",
+                  "value": "ca-tor"
+                },
+                {
+                  "displayname": "Frankfurt (eu-de)",
+                  "value": "eu-de"
+                },
+                {
+                  "displayname": "Madrid (eu-es)",
+                  "value": "eu-es"
+                },
+                {
+                  "displayname": "London (eu-gb)",
+                  "value": "eu-gb"
+                },
+                {
+                  "displayname": "Osaka (jp-osa)",
+                  "value": "jp-osa"
+                },
+                {
+                  "displayname": "Dallas (us-south)",
+                  "value": "us-south"
+                }
+              ]
+            },
+            {
+              "key": "namespace_name"
+            },
+            {
+              "key": "existing_namespace_name"
+            },
+            {
+              "key": "tags",
+              "type": "array",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "key": "images_per_repo"
+            },
+            {
+              "key": "retain_untagged"
+            },
+            {
+              "key": "upgrade_to_standard_plan"
+            },
+            {
+              "key": "storage_megabytes"
+            },
+            {
+              "key": "traffic_megabytes"
+            }
+          ]
         }
       ]
     }
