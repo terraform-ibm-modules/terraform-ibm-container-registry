@@ -11,8 +11,8 @@ variable "existing_namespace_name" {
 }
 
 variable "namespace_name" {
-  description = "Name of the container registry namespace, if var.existing_namespace_name is not inputted, a new namespace will be created in a region set by provider."
   type        = string
+  description = "Name of the container registry namespace, if var.existing_namespace_name is not inputted, a new namespace will be created in a region set by provider."
 
   # namespace_name must matches a specific pattern i.e. it should start and end with lowercase letter or number and can contain underscores and hyphens.
   validation {
@@ -46,8 +46,9 @@ variable "tags" {
 
 variable "images_per_repo" {
   type        = number
-  default     = 0
   description = "(Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default)"
+  default     = 0
+
   validation {
     condition = (
       var.images_per_repo >= -1
