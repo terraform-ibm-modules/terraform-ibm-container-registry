@@ -36,8 +36,8 @@ variable "resource_tags" {
 
 variable "images_per_repo" {
   type        = number
-  default     = 2
   description = "Determines how many images will be retained for each repository when the retention policy is executed."
+  default     = 2
 }
 
 variable "retain_untagged" {
