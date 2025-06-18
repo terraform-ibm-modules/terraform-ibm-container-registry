@@ -20,7 +20,7 @@ import (
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
 )
 
-const solutionStandardDir = "solutions/standard"
+const solutionFCDir = "solutions/fully-configurable"
 const resourceGroup = "geretain-test-icr"
 
 // ICR Plan is non revertible once upgraded to standard
@@ -71,7 +71,7 @@ func walk(r *tarIncludePatterns, s string, d fs.DirEntry, err error) error {
 	return nil
 }
 
-func TestRunStandardSolutionSchematics(t *testing.T) {
+func TestRunFCSolutionSchematics(t *testing.T) {
 	t.Parallel()
 
 	var region = validRegions[rand.Intn(len(validRegions))]
@@ -102,7 +102,7 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing:                t,
 		TarIncludePatterns:     tarIncludePatterns,
-		TemplateFolder:         solutionStandardDir,
+		TemplateFolder:         solutionFCDir,
 		Prefix:                 "std-icr",
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
@@ -129,7 +129,7 @@ func TestRunUpgradeExample(t *testing.T) {
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
-		TerraformDir:  solutionStandardDir,
+		TerraformDir:  solutionFCDir,
 		Prefix:        "upg-icr",
 		ResourceGroup: resourceGroup,
 	})
@@ -188,7 +188,7 @@ func TestRunExistingResourcesExample(t *testing.T) {
 	} else {
 		options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 			Testing:       t,
-			TerraformDir:  solutionStandardDir,
+			TerraformDir:  solutionFCDir,
 			Prefix:        "upg-icr",
 			ResourceGroup: resourceGroup,
 		})
