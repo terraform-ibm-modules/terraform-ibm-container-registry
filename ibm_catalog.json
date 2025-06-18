@@ -114,6 +114,7 @@
             },
             {
               "key": "provider_visibility",
+              "hidden": "true",
               "options": [
                 {
                   "displayname": "private",
