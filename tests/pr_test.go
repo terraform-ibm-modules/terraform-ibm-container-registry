@@ -20,7 +20,7 @@ import (
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
 )
 
-const solutionStandardDir = "solutions/standard"
+const solutionFCDir = "solutions/fully-configurable"
 const resourceGroup = "geretain-test-icr"
 
 // ICR Plan is non revertible once upgraded to standard
@@ -71,7 +71,7 @@ func walk(r *tarIncludePatterns, s string, d fs.DirEntry, err error) error {
 	return nil
 }
 
-func TestRunStandardSolutionSchematics(t *testing.T) {
+func TestRunFCSolutionSchematics(t *testing.T) {
 	t.Parallel()
 
 	var region = validRegions[rand.Intn(len(validRegions))]
@@ -102,8 +102,8 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
 		Testing:                t,
 		TarIncludePatterns:     tarIncludePatterns,
-		TemplateFolder:         solutionStandardDir,
-		Prefix:                 "std-icr-da",
+		TemplateFolder:         solutionFCDir,
+		Prefix:                 "std-icr",
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 60,
@@ -111,8 +111,7 @@ func TestRunStandardSolutionSchematics(t *testing.T) {
 
 	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
 		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
-		{Name: "resource_group_name", Value: options.Prefix, DataType: "string"},
-		{Name: "use_existing_resource_group", Value: false, DataType: "bool"},
+		{Name: "existing_resource_group_name", Value: resourceGroup, DataType: "string"},
 		{Name: "namespace_region", Value: region, DataType: "string"},
 		{Name: "prefix", Value: options.Prefix, DataType: "string"},
 		{Name: "upgrade_to_standard_plan", Value: true, DataType: "bool"},
@@ -130,19 +129,18 @@ func TestRunUpgradeExample(t *testing.T) {
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,
-		TerraformDir:  solutionStandardDir,
-		Prefix:        "upg-icr-da",
+		TerraformDir:  solutionFCDir,
+		Prefix:        "upg-icr",
 		ResourceGroup: resourceGroup,
 	})
 	options.TerraformVars = map[string]interface{}{
-		"use_existing_resource_group": true,
-		"resource_group_name":         resourceGroup,
-		"namespace_region":            region,
-		"prefix":                      options.Prefix,
-		"upgrade_to_standard_plan":    true,
-		"storage_megabytes":           499,
-		"traffic_megabytes":           5*1024 - 1,
-		"provider_visibility":         "public",
+		"existing_resource_group_name": resourceGroup,
+		"namespace_region":             region,
+		"prefix":                       options.Prefix,
+		"upgrade_to_standard_plan":     true,
+		"storage_megabytes":            499,
+		"traffic_megabytes":            5*1024 - 1,
+		"provider_visibility":          "public",
 	}
 
 	output, err := options.RunTestUpgrade()
@@ -190,20 +188,19 @@ func TestRunExistingResourcesExample(t *testing.T) {
 	} else {
 		options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 			Testing:       t,
-			TerraformDir:  solutionStandardDir,
-			Prefix:        "upg-icr-da",
+			TerraformDir:  solutionFCDir,
+			Prefix:        "upg-icr",
 			ResourceGroup: resourceGroup,
 		})
 		options.TerraformVars = map[string]interface{}{
-			"existing_namespace_name":     terraform.Output(t, existingTerraformOptions, "namespace_name"),
-			"use_existing_resource_group": true,
-			"resource_group_name":         terraform.Output(t, existingTerraformOptions, "resource_group_name"),
-			"namespace_region":            region,
-			"prefix":                      options.Prefix,
-			"upgrade_to_standard_plan":    true,
-			"storage_megabytes":           499,
-			"traffic_megabytes":           5*1024 - 1,
-			"provider_visibility":         "public",
+			"existing_namespace_name":      terraform.Output(t, existingTerraformOptions, "namespace_name"),
+			"existing_resource_group_name": terraform.Output(t, existingTerraformOptions, "resource_group_name"),
+			"namespace_region":             region,
+			"prefix":                       options.Prefix,
+			"upgrade_to_standard_plan":     true,
+			"storage_megabytes":            499,
+			"traffic_megabytes":            5*1024 - 1,
+			"provider_visibility":          "public",
 		}
 
 		output, err := options.RunTestConsistency()

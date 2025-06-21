@@ -1,6 +1,6 @@
 # IBM Container Registry plan
 
-You can use this submodule to upgrade the IBM [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) plan.
+You can use this submodule to upgrade the IBM [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview#registry_plans) plan.
 
 The submodule can used without the root module upgrade the plan without creating any additional namespaces or retention polcies.
 
