@@ -3,9 +3,10 @@
 ##############################################################################
 
 variable "container_registry_endpoint" {
-  description = "The endpoint of the ICR region, eg. `us.icr.io` or `de.icr.io`, to change to standard plan"
   type        = string
+  description = "The endpoint of the ICR region, eg. `us.icr.io` or `de.icr.io`, to change to standard plan"
   default     = "us.icr.io"
+
   validation {
     condition     = can(regex("^(private.)?([a-z]{2}[2]?.)?icr.io$", var.container_registry_endpoint))
     error_message = "registry endpoint must match the regular expression \"^(private.)?([a-z]{2}[2]?.)?icr.io$\", see https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview#registry_regions_global"
