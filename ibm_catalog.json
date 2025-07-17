@@ -8,9 +8,10 @@
         "ibm_created",
         "target_terraform",
         "terraform",
+        "solution",
         "containers",
         "registry",
-        "solution"
+        "converged_infra"
       ],
       "keywords": [
         "containers",
