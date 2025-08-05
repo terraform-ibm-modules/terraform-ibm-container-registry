@@ -73,7 +73,8 @@
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager",
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
-              "service_name": "container-registry"
+              "service_name": "container-registry",
+              "notes": "Manager or Administrator access is required to manage namespaces, repositories, and access policies in Container Registry."
             }
           ],
           "architecture": {
