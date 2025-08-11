@@ -33,7 +33,7 @@
           "description": "Enables the creation of a new IBM Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
         },
         {
-          "title": "Configures Pull Traffic Limits",
+          "title": "Pull Traffic Limit Controls",
           "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry."
         },
         {
@@ -72,7 +72,7 @@
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-                "crn:v1:bluemix:public:iam::::role:Administrator"
+                "crn:v1:bluemix:public:iam::::serviceRole:Writer"
               ],
               "service_name": "container-registry",
               "notes": "Manager or Administrator access is required to manage namespaces, repositories, and access policies in Container Registry."
