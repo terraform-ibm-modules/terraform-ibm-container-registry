@@ -67,21 +67,21 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Account Management services",
-              "notes": "Administrator access is required for resource group creation and deletion."
+              "notes": "[Optional] Required for consuming Account Configuration deployable architecture which creates resource group."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "(Optional) Only required if creating context-based restrictions which can be toggled using the `provision_cbr` input."
+              "notes": "[Optional] Required for consuming Account Configuration deployable architecture which creates resource group with account settings."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager",
                 "crn:v1:bluemix:public:iam::::serviceRole:Writer"
               ],
-              "service_name": "container-registry",
+              "service_name": "Container-Registry",
               "notes": "Manager or Administrator access is required to manage namespaces, repositories, and access policies in Container Registry."
             }
           ],
@@ -162,15 +162,15 @@
               "hidden": "true",
               "options": [
                 {
-                  "displayname": "private",
+                  "displayname": "Private",
                   "value": "private"
                 },
                 {
-                  "displayname": "public",
+                  "displayname": "Public",
                   "value": "public"
                 },
                 {
-                  "displayname": "public-and-private",
+                  "displayname": "Public-and-Private",
                   "value": "public-and-private"
                 }
               ]
