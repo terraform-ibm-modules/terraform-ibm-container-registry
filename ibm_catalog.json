@@ -81,7 +81,7 @@
                 "crn:v1:bluemix:public:iam::::serviceRole:Manager",
                 "crn:v1:bluemix:public:iam::::serviceRole:Writer"
               ],
-              "service_name": "Container-Registry",
+              "service_name": "container-registry",
               "notes": "Manager or Writer access is required to manage namespaces, repositories, and access policies in Container Registry."
             }
           ],
