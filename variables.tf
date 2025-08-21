@@ -3,7 +3,7 @@ variable "existing_namespace_name" {
   description = "The name of an existing namespace. Required if 'namespace_name' is not provided."
   default     = null
 
-  # exisiting_namespace_name can be NULL. If not NULL then at least one namespace should match in existing_cr_namespaces list that matches existing_namespace_name
+  # existing_namespace_name can be NULL. If not NULL then at least one namespace should match in existing_cr_namespaces list that matches existing_namespace_name
   validation {
     condition     = var.existing_namespace_name == null || length([for namespace in data.ibm_cr_namespaces.existing_cr_namespaces.namespaces : namespace if namespace.name == var.existing_namespace_name]) > 0
     error_message = "Existing namespace not found in the region"
