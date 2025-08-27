@@ -83,6 +83,13 @@
               ],
               "service_name": "container-registry",
               "notes": "Manager or Writer access is required to manage namespaces, repositories, and access policies in Container Registry."
+            },
+            {
+              "role_crns": [
+                  "crn:v1:bluemix:public:iam::::role:Viewer"
+              ],
+              "service_name": "Resource group only",
+              "notes": "Viewer access is required in the resource group you want to provision in."
             }
           ],
           "architecture": {
@@ -122,11 +129,6 @@
                 {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
-                  "reference_version": true
-                },
-                {
-                  "dependency_input": "provider_visibility",
-                  "version_input": "provider_visibility",
                   "reference_version": true
                 }
               ],
