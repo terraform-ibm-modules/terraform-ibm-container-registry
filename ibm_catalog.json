@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "deploy-arch-ibm-container-registry",
-      "label": "Cloud automation for IBM Container Registry",
+      "label": "Cloud automation for Container Registry",
       "product_kind": "solution",
       "tags": [
         "ibm_created",
@@ -21,16 +21,16 @@
         "solution",
         "registry"
       ],
-      "short_description": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard",
-      "long_description": "[IBM Cloud Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.<br/><br/>ℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
+      "short_description": "Creates and configures an instance of Container Registry",
+      "long_description": "[Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) creates or utilizes an existing Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.<br/><br/>ℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
       "provider_name": "IBM",
       "support_details": "This product is in the community registry, as such support is handled through the [original repo](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry). If you experience issues kindly open an issue in the repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/issues). Please note that this product is not currently supported through the IBM Cloud Support Center.",
       "features": [
         {
-          "title": "IBM Container Registry Namespace",
-          "description": "Enables the creation of a new IBM Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
+          "title": "Container Registry Namespace",
+          "description": "Enables the creation of a new Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
         },
         {
           "title": "Pull Traffic Limit Controls",
@@ -102,11 +102,11 @@
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "Creates IBM Container Registry namespace.",
+                  "caption": "Creates Container Registry namespace.",
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/reference-architecture/deployable-architecture-icr.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
+                "description": "This architecture creates or utilizes an existing Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
               }
             ]
           },
