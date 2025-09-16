@@ -22,7 +22,7 @@
         "registry"
       ],
       "short_description": "Creates and configures an instance of Container Registry",
-      "long_description": "[Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) creates or utilizes an existing Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.<br/><br/>ℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
+      "long_description": "The [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) creates or utilizes an existing container registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.<br/><br/>ℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
       "provider_name": "IBM",
@@ -30,19 +30,19 @@
       "features": [
         {
           "title": "Container Registry Namespace",
-          "description": "Enables the creation of a new Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
+          "description": "Enables the creation of a new Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_setup_cli_namespace#registry_setup_cli_namespace_plan)."
         },
         {
           "title": "Pull Traffic Limit Controls",
-          "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry."
+          "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_quota)."
         },
         {
           "title": "Sets Storage Quotas",
-          "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry."
+          "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_quota)."
         },
         {
           "title": "Upgrades Registry Plan to Standard",
-          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities."
+          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview&utm_source=chatgpt.com#registry_plans)."
         }
       ],
       "flavors": [
@@ -96,24 +96,24 @@
             "features": [
               {
                 "title": " ",
-                "description": "Configured to use IBM secure by default standards, but can be edited to fit your use case."
+                "description": "Configured to use IBM secure-by-default standards, but can be edited to fit your use case."
               }
             ],
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "Creates Container Registry namespace.",
+                  "caption": "Container Registry",
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/reference-architecture/deployable-architecture-icr.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture creates or utilizes an existing Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
+                "description": "This architecture creates or reuses an Container Registry namespace to manage container images. At the registry level, it supports configuring pull traffic limits and storage quotas in megabytes, as well as upgrading the plan to Standard for additional capabilities. Together, these features provide a structured and scalable approach to managing image storage and access across environments."
               }
             ]
           },
           "dependencies": [
             {
               "name": "deploy-arch-ibm-account-infra-base",
-              "description": "Cloud automation for Account Configuration organizes your IBM Cloud account with a ready-made set of resource groups by default—and, when you enable the \"with Account Settings\" option, it also applies baseline security and governance settings.",
+              "description": "Organize your IBM Cloud account with preconfigured resource groups. If not selected, the default resource group is used. Optionally, expand to apply recommended security controls via \"with Account Settings\" variation.",
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "flavors": [
                 "resource-group-only",
