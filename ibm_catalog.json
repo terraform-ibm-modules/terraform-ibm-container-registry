@@ -179,6 +179,7 @@
             },
             {
               "key": "namespace_region",
+              "required": true,
               "default_value": "us-south",
               "options": [
                 {
