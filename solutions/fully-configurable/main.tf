@@ -1,3 +1,4 @@
+# map endpoints found from 'ibmcloud cr region-set'
 locals {
   endpoints = {
     "ap-north"   = "jp.icr.io"
@@ -9,6 +10,7 @@ locals {
     "ca-tor"     = "ca.icr.io"
     "eu-central" = "de.icr.io"
     "eu-es"      = "es.icr.io"
+    "eu-fr2"     = "fr2.icr.io"
     "jp-osa"     = "jp2.icr.io"
     "uk-south"   = "uk.icr.io"
     "global"     = "icr.io"
