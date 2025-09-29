@@ -67,14 +67,14 @@
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Account Management services",
-              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource groups."
+              "notes": "[Optional] Required to create new resource groups when enabling the Account Configuration integration."
             },
             {
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
               "service_name": "All Identity and Access enabled services",
-              "notes": "[Optional] Required to deploy Cloud automation for account configuration, which creates foundational IBM Cloud account resources, like IAM settings, trusted profiles, access groups, and resource group with account settings."
+              "notes": "[Optional] Required to create new resource groups with account settings when enabling the Account Configuration integration."
             },
             {
               "role_crns": [
@@ -86,7 +86,7 @@
             },
             {
               "role_crns": [
-                  "crn:v1:bluemix:public:iam::::role:Viewer"
+                "crn:v1:bluemix:public:iam::::role:Viewer"
               ],
               "service_name": "Resource group only",
               "notes": "Viewer access is required in the resource group you want to provision in."
@@ -249,10 +249,30 @@
               "key": "images_per_repo"
             },
             {
-              "key": "retain_untagged"
+              "key": "retain_untagged",
+              "options": [
+                {
+                  "displayname": "True",
+                  "value": "true"
+                },
+                {
+                  "displayname": "False",
+                  "value": "false"
+                }
+              ]
             },
             {
-              "key": "upgrade_to_standard_plan"
+              "key": "upgrade_to_standard_plan",
+              "options": [
+                {
+                  "displayname": "True",
+                  "value": "true"
+                },
+                {
+                  "displayname": "False",
+                  "value": "false"
+                }
+              ]
             },
             {
               "key": "storage_megabytes"
