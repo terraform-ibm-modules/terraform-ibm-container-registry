@@ -2,7 +2,7 @@
   "products": [
     {
       "name": "deploy-arch-ibm-container-registry",
-      "label": "Cloud automation for IBM Container Registry",
+      "label": "Cloud automation for Container Registry",
       "product_kind": "solution",
       "tags": [
         "ibm_created",
@@ -21,28 +21,28 @@
         "solution",
         "registry"
       ],
-      "short_description": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
-      "long_description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.",
+      "short_description": "Creates and configures IBM Cloud Container Registry",
+      "long_description": "This architecture creates a [container registry](https://cloud.ibm.com/docs/Registry?topic=Registry-getting-started) namespace, provides the ability to configure pull traffic limits and storage quotas. This solution also allows you to configure an existing namespace in the IBM Cloud Container Registry. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry.<br/><br/>ℹ️ This Terraform-based automation is part of a broader suite of IBM-maintained Infrastructure as Code (IaC) assets, each following the naming pattern \"Cloud automation for *servicename*\" and focusing on single IBM Cloud service. These single-service deployable architectures can be used on their own to streamline and automate service deployments through an [IaC approach](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understanding-projects), or assembled together into a broader [automated IaC stack](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-config-stack) to automate the deployment of an end-to-end solution architecture.",
       "offering_docs_url": "https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/main/README.md",
       "offering_icon_url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/images/icr_icon.svg",
       "provider_name": "IBM",
-      "support_details": "This product is in the community registry, as such support is handled through the originated repo. If you experience issues please open an issue in the repository [https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/issues](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/issues). Please note this product is not supported via the IBM Cloud Support Center.",
+      "support_details": "This product is in the community registry, as such support is handled through the [original repo](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry). If you experience issues kindly open an issue in the repository [here](https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/issues). Please note that this product is not currently supported through the IBM Cloud Support Center.",
       "features": [
         {
-          "title": "Creates or Uses Existing IBM Container Registry Namespace",
-          "description": "Enables the creation of a new IBM Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy."
+          "title": "Container Registry Namespace",
+          "description": "Enables the creation of a new Container Registry namespace or the use of an existing one, allowing users to define isolated environments for managing container images, with the ability to set a retention policy. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_setup_cli_namespace#registry_setup_cli_namespace_plan)."
         },
         {
-          "title": "Configures Pull Traffic Limits",
-          "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry."
+          "title": "Pull Traffic Limit Controls",
+          "description": "Allows fine-grained configuration of pull traffic limits in megabytes, controlling the amount of data that can be pulled from the registry. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_quota)."
         },
         {
           "title": "Sets Storage Quotas",
-          "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry."
+          "description": "Enables the configuration of storage quotas in megabytes, defining the maximum amount of storage available for container images within each registry. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_quota)."
         },
         {
           "title": "Upgrades Registry Plan to Standard",
-          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities."
+          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview&utm_source=chatgpt.com#registry_plans)."
         }
       ],
       "flavors": [
@@ -50,6 +50,7 @@
           "label": "Fully configurable",
           "name": "fully-configurable",
           "install_type": "fullstack",
+          "index": 1,
           "working_directory": "solutions/fully-configurable",
           "compliance": {
             "authority": "scc-v3",
@@ -65,38 +66,53 @@
               "role_crns": [
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
-              "service_name": "all-account-management-services"
+              "service_name": "All Account Management services",
+              "notes": "[Optional] Required to create new resource groups when enabling the Account Configuration integration."
             },
             {
               "role_crns": [
-                "crn:v1:bluemix:public:iam::::serviceRole:Manager",
                 "crn:v1:bluemix:public:iam::::role:Administrator"
               ],
-              "service_name": "container-registry"
+              "service_name": "All Identity and Access enabled services",
+              "notes": "[Optional] Required to create new resource groups with account settings when enabling the Account Configuration integration."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::serviceRole:Manager"
+              ],
+              "service_name": "container-registry",
+              "notes": "Required to manage namespaces, repositories, and access policies in Container Registry."
+            },
+            {
+              "role_crns": [
+                "crn:v1:bluemix:public:iam::::role:Viewer"
+              ],
+              "service_name": "Resource group only",
+              "notes": "Viewer access is required in the resource group you want to provision in."
             }
           ],
           "architecture": {
             "features": [
               {
-                "title": "Creates or uses an existing IBM Container Registry namespace, configures pull traffic and storage quotas, and supports upgrading the registry plan to Standard.",
-                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
+                "title": " ",
+                "description": "Configured to use IBM secure-by-default standards, but can be edited to fit your use case."
               }
             ],
             "diagrams": [
               {
                 "diagram": {
-                  "caption": "Creates IBM Container Registry namespace.",
+                  "caption": "Container Registry",
                   "url": "https://raw.githubusercontent.com/terraform-ibm-modules/terraform-ibm-container-registry/main/reference-architecture/deployable-architecture-icr.svg",
                   "type": "image/svg+xml"
                 },
-                "description": "This architecture creates or utilizes an existing IBM Container Registry namespace, provides the ability to configure pull traffic limits and storage quotas in megabytes, and allows for upgrading the registry plan to Standard. It ensures efficient management of container image access by regulating data pull volume from the registry and setting storage capacity limits for container images within each registry."
+                "description": "This architecture creates a Container Registry namespace to manage container images. At the registry level, it supports configuring pull traffic limits and storage quotas in megabytes, as well as upgrading the plan to Standard for additional capabilities. It can also configure an existing namespace. These features provide a structured and scalable approach to managing image storage and access across environments."
               }
             ]
           },
           "dependencies": [
             {
               "name": "deploy-arch-ibm-account-infra-base",
-              "description": "Cloud automation for Account Configuration organizes your IBM Cloud account with a ready-made set of resource groups by default—and, when you enable the \"with Account Settings\" option, it also applies baseline security and governance settings.",
+              "description": "Organize your IBM Cloud account with preconfigured resource groups. If not selected, the default resource group is used. Optionally, expand to apply recommended security controls via \"with Account Settings\" variation.",
               "catalog_id": "7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3",
               "flavors": [
                 "resource-group-only",
@@ -112,11 +128,6 @@
                 {
                   "dependency_input": "prefix",
                   "version_input": "prefix",
-                  "reference_version": true
-                },
-                {
-                  "dependency_input": "provider_visibility",
-                  "version_input": "provider_visibility",
                   "reference_version": true
                 }
               ],
@@ -154,21 +165,22 @@
               "hidden": "true",
               "options": [
                 {
-                  "displayname": "private",
+                  "displayname": "Private",
                   "value": "private"
                 },
                 {
-                  "displayname": "public",
+                  "displayname": "Public",
                   "value": "public"
                 },
                 {
-                  "displayname": "public-and-private",
+                  "displayname": "Public-and-Private",
                   "value": "public-and-private"
                 }
               ]
             },
             {
               "key": "namespace_region",
+              "required": true,
               "default_value": "us-south",
               "options": [
                 {
@@ -238,10 +250,30 @@
               "key": "images_per_repo"
             },
             {
-              "key": "retain_untagged"
+              "key": "retain_untagged",
+              "options": [
+                {
+                  "displayname": "True",
+                  "value": "true"
+                },
+                {
+                  "displayname": "False",
+                  "value": "false"
+                }
+              ]
             },
             {
-              "key": "upgrade_to_standard_plan"
+              "key": "upgrade_to_standard_plan",
+              "options": [
+                {
+                  "displayname": "True",
+                  "value": "true"
+                },
+                {
+                  "displayname": "False",
+                  "value": "false"
+                }
+              ]
             },
             {
               "key": "storage_megabytes"
