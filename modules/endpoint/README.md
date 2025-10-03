@@ -5,15 +5,11 @@ This submodule allows you to retrieve the IBM Container Registry endpoint for a 
 ### Usage
 
 ```hcl
-provider "ibm" {
-  ibmcloud_api_key = "XXXXXXXXXX" # pragma: allowlist secret
-  region           = "us-south"
-}
-
 module "cr_endpoint" {
-  source  = "terraform-ibm-modules/container-registry/ibm//modules/endpoint"
-  version = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
-  region = "us-south"
+  source           = "terraform-ibm-modules/container-registry/ibm//modules/endpoint"
+  version          = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
+  region           = "us-south"
+  ibmcloud_api_key = "XXXXXXXXXX"
 }
 ```
 
@@ -24,6 +20,7 @@ module "cr_endpoint" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
+| <a name="requirement_external"></a> [external](#requirement\_external) | 2.3.5 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.79.0, < 2.0.0 |
 
 ### Modules
@@ -34,7 +31,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [external_external.container_registry_region](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
+| [external_external.container_registry_region](https://registry.terraform.io/providers/hashicorp/external/2.3.5/docs/data-sources/external) | data source |
 
 ### Inputs
 
