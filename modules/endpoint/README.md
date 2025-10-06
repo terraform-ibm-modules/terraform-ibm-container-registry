@@ -1,6 +1,6 @@
 # IBM Container Registry endpoint
 
-This submodule allows you to retrieve the IBM Container Registry endpoint for a specific region.
+This submodule allows you to retrieve the IBM Container Registry endpoint for a specific region. Supported regions are listed in the [IBM Cloud Registry Overview](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview#registry_regions).
 
 ### Usage
 
@@ -33,7 +33,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_region"></a> [region](#input\_region) | Region used to determine the IBM Cloud Container Registry endpoint | `string` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | Region used to determine the IBM Cloud Container Registry endpoint. Supported regions are listed in the IBM Cloud Registry Overview: https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview#registry_regions | `string` | n/a | yes |
 
 ### Outputs
 
