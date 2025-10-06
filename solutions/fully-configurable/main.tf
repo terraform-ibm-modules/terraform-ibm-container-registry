@@ -22,9 +22,8 @@ module "namespace" {
 }
 
 module "cr_endpoint" {
-  source           = "../../modules/endpoint"
-  region           = var.namespace_region
-  ibmcloud_api_key = var.ibmcloud_api_key
+  source = "../../modules/endpoint"
+  region = var.namespace_region
 }
 
 module "upgrade_plan" {

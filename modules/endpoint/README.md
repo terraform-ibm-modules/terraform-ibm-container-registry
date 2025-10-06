@@ -20,7 +20,6 @@ module "cr_endpoint" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_external"></a> [external](#requirement\_external) | 2.3.5 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.79.0, < 2.0.0 |
 
 ### Modules
@@ -29,15 +28,12 @@ No modules.
 
 ### Resources
 
-| Name | Type |
-|------|------|
-| [external_external.container_registry_region](https://registry.terraform.io/providers/hashicorp/external/2.3.5/docs/data-sources/external) | data source |
+No resources.
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ibmcloud_api_key"></a> [ibmcloud\_api\_key](#input\_ibmcloud\_api\_key) | The IBM Cloud API key. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region used to determine the IBM Cloud Container Registry endpoint | `string` | n/a | yes |
 
 ### Outputs
