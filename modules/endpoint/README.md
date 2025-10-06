@@ -9,7 +9,6 @@ module "cr_endpoint" {
   source           = "terraform-ibm-modules/container-registry/ibm//modules/endpoint"
   version          = "X.X.X" # Replace "X.X.X" with a release version to lock into a specific release
   region           = "us-south"
-  ibmcloud_api_key = "XXXXXXXXXX"
 }
 ```
 
