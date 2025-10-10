@@ -134,6 +134,7 @@ func TestRunUpgradeExample(t *testing.T) {
 		Testing:       t,
 		TerraformDir:  solutionFCDir,
 		Prefix:        "upg-icr",
+		Region:        region,
 		ResourceGroup: resourceGroup,
 	})
 	options.TerraformVars = map[string]interface{}{
@@ -193,6 +194,7 @@ func TestRunExistingResourcesExample(t *testing.T) {
 			Testing:       t,
 			TerraformDir:  solutionFCDir,
 			Prefix:        "upg-icr",
+			Region:        region,
 			ResourceGroup: resourceGroup,
 		})
 		options.TerraformVars = map[string]interface{}{
