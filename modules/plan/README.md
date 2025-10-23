@@ -2,7 +2,7 @@
 
 You can use this submodule to upgrade the IBM [Container Registry](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview#registry_plans) plan.
 
-The submodule can used without the root module upgrade the plan without creating any additional namespaces or retention polcies.
+The submodule can used without the root module to upgrade the plan without creating any additional namespaces or retention policies.
 
 ### Usage
 ```

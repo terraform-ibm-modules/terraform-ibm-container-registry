@@ -10,15 +10,14 @@ variable "ibmcloud_api_key" {
 
 variable "existing_resource_group_name" {
   type        = string
-  description = "The name of an existing resource group to provision the resources. If not provided the default resource group will be used."
-  default     = null
+  description = "The name of an existing resource group to provision the resources."
+  default     = "Default"
 }
 
 variable "prefix" {
   type        = string
+  description = "The prefix to be added to all resources created by this solution. To skip using a prefix, set this value to null or an empty string. The prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It should not exceed 16 characters, must not end with a hyphen('-'), and can not contain consecutive hyphens ('--'). Example: prod-0205-icr. [Learn more](https://terraform-ibm-modules.github.io/documentation/#/prefix.md)."
   nullable    = true
-  description = "The prefix to be added to all resources created by this solution. To skip using a prefix, set this value to null or an empty string. The prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It should not exceed 16 characters, must not end with a hyphen('-'), and can not contain consecutive hyphens ('--'). Example: prod-0205-cos. [Learn more](https://terraform-ibm-modules.github.io/documentation/#/prefix.md)."
-
   validation {
     # - null and empty string is allowed
     # - Must not contain consecutive hyphens (--): length(regexall("--", var.prefix)) == 0
@@ -33,13 +32,13 @@ variable "prefix" {
     )
     error_message = "Prefix must begin with a lowercase letter and may contain only lowercase letters, digits, and hyphens '-'. It must not end with a hyphen('-'), and cannot contain consecutive hyphens ('--')."
   }
-
   validation {
     # must not exceed 16 characters in length
     condition     = var.prefix == null || var.prefix == "" ? true : length(var.prefix) <= 16
     error_message = "Prefix must not exceed 16 characters."
   }
 }
+
 
 variable "provider_visibility" {
   type        = string

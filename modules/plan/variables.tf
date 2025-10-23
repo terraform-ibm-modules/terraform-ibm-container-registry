@@ -23,5 +23,5 @@ variable "container_registry_endpoint" {
 # us-south	us.icr.io private.us.icr.io
 # global	icr.io	private.icr.io
 
-# pattern match (possilby "private.") (possibly two letters, a number 2 and a period) "icr.io" with no prefix or suffix
+# pattern match (possibly "private.") (possibly two letters, a number 2 and a period) "icr.io" with no prefix or suffix
 # This avoids very specific checks and allows for new regions to be added without updating the module.
