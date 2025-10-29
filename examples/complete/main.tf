@@ -31,4 +31,5 @@ module "set_quota" {
   source            = "../../modules/quotas"
   storage_megabytes = 5 * 1024 - 1
   traffic_megabytes = 499
+  depends_on        = [module.upgrade_plan]
 }
