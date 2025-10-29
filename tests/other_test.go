@@ -20,6 +20,7 @@ func TestRunCompleteExample(t *testing.T) {
 		Testing:       t,
 		TerraformDir:  completeDir,
 		Prefix:        "complete-icr",
+		Region:        region,
 		ResourceGroup: resourceGroup,
 	})
 	options.TerraformVars = map[string]interface{}{
