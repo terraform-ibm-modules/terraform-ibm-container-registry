@@ -37,4 +37,5 @@ module "set_quota" {
   container_registry_endpoint = var.provider_visibility == "private" ? module.cr_endpoint.container_registry_endpoint_private : module.cr_endpoint.container_registry_endpoint
   storage_megabytes           = var.storage_megabytes
   traffic_megabytes           = var.traffic_megabytes
+  depends_on                  = [module.upgrade_plan]
 }

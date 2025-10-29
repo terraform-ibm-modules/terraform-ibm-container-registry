@@ -20,6 +20,7 @@ module "set_quota" {
   container_registry_endpoint = "us.icr.io"
   storage_megabytes           = 5 * 1024 # 5GiB
   traffic_megabytes           = 500 # 500 MB
+  depends_on                  = [module.upgrade_plan]
 }
 ```
 
