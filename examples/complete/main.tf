@@ -24,7 +24,7 @@ module "namespace" {
 }
 
 module "upgrade_plan" {
-  source = "../..//modules/plan"
+  source = "../../modules/plan"
 }
 
 module "set_quota" {
