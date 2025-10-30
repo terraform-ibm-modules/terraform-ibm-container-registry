@@ -86,7 +86,7 @@
               }
             ]
           },
-          "terraform_version": "1.10.5",
+          "terraform_version": "1.12.2",
           "configuration": [
             {
               "key": "ibmcloud_api_key"
