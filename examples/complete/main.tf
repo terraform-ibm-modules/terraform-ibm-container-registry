@@ -24,11 +24,13 @@ module "namespace" {
 }
 
 module "upgrade_plan" {
-  source = "../..//modules/plan"
+  source = "../../modules/plan"
 }
 
 module "set_quota" {
   source            = "../../modules/quotas"
   storage_megabytes = 5 * 1024 - 1
   traffic_megabytes = 499
+  # Issue 324: Upgrade plan before extending quota
+  depends_on = [module.upgrade_plan]
 }
