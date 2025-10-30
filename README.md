@@ -40,11 +40,13 @@ module "upgrade-plan" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/plan"
   version = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
 }
+
 module "set_quota" {
   source  = "terraform-ibm-modules/container-registry/ibm//modules/quotas"
   version = "X.Y.Z" # Replace "X.Y.Z" with a release version to lock into a specific release
   storage_megabytes = 5 * 1024 # 5GiB
   traffic_megabytes = 500 # 500 MB
+  # Issue 324: Upgrade plan before setting quota
   depends_on        = [module.upgrade_plan]
 }
 ```
