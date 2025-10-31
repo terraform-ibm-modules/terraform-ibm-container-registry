@@ -241,7 +241,8 @@
             {
               "key": "traffic_megabytes"
             }
-          ]
+          ],
+          "ignore_readme": true
         }
       ]
     }
