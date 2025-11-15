@@ -18,7 +18,7 @@ You can use this module to provision and configure an [IBM Container Registry](h
     * [plan](./modules/plan)
     * [quotas](./modules/quotas)
 * [Examples](./examples)
-    * <div style="display: inline-block;"><a href="./examples/complete">IBM Container Registry namespace example</a></div> <div style="display: inline-block; vertical-align: middle;"><a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=cr-complete-example&repository=github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete" target="_blank"><img src="https://cloud.ibm.com/media/docs/images/icons/Deploy_to_cloud.svg" alt="Deploy to IBM Cloud button"></a></div>
+    * <div style="display: inline-block;"><a href="./examples/complete">IBM Container Registry namespace example</a></div> <div style="display: inline-block; vertical-align: middle;"><a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=cr-complete-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete" target="_blank"><img src="https://cloud.ibm.com/media/docs/images/icons/Deploy_to_cloud.svg" alt="Deploy to IBM Cloud button"></a></div>
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
