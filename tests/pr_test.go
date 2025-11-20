@@ -122,6 +122,54 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 	assert.Nil(t, err, "This should not have errored")
 }
 
+// Upgrade test for "Fully configurable ICR" solution in schematics
+func TestRunFCSolutionSchematicsUpgrade(t *testing.T) {
+	t.Parallel()
+
+	region := validRegions[rand.Intn(len(validRegions))]
+
+	// Build tar include patterns (same logic as main test)
+	excludeDirs := []string{
+		".terraform",
+		".docs",
+		".github",
+		".git",
+		".idea",
+		"common-dev-assets",
+		"examples",
+		"tests",
+		"reference-architectures",
+	}
+	includeFiletypes := []string{".tf", ".yaml", ".py", ".tpl", ".sh"}
+
+	tarIncludePatterns, err := getTarIncludePatternsRecursively("..", excludeDirs, includeFiletypes)
+	require.NoError(t, err, "Unexpected error generating tar include patterns")
+
+	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
+		Testing:                    t,
+		Prefix:                     "icr-fc-upg",
+		TarIncludePatterns:         tarIncludePatterns,
+		TemplateFolder:             solutionFCDir,
+		CheckApplyResultForUpgrade: true,
+		Tags:                       []string{"test-schematic-upgrade"},
+	})
+
+	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
+		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
+		{Name: "existing_resource_group_name", Value: resourceGroup, DataType: "string"},
+		{Name: "namespace_region", Value: region, DataType: "string"},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+		{Name: "upgrade_to_standard_plan", Value: true, DataType: "bool"},
+		{Name: "storage_megabytes", Value: 499, DataType: "number"},
+		{Name: "traffic_megabytes", Value: 5*1024 - 1, DataType: "number"},
+	}
+
+	err = options.RunSchematicUpgradeTest()
+	if !options.UpgradeTestSkipped {
+		assert.NoError(t, err, "Upgrade test should complete without errors")
+	}
+}
+
 func TestRunUpgradeExample(t *testing.T) {
 	t.Parallel()
 
