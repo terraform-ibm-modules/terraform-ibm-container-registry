@@ -126,7 +126,7 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 func TestRunFCSolutionSchematicsUpgrade(t *testing.T) {
 	t.Parallel()
 
-	region := validRegions[rand.Intn(len(validRegions))]
+	var region = validRegions[rand.Intn(len(validRegions))]
 
 	// Build tar include patterns (same logic as main test)
 	excludeDirs := []string{
