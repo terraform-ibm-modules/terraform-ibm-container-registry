@@ -170,35 +170,6 @@ func TestRunFCSolutionSchematicsUpgrade(t *testing.T) {
 	}
 }
 
-func TestRunUpgradeExample(t *testing.T) {
-	t.Parallel()
-
-	var region = validRegions[rand.Intn(len(validRegions))]
-
-	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  solutionFCDir,
-		Prefix:        "upg-icr",
-		Region:        region,
-		ResourceGroup: resourceGroup,
-	})
-	options.TerraformVars = map[string]interface{}{
-		"existing_resource_group_name": resourceGroup,
-		"namespace_region":             region,
-		"prefix":                       options.Prefix,
-		"upgrade_to_standard_plan":     true,
-		"storage_megabytes":            499,
-		"traffic_megabytes":            5*1024 - 1,
-		"provider_visibility":          "public",
-	}
-
-	output, err := options.RunTestUpgrade()
-	if !options.UpgradeTestSkipped {
-		assert.Nil(t, err, "This should not have errored")
-		assert.NotNil(t, output, "Expected some output")
-	}
-}
-
 func TestRunExistingResourcesExample(t *testing.T) {
 	t.Parallel()
 
