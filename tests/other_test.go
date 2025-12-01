@@ -2,10 +2,10 @@
 package test
 
 import (
-	"math/rand"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
 )
 
@@ -14,7 +14,7 @@ const completeDir = "examples/complete"
 func TestRunCompleteExample(t *testing.T) {
 	t.Parallel()
 
-	var region = validRegions[rand.Intn(len(validRegions))]
+	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
 	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
 		Testing:       t,

@@ -4,7 +4,6 @@ package test
 import (
 	"fmt"
 	"io/fs"
-	"math/rand"
 	"os"
 	"path/filepath"
 	"strings"
@@ -16,6 +15,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
 )
@@ -74,7 +74,7 @@ func walk(r *tarIncludePatterns, s string, d fs.DirEntry, err error) error {
 func TestRunFCSolutionSchematics(t *testing.T) {
 	t.Parallel()
 
-	var region = validRegions[rand.Intn(len(validRegions))]
+	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
 	excludeDirs := []string{
 		".terraform",
@@ -126,7 +126,7 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 func TestRunFCSolutionSchematicsUpgrade(t *testing.T) {
 	t.Parallel()
 
-	var region = validRegions[rand.Intn(len(validRegions))]
+	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
 	// Build tar include patterns (same logic as main test)
 	excludeDirs := []string{
@@ -181,7 +181,7 @@ func TestRunExistingResourcesExample(t *testing.T) {
 	realTerraformDir := "./existing-resources"
 	tempTerraformDir, _ := files.CopyTerraformFolderToTemp(realTerraformDir, fmt.Sprintf(prefix+"-%s", strings.ToLower(random.UniqueId())))
 
-	var region = validRegions[rand.Intn(len(validRegions))]
+	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
 	// Verify ibmcloud_api_key variable is set
 	checkVariable := "TF_VAR_ibmcloud_api_key"
