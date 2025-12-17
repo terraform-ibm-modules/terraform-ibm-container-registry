@@ -56,7 +56,7 @@
           "install_type": "fullstack",
           "index": 1,
           "working_directory": "solutions/fully-configurable",
-          "short_description": "Ideal for users who want to manager Docker containers in private registry.",
+          "short_description": "Ideal for users who want to manager Docker containers in a private registry.",
           "iam_permissions": [
             {
               "role_crns": [
