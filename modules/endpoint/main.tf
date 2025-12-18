@@ -14,11 +14,14 @@ locals {
     "us-south"   = "us.icr.io"
     "br-sao"     = "br.icr.io"
     "ca-tor"     = "ca.icr.io"
+    "ca-mon"     = "ca2.icr.io"
     "eu-central" = "de.icr.io"
+    "eu-de"      = "de.icr.io"
     "eu-es"      = "es.icr.io"
     "eu-fr2"     = "fr2.icr.io"
-    "jp-osa"     = "jp2.icr.io"
     "uk-south"   = "uk.icr.io"
+    "eu-gb"      = "uk.icr.io"
+    "jp-osa"     = "jp2.icr.io"
     "global"     = "icr.io"
   }
 }
