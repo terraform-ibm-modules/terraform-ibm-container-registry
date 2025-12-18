@@ -56,7 +56,7 @@
           "install_type": "fullstack",
           "index": 1,
           "working_directory": "solutions/fully-configurable",
-          "short_description": "Ideal for users looking to automate the configuration of an IBM Container Registry to store and access private container images in a highly available and scalable architecture"
+          "short_description": "Ideal for users looking to automate the configuration of an IBM Container Registry to store and access private container images in a highly available and scalable architecture",
           "iam_permissions": [
             {
               "role_crns": [
