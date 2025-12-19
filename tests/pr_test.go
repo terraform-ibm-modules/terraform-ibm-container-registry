@@ -71,8 +71,7 @@ func walk(r *tarIncludePatterns, s string, d fs.DirEntry, err error) error {
 	return nil
 }
 
-func TestRunFCSolutionSchematics(t *testing.T) {
-	t.Parallel()
+func setupFullyConfigurableOptions(t *testing.T, prefix string) *testschematic.TestSchematicOptions {
 
 	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
@@ -103,7 +102,7 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 		Testing:                t,
 		TarIncludePatterns:     tarIncludePatterns,
 		TemplateFolder:         solutionFCDir,
-		Prefix:                 "std-icr",
+		Prefix:                 prefix,
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 60,
@@ -118,53 +117,24 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 		{Name: "storage_megabytes", Value: 499, DataType: "number"},
 		{Name: "traffic_megabytes", Value: 5*1024 - 1, DataType: "number"},
 	}
+	return options
+}
+
+func TestRunFCSolutionSchematics(t *testing.T) {
+	t.Parallel()
+
+	options := setupFullyConfigurableOptions(t, "icr-fc")
 	err := options.RunSchematicTest()
-	assert.Nil(t, err, "This should not have errored")
+	assert.NoError(t, err, "Schematics test should complete without errors")
 }
 
 // Upgrade test for "Fully configurable ICR" solution in schematics
 func TestRunFCSolutionSchematicsUpgrade(t *testing.T) {
 	t.Parallel()
 
-	var region = validRegions[common.CryptoIntn(len(validRegions))]
-
-	// Build tar include patterns (same logic as main test)
-	excludeDirs := []string{
-		".terraform",
-		".docs",
-		".github",
-		".git",
-		".idea",
-		"common-dev-assets",
-		"examples",
-		"tests",
-		"reference-architectures",
-	}
-	includeFiletypes := []string{".tf", ".yaml", ".py", ".tpl", ".sh"}
-
-	tarIncludePatterns, err := getTarIncludePatternsRecursively("..", excludeDirs, includeFiletypes)
-	require.NoError(t, err, "Unexpected error generating tar include patterns")
-
-	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
-		Testing:                    t,
-		Prefix:                     "icr-fc-upg",
-		TarIncludePatterns:         tarIncludePatterns,
-		TemplateFolder:             solutionFCDir,
-		CheckApplyResultForUpgrade: true,
-		Tags:                       []string{"test-schematic-upgrade"},
-	})
-
-	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
-		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
-		{Name: "existing_resource_group_name", Value: resourceGroup, DataType: "string"},
-		{Name: "namespace_region", Value: region, DataType: "string"},
-		{Name: "prefix", Value: options.Prefix, DataType: "string"},
-		{Name: "upgrade_to_standard_plan", Value: true, DataType: "bool"},
-		{Name: "storage_megabytes", Value: 499, DataType: "number"},
-		{Name: "traffic_megabytes", Value: 5*1024 - 1, DataType: "number"},
-	}
-
-	err = options.RunSchematicUpgradeTest()
+	options := setupFullyConfigurableOptions(t, "icr-fc-upg")
+	options.CheckApplyResultForUpgrade = true
+	err := options.RunSchematicUpgradeTest()
 	if !options.UpgradeTestSkipped {
 		assert.NoError(t, err, "Upgrade test should complete without errors")
 	}
