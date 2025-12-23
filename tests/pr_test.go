@@ -71,8 +71,7 @@ func walk(r *tarIncludePatterns, s string, d fs.DirEntry, err error) error {
 	return nil
 }
 
-func TestRunFCSolutionSchematics(t *testing.T) {
-	t.Parallel()
+func setupFullyConfigurableOptions(t *testing.T, prefix string) *testschematic.TestSchematicOptions {
 
 	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
@@ -103,7 +102,7 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 		Testing:                t,
 		TarIncludePatterns:     tarIncludePatterns,
 		TemplateFolder:         solutionFCDir,
-		Prefix:                 "std-icr",
+		Prefix:                 prefix,
 		Tags:                   []string{"test-schematic"},
 		DeleteWorkspaceOnFail:  false,
 		WaitJobCompleteMinutes: 60,
@@ -118,36 +117,26 @@ func TestRunFCSolutionSchematics(t *testing.T) {
 		{Name: "storage_megabytes", Value: 499, DataType: "number"},
 		{Name: "traffic_megabytes", Value: 5*1024 - 1, DataType: "number"},
 	}
-	err := options.RunSchematicTest()
-	assert.Nil(t, err, "This should not have errored")
+	return options
 }
 
-func TestRunUpgradeExample(t *testing.T) {
+func TestRunFCSolutionSchematics(t *testing.T) {
 	t.Parallel()
 
-	var region = validRegions[common.CryptoIntn(len(validRegions))]
+	options := setupFullyConfigurableOptions(t, "icr-fc")
+	err := options.RunSchematicTest()
+	assert.NoError(t, err, "Schematics test should complete without errors")
+}
 
-	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  solutionFCDir,
-		Prefix:        "upg-icr",
-		Region:        region,
-		ResourceGroup: resourceGroup,
-	})
-	options.TerraformVars = map[string]interface{}{
-		"existing_resource_group_name": resourceGroup,
-		"namespace_region":             region,
-		"prefix":                       options.Prefix,
-		"upgrade_to_standard_plan":     true,
-		"storage_megabytes":            499,
-		"traffic_megabytes":            5*1024 - 1,
-		"provider_visibility":          "public",
-	}
+// Upgrade test for "Fully configurable ICR" solution in schematics
+func TestRunFCSolutionSchematicsUpgrade(t *testing.T) {
+	t.Parallel()
 
-	output, err := options.RunTestUpgrade()
+	options := setupFullyConfigurableOptions(t, "icr-fc-upg")
+	options.CheckApplyResultForUpgrade = true
+	err := options.RunSchematicUpgradeTest()
 	if !options.UpgradeTestSkipped {
-		assert.Nil(t, err, "This should not have errored")
-		assert.NotNil(t, output, "Expected some output")
+		assert.NoError(t, err, "Upgrade test should complete without errors")
 	}
 }
 
