@@ -79,6 +79,12 @@ variable "tags" {
   default     = []
 }
 
+variable "access_tags" {
+  type        = list(string)
+  description = "Optional list of access management tags to be added to the IBM container namespace."
+  default     = []
+}
+
 variable "images_per_repo" {
   type        = number
   description = "Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default)"

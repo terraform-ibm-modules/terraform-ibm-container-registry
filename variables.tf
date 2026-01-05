@@ -38,9 +38,16 @@ variable "resource_group_id" {
   description = "The resource group ID where the IBM container namespace will be created."
 }
 
+# In addition to locally managed tags on
 variable "tags" {
   type        = list(string)
-  description = "Optional list of tags to be added to the IBM container namespace."
+  description = "Optional list of user tags to be added to the IBM container namespace."
+  default     = []
+}
+
+variable "access_tags" {
+  type        = list(string)
+  description = "Optional list of access management tags to be added to the IBM container namespace."
   default     = []
 }
 

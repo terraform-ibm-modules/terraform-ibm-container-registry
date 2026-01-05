@@ -15,6 +15,20 @@ resource "ibm_cr_namespace" "cr_namespace" {
   tags              = var.tags
 }
 
+resource "ibm_resource_tag" "resource_tag" {
+  count       = var.existing_namespace_name != null || length(var.tags) == 0 ? 0 : 1
+  resource_id = ibm_cr_namespace.cr_namespace[0].crn
+  tags        = var.tags
+  tag_type    = "user"
+}
+
+resource "ibm_resource_tag" "access_tag" {
+  count       = var.existing_namespace_name != null || length(var.access_tags) == 0 ? 0 : 1
+  resource_id = ibm_cr_namespace.cr_namespace[0].crn
+  tags        = var.access_tags
+  tag_type    = "access"
+}
+
 resource "ibm_cr_retention_policy" "cr_retention_policy" {
   count           = var.images_per_repo != 0 ? 1 : 0
   namespace       = var.namespace_name

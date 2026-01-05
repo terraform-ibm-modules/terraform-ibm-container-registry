@@ -212,6 +212,17 @@
               }
             },
             {
+              "key": "access_tags",
+              "type": "array",
+              "custom_config": {
+                "grouping": "deployment",
+                "original_grouping": "deployment",
+                "config_constraints": {
+                  "type": "string"
+                }
+              }
+            },
+            {
               "key": "images_per_repo"
             },
             {
