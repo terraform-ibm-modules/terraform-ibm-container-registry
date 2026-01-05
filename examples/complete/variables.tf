@@ -34,6 +34,12 @@ variable "resource_tags" {
   default     = ["test-icr-tag", "test-icr"]
 }
 
+variable "access_tags" {
+  type        = list(string)
+  description = "Access management tags to be added to the IBM container namespace."
+  default     = []
+}
+
 variable "images_per_repo" {
   type        = number
   description = "Determines how many images will be retained for each repository when the retention policy is executed."

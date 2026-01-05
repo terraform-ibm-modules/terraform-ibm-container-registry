@@ -19,6 +19,7 @@ module "namespace" {
   existing_namespace_name = var.existing_namespace_name
   resource_group_id       = module.resource_group.resource_group_id
   tags                    = var.resource_tags
+  access_tags             = var.access_tags
   images_per_repo         = var.images_per_repo
   retain_untagged         = var.retain_untagged
 }
