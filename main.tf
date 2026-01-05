@@ -8,6 +8,7 @@ locals {
   ] : []
 }
 
+# *Note- Tags are managed locally and not stored on the IBM Cloud service endpoint.
 resource "ibm_cr_namespace" "cr_namespace" {
   count             = var.existing_namespace_name != null ? 0 : 1
   name              = var.namespace_name
@@ -15,6 +16,7 @@ resource "ibm_cr_namespace" "cr_namespace" {
   tags              = var.tags
 }
 
+# In addition to locally managed tags on the ibm_cr_namespace resource because https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_namespace#tags-5
 resource "ibm_resource_tag" "resource_tag" {
   count       = var.existing_namespace_name != null || length(var.tags) == 0 ? 0 : 1
   resource_id = ibm_cr_namespace.cr_namespace[0].crn
