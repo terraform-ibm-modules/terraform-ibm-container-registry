@@ -82,7 +82,12 @@ module "namespace_cbr_rules" {
         operator = "stringEquals"
       },
       {
-        name     = "resourceName"
+        name     = "serviceName"
+        value    = "container-registry"
+        operator = "stringEquals"
+      },
+      {
+        name     = "resource"
         value    = var.namespace_name
         operator = "stringEquals"
       }
