@@ -42,7 +42,7 @@ module "namespace" {
   access_tags             = var.access_tags
   images_per_repo         = var.images_per_repo
   retain_untagged         = var.retain_untagged
-  # CBR rule only allowing the Key Protect instance to be accessbile from Schematics
+  # CBR rule only allowing the namespace to be accessible from Schematics
   cbr_rules = [{
     description      = "${var.prefix}-namespace access only from schematics"
     enforcement_mode = "enabled"
