@@ -20,7 +20,6 @@ module "namespace" {
   access_tags       = var.access_tags
   images_per_repo   = var.images_per_repo
   retain_untagged   = var.retain_untagged
-  namespace_cbr_rules  = var.namespace_cbr_rules
 }
 
 module "cr_endpoint" {

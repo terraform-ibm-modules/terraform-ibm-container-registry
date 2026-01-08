@@ -70,7 +70,7 @@ variable "retain_untagged" {
 }
 
 
-variable "namespace_cbr_rules" {
+variable "cbr_rules" {
   type = list(object({
     description = string
     account_id  = string
@@ -92,4 +92,10 @@ variable "namespace_cbr_rules" {
   }))
   description = "The list of context-based restriction rules to create for the namespace."
   default     = []
+
+  # Validation happens in the rule module
+  validation {
+    condition     = length(var.cbr_rules) <= 1
+    error_message = "Only one CBR rule is allowed."
+  }
 }

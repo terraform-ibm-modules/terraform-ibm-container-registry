@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/common"
-	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testhelper"
+	"github.com/terraform-ibm-modules/ibmcloud-terratest-wrapper/testschematic"
 )
 
 const completeDir = "examples/complete"
@@ -16,21 +16,29 @@ func TestRunCompleteExample(t *testing.T) {
 
 	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
-	options := testhelper.TestOptionsDefault(&testhelper.TestOptions{
-		Testing:       t,
-		TerraformDir:  completeDir,
-		Prefix:        "complete-icr",
-		Region:        region,
-		ResourceGroup: resourceGroup,
+	options := testschematic.TestSchematicOptionsDefault(&testschematic.TestSchematicOptions{
+		Testing: t,
+		Prefix:  "complete-icr",
+		TarIncludePatterns: []string{
+			"*.tf",
+			"modules/*/*.tf",
+			completeDir + "/*.tf",
+		},
+
+		ResourceGroup:          resourceGroup,
+		TemplateFolder:         completeDir,
+		Tags:                   []string{"test-schematic"},
+		DeleteWorkspaceOnFail:  false,
+		WaitJobCompleteMinutes: 60,
 	})
-	options.TerraformVars = map[string]interface{}{
-		"resource_group":   resourceGroup,
-		"namespace_region": region,
-		"retain_untagged":  true,
-		"prefix":           options.Prefix,
+	options.TerraformVars = []testschematic.TestSchematicTerraformVar{
+		{Name: "ibmcloud_api_key", Value: options.RequiredEnvironmentVars["TF_VAR_ibmcloud_api_key"], DataType: "string", Secure: true},
+		{Name: "namespace_region", Value: region, DataType: "string"},
+		{Name: "prefix", Value: options.Prefix, DataType: "string"},
+		{Name: "resource_group", Value: resourceGroup, DataType: "string"},
+		{Name: "retain_untagged", Value: true, DataType: "bool"},
 	}
 
-	output, err := options.RunTestConsistency()
+	err := options.RunSchematicTest()
 	assert.Nil(t, err, "This should not have errored")
-	assert.NotNil(t, output, "Expected some output")
 }

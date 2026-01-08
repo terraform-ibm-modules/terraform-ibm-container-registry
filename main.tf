@@ -63,17 +63,17 @@ moved {
 
 
 module "namespace_cbr_rules" {
-  count            = length(var.namespace_cbr_rules)
+  count            = length(var.cbr_rules)
   source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module"
-  version          = "1.33.2"
-  rule_description = var.namespace_cbr_rules[count.index].description
-  enforcement_mode = var.namespace_cbr_rules[count.index].enforcement_mode
-  rule_contexts    = var.namespace_cbr_rules[count.index].rule_contexts
+  version          = "1.35.8"
+  rule_description = var.cbr_rules[count.index].description
+  enforcement_mode = var.cbr_rules[count.index].enforcement_mode
+  rule_contexts    = var.cbr_rules[count.index].rule_contexts
   resources = [{
     attributes = [
       {
         name     = "accountId"
-        value    = var.namespace_cbr_rules[count.index].account_id
+        value    = var.cbr_rules[count.index].account_id
         operator = "stringEquals"
       },
       {
@@ -92,7 +92,7 @@ module "namespace_cbr_rules" {
         operator = "stringEquals"
       }
     ],
-    tags = var.namespace_cbr_rules[count.index].tags
+    tags = var.cbr_rules[count.index].tags
   }]
-  operations = var.namespace_cbr_rules[count.index].operations == null ? local.default_operations : var.namespace_cbr_rules[count.index].operations
+  operations = var.cbr_rules[count.index].operations == null ? local.default_operations : var.cbr_rules[count.index].operations
 }
