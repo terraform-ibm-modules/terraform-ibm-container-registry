@@ -70,7 +70,9 @@ module "set_quota" {
 
 ### Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_namespace_cbr_rules"></a> [namespace\_cbr\_rules](#module\_namespace\_cbr\_rules) | terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module | 1.35.8 |
 
 ### Resources
 
@@ -88,6 +90,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | Optional list of access management tags to be added to the IBM container namespace. | `list(string)` | `[]` | no |
+| <a name="input_cbr_rules"></a> [cbr\_rules](#input\_cbr\_rules) | The list of context-based restriction rules to create for the namespace. | <pre>list(object({<br/>    description = string<br/>    account_id  = string<br/>    rule_contexts = list(object({<br/>      attributes = optional(list(object({<br/>        name  = string<br/>        value = string<br/>    }))) }))<br/>    enforcement_mode = string<br/>    tags = optional(list(object({<br/>      name  = string<br/>      value = string<br/>    })), [])<br/>    operations = optional(list(object({<br/>      api_types = list(object({<br/>        api_type_id = string<br/>      }))<br/>    })))<br/>  }))</pre> | `[]` | no |
 | <a name="input_existing_namespace_name"></a> [existing\_namespace\_name](#input\_existing\_namespace\_name) | The name of an existing namespace. Required if 'namespace\_name' is not provided. | `string` | `null` | no |
 | <a name="input_images_per_repo"></a> [images\_per\_repo](#input\_images\_per\_repo) | (Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default) | `number` | `0` | no |
 | <a name="input_namespace_name"></a> [namespace\_name](#input\_namespace\_name) | Name of the container registry namespace, if var.existing\_namespace\_name is not inputted, a new namespace will be created in a region set by provider. | `string` | n/a | yes |
