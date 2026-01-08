@@ -48,6 +48,13 @@ variable "access_tags" {
   type        = list(string)
   description = "Optional list of access management tags to be added to the IBM container namespace."
   default     = []
+
+  validation {
+    condition = alltrue([
+      for tag in var.access_tags : can(regex("[\\w\\-_\\.]+:[\\w\\-_\\.]+", tag)) && length(tag) <= 128
+    ])
+    error_message = "Tags must match the regular expression \"[\\w\\-_\\.]+:[\\w\\-_\\.]+\", see https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#limits for more details"
+  }
 }
 
 variable "images_per_repo" {
