@@ -72,7 +72,7 @@ module "set_quota" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_namespace_cbr_rules"></a> [namespace\_cbr\_rules](#module\_namespace\_cbr\_rules) | terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module | 1.35.8 |
+| <a name="module_namespace_cbr_rules"></a> [namespace\_cbr\_rules](#module\_namespace\_cbr\_rules) | terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module | 1.35.9 |
 
 ### Resources
 
