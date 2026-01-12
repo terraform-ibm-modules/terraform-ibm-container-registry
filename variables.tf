@@ -75,3 +75,34 @@ variable "retain_untagged" {
   description = "(Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs."
   default     = false
 }
+
+
+variable "cbr_rules" {
+  type = list(object({
+    description = string
+    account_id  = string
+    rule_contexts = list(object({
+      attributes = optional(list(object({
+        name  = string
+        value = string
+    }))) }))
+    enforcement_mode = string
+    tags = optional(list(object({
+      name  = string
+      value = string
+    })), [])
+    operations = optional(list(object({
+      api_types = list(object({
+        api_type_id = string
+      }))
+    })))
+  }))
+  description = "The list of context-based restriction rules to create for the namespace."
+  default     = []
+
+  # Validation happens in the rule module
+  validation {
+    condition     = length(var.cbr_rules) <= 1
+    error_message = "Only one CBR rule is allowed."
+  }
+}

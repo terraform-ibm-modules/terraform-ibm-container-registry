@@ -6,6 +6,12 @@ locals {
     for namespace in data.ibm_cr_namespaces.existing_cr_namespaces.namespaces :
     namespace if namespace.name == var.existing_namespace_name
   ] : []
+
+  default_operations = [{
+    api_types = [{
+      api_type_id = "crn:v1:bluemix:public:context-based-restrictions::::api-type:"
+    }]
+  }]
 }
 
 # *Note- Tags are managed locally and not stored on the IBM Cloud service endpoint.
@@ -53,4 +59,40 @@ resource "ibm_cr_retention_policy" "cr_retention_policy" {
 moved {
   from = ibm_cr_namespace.cr_namespace
   to   = ibm_cr_namespace.cr_namespace[0]
+}
+
+
+module "namespace_cbr_rules" {
+  count            = length(var.cbr_rules)
+  source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module"
+  version          = "1.35.9"
+  rule_description = var.cbr_rules[count.index].description
+  enforcement_mode = var.cbr_rules[count.index].enforcement_mode
+  rule_contexts    = var.cbr_rules[count.index].rule_contexts
+  resources = [{
+    attributes = [
+      {
+        name     = "accountId"
+        value    = var.cbr_rules[count.index].account_id
+        operator = "stringEquals"
+      },
+      {
+        name     = "resourceType"
+        value    = "namespace"
+        operator = "stringEquals"
+      },
+      {
+        name     = "serviceName"
+        value    = "container-registry"
+        operator = "stringEquals"
+      },
+      {
+        name     = "resource"
+        value    = var.namespace_name
+        operator = "stringEquals"
+      }
+    ],
+    tags = var.cbr_rules[count.index].tags
+  }]
+  operations = var.cbr_rules[count.index].operations == null ? local.default_operations : var.cbr_rules[count.index].operations
 }
