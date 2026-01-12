@@ -33,21 +33,10 @@ func setupFullyConfigurableOptions(t *testing.T, prefix string) *testschematic.T
 	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
 	excludeDirs := []string{
-		// ".terraform",
-		// ".docs",
-		// ".github",
-		// ".git",
-		// ".idea",
-		// "common-dev-assets",
-		// "examples",
-		// "tests",
-		// "reference-architectures",
+		//mention any extra directories to exclude here other than defaults
 	}
 	includeFiletypes := []string{
-		// ".tf",
-		// ".yaml",
-		// ".py",
-		// ".tpl",
+		// include any extra file types here other than defaults
 		".sh",
 	}
 
