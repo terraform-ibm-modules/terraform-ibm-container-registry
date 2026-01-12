@@ -32,11 +32,8 @@ func setupFullyConfigurableOptions(t *testing.T, prefix string) *testschematic.T
 
 	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
-	excludeDirs := []string{
-		//mention any extra directories to exclude here other than defaults
-	}
+	excludeDirs := []string{}
 	includeFiletypes := []string{
-		// include any extra file types here other than defaults
 		".sh",
 	}
 
