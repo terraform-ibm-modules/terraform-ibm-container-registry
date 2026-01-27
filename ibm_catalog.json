@@ -42,7 +42,7 @@
         },
         {
           "title": "Upgrades Registry Plan to Standard",
-          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview&utm_source=chatgpt.com#registry_plans)."
+          "description": "Provides the ability to upgrade the container registry plan to Standard, allowing for enhanced features and capabilities. [Learn more](https://cloud.ibm.com/docs/Registry?topic=Registry-registry_overview#registry_plans)."
         },
         {
           "title": "Composable and Extensible Architecture",
