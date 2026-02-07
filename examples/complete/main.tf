@@ -68,7 +68,7 @@ module "namespace" {
   access_tags             = var.access_tags
   images_per_repo         = var.images_per_repo
   retain_untagged         = var.retain_untagged
-  # CBR rule only allowing the namespace to be accessible toolchain service and clusters in the created VPC
+  # CBR rule only allowing the namespace to be accessible from toolchain service and clusters in the created VPC
   cbr_rules = [{
     description      = "${var.prefix}-namespace access only from toolchain service and clusters in the created VPC"
     enforcement_mode = "report"
