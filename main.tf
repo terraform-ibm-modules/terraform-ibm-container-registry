@@ -64,6 +64,7 @@ moved {
 
 module "namespace_cbr_rules" {
   count            = length(var.cbr_rules)
+  depends_on       = [ibm_cr_retention_policy.cr_retention_policy, ibm_resource_tag.access_tag, ibm_resource_tag.resource_tag]
   source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module"
   version          = "1.35.13"
   rule_description = var.cbr_rules[count.index].description
