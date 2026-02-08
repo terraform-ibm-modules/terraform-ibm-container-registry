@@ -10,7 +10,8 @@ This example creates the following infrastructure:
 - A new resource group, if one is not passed in.
 - A new IBM Container Registry namespace.
 - Optionally, a new retention policy for the namespace.
-- Creates a CBR rule only allowing the namespace to be accessible from Schematics.
+- A sample VPC for applying CBR rules on it to get registry access.
+- Creates a CBR rule only allowing the namespace to be accessible from Toolchain service and VPC created in the example so that clusters in the VPC can pull the images from the registry namespace while toolchain service can push images to it.
 
 <!-- BEGIN SCHEMATICS DEPLOY TIP HOOK -->
 :information_source: Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab
