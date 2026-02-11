@@ -10,9 +10,9 @@ module "resource_group" {
   existing_resource_group_name = var.resource_group
 }
 
-##############################################################################
-# VPC
-##############################################################################
+#######################################################################################################################
+# Creating VPC to show how it can access container registry namespace through CBR rules
+#######################################################################################################################
 
 resource "ibm_is_vpc" "example_vpc" {
   name           = "${var.prefix}-vpc"
@@ -78,7 +78,7 @@ module "namespace" {
   # CBR rule only allowing the namespace to be accessible from toolchain service, schematics service and clusters in the created VPC
   cbr_rules = [{
     description      = "${var.prefix}-namespace access only from toolchain service, schematics service and clusters in the created VPC"
-    enforcement_mode = "report" # Using report mode so we can validate CBR rules before enforcing them
+    enforcement_mode = "report" # Use report mode to test access without blocking traffic. Each request generates an Activity Tracker event indicating whether it would be allowed or denied according to the rules. These events can be monitored for a few days to ensure there are no access issues. After validation, change enforcement_mode to enabled to block unintended traffic.
     account_id       = data.ibm_iam_account_settings.iam_account_settings.account_id
     rule_contexts = [{
       attributes = [
