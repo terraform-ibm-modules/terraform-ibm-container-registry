@@ -34,12 +34,12 @@ resource "ibm_is_subnet" "testacc_subnet" {
 # Create CBR Zone
 ##############################################################################
 
-# A network zone with Service reference to toolchain service and VPC reference
+# A network zone with services reference to toolchain service, schematics service and a VPC reference
 module "cbr_zone" {
   source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-zone-module"
   version          = "1.35.13"
   name             = "${var.prefix}-network-zone"
-  zone_description = "CBR Network zone for allowing access to toolchain service and VPC"
+  zone_description = "CBR Network zone for allowing access to selected services"
   account_id       = data.ibm_iam_account_settings.iam_account_settings.account_id
   addresses = [
     {
@@ -51,6 +51,13 @@ module "cbr_zone" {
       ref = {
         account_id   = data.ibm_iam_account_settings.iam_account_settings.account_id
         service_name = "toolchain"
+      }
+    },
+    {
+      type = "serviceRef"
+      ref = {
+        account_id   = data.ibm_iam_account_settings.iam_account_settings.account_id
+        service_name = "schematics"
       }
     }
   ]
@@ -68,10 +75,10 @@ module "namespace" {
   access_tags             = var.access_tags
   images_per_repo         = var.images_per_repo
   retain_untagged         = var.retain_untagged
-  # CBR rule only allowing the namespace to be accessible from toolchain service and clusters in the created VPC
+  # CBR rule only allowing the namespace to be accessible from toolchain service, schematics service and clusters in the created VPC
   cbr_rules = [{
-    description      = "${var.prefix}-namespace access only from toolchain service and clusters in the created VPC"
-    enforcement_mode = "report"
+    description      = "${var.prefix}-namespace access only from toolchain service, schematics service and clusters in the created VPC"
+    enforcement_mode = "report" # Using report mode so we can validate CBR rules before enforcing them
     account_id       = data.ibm_iam_account_settings.iam_account_settings.account_id
     rule_contexts = [{
       attributes = [
