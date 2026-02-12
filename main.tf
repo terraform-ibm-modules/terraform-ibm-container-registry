@@ -63,9 +63,7 @@ moved {
 
 
 module "namespace_cbr_rules" {
-  count = length(var.cbr_rules)
-  # Adding explicit depends_on on below resources because if the CBR rules gets created before these resources are created, terraform apply might fail because of access issues
-  depends_on       = [ibm_cr_retention_policy.cr_retention_policy, ibm_resource_tag.access_tag, ibm_resource_tag.resource_tag]
+  count            = length(var.cbr_rules)
   source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module"
   version          = "1.35.13"
   rule_description = var.cbr_rules[count.index].description
