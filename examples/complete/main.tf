@@ -4,7 +4,7 @@
 
 module "resource_group" {
   source  = "terraform-ibm-modules/resource-group/ibm"
-  version = "1.4.7"
+  version = "1.4.8"
   # if an existing resource group is not set (null) create a new one using prefix
   resource_group_name          = var.resource_group == null ? "${var.prefix}-resource-group" : null
   existing_resource_group_name = var.resource_group
@@ -37,7 +37,7 @@ resource "ibm_is_subnet" "testacc_subnet" {
 # A network zone with services reference to toolchain service, schematics service and a VPC reference
 module "cbr_zone" {
   source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-zone-module"
-  version          = "1.35.13"
+  version          = "1.35.15"
   name             = "${var.prefix}-network-zone"
   zone_description = "CBR Network zone for allowing access to selected services"
   account_id       = data.ibm_iam_account_settings.iam_account_settings.account_id
