@@ -30,13 +30,13 @@ variable "resource_group" {
 
 variable "resource_tags" {
   type        = list(string)
-  description = "Tags that should be applied to the namespace"
+  description = "Add user resource tags to the Container Registry instance to organize, track, and manage costs. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#tag-types)."
   default     = ["test-icr-tag", "test-icr"]
 }
 
 variable "access_tags" {
   type        = list(string)
-  description = "Access management tags to be added to the IBM container namespace."
+  description = "Add access management tags to the Container Registry instance to control access. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#create-access-console)."
   default     = []
 }
 

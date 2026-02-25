@@ -21,8 +21,6 @@ You can use this module to provision and configure an [IBM Container Registry](h
 * [Examples](./examples)
 :information_source: Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab
     * <a href="./examples/complete">IBM Container Registry namespace example</a> <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=container-registry-complete-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete"><img src="https://img.shields.io/badge/Deploy%20with IBM%20Cloud%20Schematics-0f62fe?logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
-* [Deployable Architectures](./solutions)
-    * <a href="./solutions/fully-configurable">Cloud automation for Container Registry (Fully configurable)</a>
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
@@ -88,19 +86,20 @@ module "set_quota" {
 | [ibm_resource_tag.resource_tag](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_tag) | resource |
 | [time_sleep.wait_for_namespace](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 | [ibm_cr_namespaces.existing_cr_namespaces](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/cr_namespaces) | data source |
+| [ibm_iam_access_tag.access_tag](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/iam_access_tag) | data source |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | Optional list of access management tags to be added to the IBM container namespace. | `list(string)` | `[]` | no |
+| <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | Add access management tags to the Container Registry instance to control access. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#create-access-console). | `list(string)` | `[]` | no |
 | <a name="input_cbr_rules"></a> [cbr\_rules](#input\_cbr\_rules) | The list of context-based restriction rules to create for the namespace. | <pre>list(object({<br/>    description = string<br/>    account_id  = string<br/>    rule_contexts = list(object({<br/>      attributes = optional(list(object({<br/>        name  = string<br/>        value = string<br/>    }))) }))<br/>    enforcement_mode = string<br/>    tags = optional(list(object({<br/>      name  = string<br/>      value = string<br/>    })), [])<br/>    operations = optional(list(object({<br/>      api_types = list(object({<br/>        api_type_id = string<br/>      }))<br/>    })))<br/>  }))</pre> | `[]` | no |
 | <a name="input_existing_namespace_name"></a> [existing\_namespace\_name](#input\_existing\_namespace\_name) | The name of an existing namespace. Required if 'namespace\_name' is not provided. | `string` | `null` | no |
 | <a name="input_images_per_repo"></a> [images\_per\_repo](#input\_images\_per\_repo) | (Optional, Integer) Determines how many images are retained in each repository when the retention policy is processed. The value -1 denotes Unlimited (all images are retained). The value 0 denotes no retention policy will be created (default) | `number` | `0` | no |
 | <a name="input_namespace_name"></a> [namespace\_name](#input\_namespace\_name) | Name of the container registry namespace, if var.existing\_namespace\_name is not inputted, a new namespace will be created in a region set by provider. | `string` | n/a | yes |
 | <a name="input_resource_group_id"></a> [resource\_group\_id](#input\_resource\_group\_id) | The resource group ID where the IBM container namespace will be created. | `string` | n/a | yes |
 | <a name="input_retain_untagged"></a> [retain\_untagged](#input\_retain\_untagged) | (Optional, Bool) Determines whether untagged images are retained when the retention policy is processed. Default value is false, means untagged images can be deleted when the policy runs. | `bool` | `false` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Optional list of user tags to be added to the IBM container namespace. | `list(string)` | `[]` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Add user resource tags to the Container Registry instance to organize, track, and manage costs. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#tag-types). | `list(string)` | `[]` | no |
 
 ### Outputs
 

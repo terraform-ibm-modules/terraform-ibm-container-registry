@@ -31,6 +31,11 @@ resource "time_sleep" "wait_for_namespace" {
 }
 
 # In addition to locally managed tags on the ibm_cr_namespace resource because https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_namespace#tags-5
+data "ibm_iam_access_tag" "access_tag" {
+  for_each = length(var.access_tags) != 0 ? toset(var.access_tags) : []
+  name     = each.value
+}
+
 resource "ibm_resource_tag" "resource_tag" {
   count       = var.existing_namespace_name != null || length(var.tags) == 0 ? 0 : 1
   resource_id = ibm_cr_namespace.cr_namespace[0].crn
@@ -44,7 +49,7 @@ resource "ibm_resource_tag" "access_tag" {
   resource_id = ibm_cr_namespace.cr_namespace[0].crn
   tags        = var.access_tags
   tag_type    = "access"
-  depends_on  = [time_sleep.wait_for_namespace]
+  depends_on  = [time_sleep.wait_for_namespace, data.ibm_iam_access_tag.access_tag]
 }
 
 resource "ibm_cr_retention_policy" "cr_retention_policy" {
