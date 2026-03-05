@@ -19,7 +19,7 @@ resource "ibm_cr_namespace" "cr_namespace" {
   count             = var.existing_namespace_name != null ? 0 : 1
   name              = var.namespace_name
   resource_group_id = var.resource_group_id
-  tags              = var.tags
+  tags              = var.resource_tags
 }
 
 # workaround for https://github.com/IBM-Cloud/terraform-provider-ibm/issues/6614
@@ -37,9 +37,9 @@ data "ibm_iam_access_tag" "access_tag" {
 }
 
 resource "ibm_resource_tag" "resource_tag" {
-  count       = var.existing_namespace_name != null || length(var.tags) == 0 ? 0 : 1
+  count       = var.existing_namespace_name != null || length(var.resource_tags) == 0 ? 0 : 1
   resource_id = ibm_cr_namespace.cr_namespace[0].crn
-  tags        = var.tags
+  tags        = var.resource_tags
   tag_type    = "user"
   depends_on  = [time_sleep.wait_for_namespace]
 }

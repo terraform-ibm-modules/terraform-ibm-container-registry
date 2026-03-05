@@ -73,7 +73,7 @@ variable "existing_namespace_name" {
   default     = null
 }
 
-variable "tags" {
+variable "resource_tags" {
   type        = list(string)
   description = "Add user resource tags to the Container Registry instance to organize, track, and manage costs. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#tag-types)."
   default     = []
