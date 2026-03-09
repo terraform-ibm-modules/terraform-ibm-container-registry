@@ -21,8 +21,6 @@ You can use this module to provision and configure an [IBM Container Registry](h
 * [Examples](./examples)
 :information_source: Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab
     * <a href="./examples/complete">IBM Container Registry namespace example</a> <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=container-registry-complete-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete"><img src="https://img.shields.io/badge/Deploy%20with IBM%20Cloud%20Schematics-0f62fe?logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
-* [Deployable Architectures](./solutions)
-    * <a href="./solutions/fully-configurable">Cloud automation for Container Registry (Fully configurable)</a>
 * [Contributing](#contributing)
 <!-- END OVERVIEW HOOK -->
 
@@ -69,8 +67,7 @@ module "set_quota" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.79.0, < 2.0.0 |
-| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.9.1, < 1.0.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.89.0, < 2.0.0 |
 
 ### Modules
 
@@ -86,7 +83,6 @@ module "set_quota" {
 | [ibm_cr_retention_policy.cr_retention_policy](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_retention_policy) | resource |
 | [ibm_resource_tag.access_tag](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_tag) | resource |
 | [ibm_resource_tag.resource_tag](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_tag) | resource |
-| [time_sleep.wait_for_namespace](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 | [ibm_cr_namespaces.existing_cr_namespaces](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/data-sources/cr_namespaces) | data source |
 
 ### Inputs
