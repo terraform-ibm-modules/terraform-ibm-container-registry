@@ -23,7 +23,7 @@ resource "ibm_is_vpc" "example_vpc" {
 resource "ibm_is_subnet" "testacc_subnet" {
   name                     = "${var.prefix}-subnet"
   vpc                      = ibm_is_vpc.example_vpc.id
-  zone                     = "${var.namespace_region}-1"
+  zone                     = "${var.region}-1"
   total_ipv4_address_count = 256
   resource_group           = module.resource_group.resource_group_id
 }

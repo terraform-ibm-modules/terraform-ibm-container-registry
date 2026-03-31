@@ -16,6 +16,12 @@ variable "namespace_region" {
   default     = "us-south"
 }
 
+variable "region" {
+  type        = string
+  description = "The IBM Cloud region where the vpc will get created."
+  default     = "us-south"
+}
+
 variable "existing_namespace_name" {
   type        = string
   description = "The name of an existing namespace. Required if `namespace_name` is not provided."
