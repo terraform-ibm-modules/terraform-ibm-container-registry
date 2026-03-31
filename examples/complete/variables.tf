@@ -18,7 +18,7 @@ variable "namespace_region" {
 
 variable "region" {
   type        = string
-  description = "The IBM Cloud region where the vpc will get created."
+  description = "The IBM Cloud region where the VPC will get created."
   default     = "us-south"
 }
 
