@@ -14,6 +14,7 @@ module "resource_group" {
 # Creating VPC to show how it can access container registry namespace through CBR rules
 #######################################################################################################################
 
+# VPC is created for applying CBR rules on container registry
 resource "ibm_is_vpc" "example_vpc" {
   name           = "${var.prefix}-vpc"
   resource_group = module.resource_group.resource_group_id
