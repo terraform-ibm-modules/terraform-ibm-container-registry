@@ -6,12 +6,6 @@ provider "ibm" {
   ibmcloud_api_key = var.ibmcloud_api_key
 }
 
-provider "ibm" {
-  alias            = "namespace"
-  ibmcloud_api_key = var.ibmcloud_api_key
-  region           = var.namespace_region
-}
-
 # Data source to retrieve token details
 data "ibm_iam_auth_token" "token_data" {
 }
