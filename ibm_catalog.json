@@ -170,7 +170,7 @@
               "key": "existing_namespace_name"
             },
             {
-              "key": "tags",
+              "key": "resource_tags",
               "type": "array",
               "custom_config": {
                 "grouping": "deployment",
