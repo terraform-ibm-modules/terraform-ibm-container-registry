@@ -23,11 +23,6 @@ resource "ibm_cr_namespace" "cr_namespace" {
 }
 
 # In addition to locally managed tags on the ibm_cr_namespace resource because https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_namespace#tags-5
-data "ibm_iam_access_tag" "access_tag" {
-  for_each = length(var.access_tags) != 0 ? toset(var.access_tags) : []
-  name     = each.value
-}
-
 resource "ibm_resource_tag" "resource_tag" {
   count       = var.existing_namespace_name != null || length(var.resource_tags) == 0 ? 0 : 1
   resource_id = ibm_cr_namespace.cr_namespace[0].crn
@@ -35,8 +30,13 @@ resource "ibm_resource_tag" "resource_tag" {
   tag_type    = "user"
 }
 
+data "ibm_iam_access_tag" "access_tag" {
+  for_each = length(var.access_tags) != 0 ? toset(var.access_tags) : []
+  name     = each.value
+}
+
 resource "ibm_resource_tag" "access_tag" {
-  depends_on  = [data.ibm_iam_access_tag.access_tag]
+  depends_on  = [data.ibm_iam_access_tag.access_tag] # Force dependency on data source validation to ensure access_tags exist and are valid before use.
   count       = var.existing_namespace_name != null || length(var.access_tags) == 0 ? 0 : 1
   resource_id = ibm_cr_namespace.cr_namespace[0].crn
   tags        = var.access_tags
