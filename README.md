@@ -13,17 +13,31 @@ You can use this module to provision and configure an [IBM Container Registry](h
 <!-- Below content is automatically populated via pre-commit hook -->
 <!-- BEGIN OVERVIEW HOOK -->
 ## Overview
-* [terraform-ibm-container-registry](#terraform-ibm-container-registry)
-* [Submodules](./modules)
-    * [endpoint](./modules/endpoint)
-    * [plan](./modules/plan)
-    * [quotas](./modules/quotas)
-* [Examples](./examples)
-:information_source: Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab
-    * <a href="./examples/complete">IBM Container Registry namespace example</a> <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=container-registry-complete-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete"><img src="https://img.shields.io/badge/Deploy%20with IBM%20Cloud%20Schematics-0f62fe?logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
-* [Deployable Architectures](./solutions)
-    * <a href="./solutions/fully-configurable">Cloud automation for Container Registry (Fully configurable)</a>
-* [Contributing](#contributing)
+<ul>
+  <li><a href="#terraform-ibm-container-registry">terraform-ibm-container-registry</a></li>
+  <li><a href="./modules">Submodules</a>
+    <ul>
+      <li><a href="./modules/endpoint">endpoint</a></li>
+      <li><a href="./modules/plan">plan</a></li>
+      <li><a href="./modules/quotas">quotas</a></li>
+    </ul>
+  </li>
+  <li><a href="./examples">Examples</a>
+    <ul>
+      <li>
+        <a href="./examples/complete">IBM Container Registry namespace example</a>
+        <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=container-registry-complete-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete"><img src="https://img.shields.io/badge/Deploy%20with%20IBM%20Cloud%20Schematics-0f62fe?style=flat&logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
+      </li>
+    </ul>
+    ℹ️ Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab.
+  </li>
+  <li><a href="./solutions">Deployable Architectures</a>
+    <ul>
+      <li><a href="./solutions/fully-configurable">Cloud automation for Container Registry (Fully configurable)</a></li>
+    </ul>
+  </li>
+  <li><a href="#contributing">Contributing</a></li>
+</ul>
 <!-- END OVERVIEW HOOK -->
 
 ## terraform-ibm-container-registry
@@ -75,7 +89,7 @@ module "set_quota" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_namespace_cbr_rules"></a> [namespace\_cbr\_rules](#module\_namespace\_cbr\_rules) | terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module | 1.36.0 |
+| <a name="module_namespace_cbr_rules"></a> [namespace\_cbr\_rules](#module\_namespace\_cbr\_rules) | terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module | 1.36.2 |
 
 ### Resources
 
