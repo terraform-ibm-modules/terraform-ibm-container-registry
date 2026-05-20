@@ -2,6 +2,7 @@
 package test
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"strings"
@@ -90,9 +91,9 @@ func TestRunExistingResourcesExample(t *testing.T) {
 	// Provision icr namespace
 	// ------------------------------------------------------------------------------------
 
-	prefix := fmt.Sprintf("cr-%s", strings.ToLower(random.UniqueId()))
+	prefix := fmt.Sprintf("cr-%s", strings.ToLower(random.UniqueID()))
 	realTerraformDir := "./existing-resources"
-	tempTerraformDir, _ := files.CopyTerraformFolderToTemp(realTerraformDir, fmt.Sprintf(prefix+"-%s", strings.ToLower(random.UniqueId())))
+	tempTerraformDir, _ := files.CopyTerraformFolderToTemp(realTerraformDir, fmt.Sprintf(prefix+"-%s", strings.ToLower(random.UniqueID())))
 
 	var region = validRegions[common.CryptoIntn(len(validRegions))]
 
@@ -113,8 +114,8 @@ func TestRunExistingResourcesExample(t *testing.T) {
 		Upgrade: true,
 	})
 
-	terraform.WorkspaceSelectOrNew(t, existingTerraformOptions, prefix)
-	_, existErr := terraform.InitAndApplyE(t, existingTerraformOptions)
+	terraform.WorkspaceSelectOrNewContext(t, context.Background(), existingTerraformOptions, prefix)
+	_, existErr := terraform.InitAndApplyContextE(t, context.Background(), existingTerraformOptions)
 	if existErr != nil {
 		assert.True(t, existErr == nil, "Init and Apply of temp existing resource failed")
 	} else {
@@ -126,8 +127,8 @@ func TestRunExistingResourcesExample(t *testing.T) {
 			ResourceGroup: resourceGroup,
 		})
 		options.TerraformVars = map[string]interface{}{
-			"existing_namespace_name":      terraform.Output(t, existingTerraformOptions, "namespace_name"),
-			"existing_resource_group_name": terraform.Output(t, existingTerraformOptions, "resource_group_name"),
+			"existing_namespace_name":      terraform.OutputContext(t, context.Background(), existingTerraformOptions, "namespace_name"),
+			"existing_resource_group_name": terraform.OutputContext(t, context.Background(), existingTerraformOptions, "resource_group_name"),
 			"namespace_region":             region,
 			"prefix":                       options.Prefix,
 			"upgrade_to_standard_plan":     true,
@@ -148,8 +149,8 @@ func TestRunExistingResourcesExample(t *testing.T) {
 		fmt.Println("Terratest failed. Debug the test and delete resources manually.")
 	} else {
 		logger.Log(t, "START: Destroy (existing resources)")
-		terraform.Destroy(t, existingTerraformOptions)
-		terraform.WorkspaceDelete(t, existingTerraformOptions, prefix)
+		terraform.DestroyContext(t, context.Background(), existingTerraformOptions)
+		terraform.WorkspaceDeleteContext(t, context.Background(), existingTerraformOptions, prefix)
 		logger.Log(t, "END: Destroy (existing resources)")
 	}
 }
