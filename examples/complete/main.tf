@@ -38,7 +38,7 @@ resource "ibm_is_subnet" "testacc_subnet" {
 # A network zone with services reference to toolchain service, schematics service and a VPC reference
 module "cbr_zone" {
   source           = "terraform-ibm-modules/cbr/ibm//modules/cbr-zone-module"
-  version          = "1.36.3"
+  version          = "1.36.4"
   name             = "${var.prefix}-network-zone"
   zone_description = "CBR Network zone for allowing access to selected services"
   account_id       = data.ibm_iam_account_settings.iam_account_settings.account_id
