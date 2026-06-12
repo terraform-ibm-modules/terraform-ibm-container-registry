@@ -15,25 +15,25 @@ You can use this module to provision and configure an [IBM Container Registry](h
 ## Overview
 <ul>
   <li><a href="#terraform-ibm-container-registry">terraform-ibm-container-registry</a></li>
-  <li><a href="./modules">Submodules</a>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/modules">Submodules</a>
     <ul>
-      <li><a href="./modules/endpoint">endpoint</a></li>
-      <li><a href="./modules/plan">plan</a></li>
-      <li><a href="./modules/quotas">quotas</a></li>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/modules/endpoint">endpoint</a></li>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/modules/plan">plan</a></li>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/modules/quotas">quotas</a></li>
     </ul>
   </li>
-  <li><a href="./examples">Examples</a>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples">Examples</a>
     <ul>
       <li>
-        <a href="./examples/complete">IBM Container Registry namespace example</a>
+        <a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete">IBM Container Registry namespace example</a>
         <a href="https://cloud.ibm.com/schematics/workspaces/create?workspace_name=container-registry-complete-example&repository=https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/examples/complete"><img src="https://img.shields.io/badge/Deploy%20with%20IBM%20Cloud%20Schematics-0f62fe?style=flat&logo=ibm&logoColor=white&labelColor=0f62fe" alt="Deploy with IBM Cloud Schematics" style="height: 16px; vertical-align: text-bottom; margin-left: 5px;"></a>
       </li>
     </ul>
     ℹ️ Ctrl/Cmd+Click or right-click on the Schematics deploy button to open in a new tab.
   </li>
-  <li><a href="./solutions">Deployable Architectures</a>
+  <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/solutions">Deployable Architectures</a>
     <ul>
-      <li><a href="./solutions/fully-configurable">Cloud automation for Container Registry (Fully configurable)</a></li>
+      <li><a href="https://github.com/terraform-ibm-modules/terraform-ibm-container-registry/tree/main/solutions/fully-configurable">Cloud automation for Container Registry (Fully configurable)</a></li>
     </ul>
   </li>
   <li><a href="#contributing">Contributing</a></li>
