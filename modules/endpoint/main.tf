@@ -23,5 +23,7 @@ locals {
     "eu-gb"      = "uk.icr.io"
     "jp-osa"     = "jp2.icr.io"
     "global"     = "icr.io"
+    "in-che"     = "in.icr.io"
+    "in-mum"     = "in2.icr.io"
   }
 }
