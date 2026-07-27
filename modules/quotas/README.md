@@ -43,7 +43,7 @@ You need the following permissions to run this module.
 ### Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.89.0, < 3.0.0 |
 | <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 2.0.1, < 3.0.0 |
@@ -55,14 +55,14 @@ No modules.
 ### Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [restapi_object.container_registry_storage_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
 | [restapi_object.container_registry_traffic_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_container_registry_endpoint"></a> [container\_registry\_endpoint](#input\_container\_registry\_endpoint) | The endpoint of the IBM Container Registry, eg. us.icr.io or de.icr.io, to change quotas | `string` | `"us.icr.io"` | no |
 | <a name="input_storage_megabytes"></a> [storage\_megabytes](#input\_storage\_megabytes) | Storage quota in megabytes. The value -1 denotes `Unlimited` | `number` | `null` | no |
 | <a name="input_traffic_megabytes"></a> [traffic\_megabytes](#input\_traffic\_megabytes) | Traffic quota in megabytes. The value -1 denotes `Unlimited`. | `number` | `null` | no |
