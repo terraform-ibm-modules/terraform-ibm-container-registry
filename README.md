@@ -81,20 +81,20 @@ module "set_quota" {
 ### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
 | <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.89.0, < 3.0.0 |
 
 ### Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_namespace_cbr_rules"></a> [namespace\_cbr\_rules](#module\_namespace\_cbr\_rules) | terraform-ibm-modules/cbr/ibm//modules/cbr-rule-module | 1.36.9 |
 
 ### Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [ibm_cr_namespace.cr_namespace](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_namespace) | resource |
 | [ibm_cr_retention_policy.cr_retention_policy](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_retention_policy) | resource |
 | [ibm_resource_tag.access_tag](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_tag) | resource |
@@ -105,7 +105,7 @@ module "set_quota" {
 ### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_access_tags"></a> [access\_tags](#input\_access\_tags) | Add access management tags to the Container Registry instance to control access. [Learn more](https://cloud.ibm.com/docs/account?topic=account-tag&interface=ui#create-access-console). | `list(string)` | `[]` | no |
 | <a name="input_cbr_rules"></a> [cbr\_rules](#input\_cbr\_rules) | The list of context-based restriction rules to create for the namespace. | <pre>list(object({<br/>    description = string<br/>    account_id  = string<br/>    rule_contexts = list(object({<br/>      attributes = optional(list(object({<br/>        name  = string<br/>        value = string<br/>    }))) }))<br/>    enforcement_mode = string<br/>    tags = optional(list(object({<br/>      name  = string<br/>      value = string<br/>    })), [])<br/>    operations = optional(list(object({<br/>      api_types = list(object({<br/>        api_type_id = string<br/>      }))<br/>    })))<br/>  }))</pre> | `[]` | no |
 | <a name="input_existing_namespace_name"></a> [existing\_namespace\_name](#input\_existing\_namespace\_name) | The name of an existing namespace. Required if 'namespace\_name' is not provided. | `string` | `null` | no |
@@ -118,7 +118,7 @@ module "set_quota" {
 ### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_namespace_crn"></a> [namespace\_crn](#output\_namespace\_crn) | CRN representing the namespace |
 | <a name="output_namespace_name"></a> [namespace\_name](#output\_namespace\_name) | Name of ICR namespace |
 | <a name="output_retention_policy_id"></a> [retention\_policy\_id](#output\_retention\_policy\_id) | ID of retentation policy |
