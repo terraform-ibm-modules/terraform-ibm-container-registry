@@ -44,9 +44,8 @@ You need the following permissions to run this module.
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.89.0, < 3.0.0 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 2.0.1, < 3.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.14.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 2.9.0, < 3.0.0 |
 
 ### Modules
 
@@ -56,8 +55,7 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [restapi_object.container_registry_storage_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
-| [restapi_object.container_registry_traffic_quota](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
+| [ibm_cr_quota.quota](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_quota) | resource |
 
 ### Inputs
 

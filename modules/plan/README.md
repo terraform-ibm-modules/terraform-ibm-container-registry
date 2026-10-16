@@ -5,35 +5,11 @@ You can use this submodule to upgrade the IBM [Container Registry](https://cloud
 The submodule can used without the root module to upgrade the plan without creating any additional namespaces or retention policies.
 
 ### Usage
-```
-API_DATA_IS_SENSITIVE=true
-```
-For more information, see the [provider documentation](https://github.com/Mastercard/terraform-provider-restapi#usage) for generic REST APIs.
 
 ```hcl
 provider "ibm" {
   ibmcloud_api_key = "XXXXXXXXXX" # pragma: allowlist secret
   region           = "us-south"
-}
-
-# Data source to retrieve token details
-data "ibm_iam_auth_token" "token_data" {
-}
-
-# Data source to account settings
-data "ibm_iam_account_settings" "iam_account_settings" {
-}
-
-provider "restapi" {
-  uri                   = "https:"
-  write_returns_object  = false
-  create_returns_object = false
-  debug                 = false # set to true to show detailed logs, but use carefully as it might print sensitive values.
-  headers = {
-    Account       = data.ibm_iam_account_settings.iam_account_settings.account_id
-    Authorization = data.ibm_iam_auth_token.token_data.iam_access_token
-    Content-Type  = "application/json"
-  }
 }
 
 # Upgrade plan:
@@ -60,9 +36,8 @@ You need the following permissions to run this module.
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 1.89.0, < 3.0.0 |
-| <a name="requirement_restapi"></a> [restapi](#requirement\_restapi) | >= 2.0.1, < 3.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.14.0 |
+| <a name="requirement_ibm"></a> [ibm](#requirement\_ibm) | >= 2.9.0, < 3.0.0 |
 
 ### Modules
 
@@ -72,7 +47,8 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [restapi_object.container_registry_plan_upgrade](https://registry.terraform.io/providers/Mastercard/restapi/latest/docs/resources/object) | resource |
+| [ibm_cr_plan_upgrade.standard](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/cr_plan_upgrade) | action |
+| [terraform_data.plan_upgrade](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
 
 ### Inputs
 
