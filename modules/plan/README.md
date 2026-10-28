@@ -20,6 +20,20 @@ module "upgrade-plan" {
 }
 ```
 
+### Upgrading from a version that used the restapi provider
+
+Earlier versions of this submodule used the `Mastercard/restapi` provider. This version uses the IBM provider instead and removes the old `restapi_object` resources from state without destroying them, so the plan and the quotas on the account are not touched.
+
+Terraform still needs the restapi provider to be configured during the apply that removes the old objects. Keep a minimal provider block for that one apply, then delete it:
+
+```hcl
+provider "restapi" {
+  uri = "https:"
+}
+```
+
+The old token and account settings data sources are not needed and can be removed right away.
+
 ### Required IAM access policies
 
 You need the following permissions to run this module.
